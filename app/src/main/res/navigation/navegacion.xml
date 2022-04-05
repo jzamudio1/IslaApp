@@ -18,5 +18,22 @@
         android:id="@+id/playasFragment"
         android:name="com.jzamudio.isla21410.Playas.playasFragment"
         android:label="playas_fragment"
-        tools:layout="@layout/playas_fragment" />
+        tools:layout="@layout/playas_fragment" >
+        <action
+            android:id="@+id/action_playasFragment_to_playaCentralFragment"
+            app:destination="@id/playaCentralFragment" />
+        <action
+            android:id="@+id/action_playasFragment_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/playaCentralFragment"
+        android:name="com.jzamudio.isla21410.Playas.listPlayas.Central.playaCentralFragment"
+        android:label="playa_central_fragment"
+        tools:layout="@layout/playa_central_fragment" />
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.jzamudio.isla21410.Playas.listPlayas.Central.MapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" />
 </navigation>

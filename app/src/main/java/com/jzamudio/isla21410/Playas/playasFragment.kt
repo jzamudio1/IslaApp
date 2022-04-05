@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.jzamudio.isla21410.R
 import com.jzamudio.isla21410.databinding.PlayasFragmentBinding
 
@@ -14,6 +15,7 @@ class playasFragment : Fragment() {
     //Binding
     private var _binding: PlayasFragmentBinding? = null
     private val binding get() = _binding!!
+
     //viewModel
     private lateinit var viewModel: PlayasViewModel
 
@@ -21,9 +23,11 @@ class playasFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = PlayasFragmentBinding.inflate(inflater,container,false)
+        _binding = PlayasFragmentBinding.inflate(inflater, container, false)
 
-
+        binding.btnPlayaCentral.setOnClickListener {
+            findNavController().navigate(R.id.action_playasFragment_to_playaCentralFragment)
+        }
 
 
 

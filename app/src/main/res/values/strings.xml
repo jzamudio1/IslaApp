@@ -25,4 +25,6 @@
     <string name="PlayaHoyo">Playa del Hoyo</string>
     <string name="PlayaLitoral">Playa Parque Litoral</string>
     <string name="PlayaRedondela">Playa Cruce de la Redondela</string>
+    <string name="textPlayaCentral">La Playa Central es una playa urbana de fina y dorada arena y aguas transparentes, ubicada en el entorno del paraje natural Monte Público “Dunas de Isla Cristina” por el que transcurre la Ruta del Camaleón, con una amplia riqueza paisajística y biológica, donde se puede contemplar la fauna autóctona, destacando el camaleón común. En esta playa, centro neurálgico de los servicios del resto de las playas, se encuentra un sinfín de servicios a disposición del usuario, tales como duchas individuales, rampa para minusválidos, paseo marítimo, Biblioplaya con punto de información, restaurantes, teléfono público, centro de Protección Civil y Policía Local, escuela de vela, además cuenta con los aparcamientos más amplios de todas las playas, totalmente acondicionados y señalizados. La Playa Central es la elegida para eventos veraniegos, deportivos y saludables.</string>
+    <string name="title_activity_maps">MapsActivity</string>
 </resources>
