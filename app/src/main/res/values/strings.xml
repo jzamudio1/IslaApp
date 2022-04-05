@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Isla21410</string>
+    <string name="title_activity_inicio">Inicio</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="IslaCristina">Isla Cristina</string>
+    <string name="playa_Central">Playa Central</string>
+    <string name="playa_Santana">Playa Santana</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="PlayaIslantilla">Playa de Islantilla</string>
+    <string name="PlayaCasitaAzul">Playa de la Casita Azul</string>
+    <string name="PlayaCaiman">Playa Punta del Caimán</string>
+    <string name="PlayaPesmar">Playa de Pesmar</string>
+    <string name="PlayaSantana">Playa Santana</string>
+    <string name="PlayaUrbasur">Playa De Urbasur</string>
+    <string name="PlayaCamping">Playa del Camping</string>
+    <string name="PlayaHoyo">Playa del Hoyo</string>
+    <string name="PlayaLitoral">Playa Parque Litoral</string>
+    <string name="PlayaRedondela">Playa Cruce de la Redondela</string>
+</resources>

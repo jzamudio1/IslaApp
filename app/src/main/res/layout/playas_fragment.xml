@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <Button
+        android:id="@+id/btnPlayaCentral"
+        android:layout_width="282dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/playa_Central"
+        app:layout_constraintBottom_toTopOf="@+id/btnPlayaIslantilla"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnPlayaIslantilla"
+        android:layout_width="281dp"
+        android:layout_height="wrap_content"
+        android:text="@string/PlayaIslantilla"
+        app:layout_constraintBottom_toTopOf="@+id/btnPlayaCasitaAzul"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnPlayaCentral" />
+
+        <Button
+            android:id="@+id/btnPlayaCasitaAzul"
+            android:layout_width="281dp"
+            android:layout_height="wrap_content"
+            android:text="@string/PlayaCasitaAzul"
+            app:layout_constraintBottom_toTopOf="@+id/btnPlayaPuntaCaiman"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.506"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnPlayaIslantilla" />
+
+        <Button
+        android:id="@+id/btnPlayaPuntaCaiman"
+        android:layout_width="281dp"
+        android:layout_height="wrap_content"
+        android:text="@string/PlayaCaiman"
+        app:layout_constraintBottom_toTopOf="@+id/btnPlayaPesmar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnPlayaCasitaAzul" />
+
+    <Button
+        android:id="@+id/btnPlayaPesmar"
+        android:layout_width="281dp"
+        android:layout_height="wrap_content"
+        android:text="@string/PlayaPesmar"
+        app:layout_constraintBottom_toTopOf="@+id/btnPlayaSantana"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnPlayaPuntaCaiman" />
+
+    <Button
+        android:id="@+id/btnPlayaSantana"
+        android:layout_width="281dp"
+        android:layout_height="wrap_content"
+        android:text="@string/PlayaSantana"
+        app:layout_constraintBottom_toTopOf="@+id/btnPlayaUrbasur"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnPlayaPesmar" />
+
+    <Button
+        android:id="@+id/btnPlayaUrbasur"
+        android:layout_width="281dp"
+        android:layout_height="wrap_content"
+        android:text="@string/PlayaUrbasur"
+        app:layout_constraintBottom_toTopOf="@+id/btnPlayaCamping"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnPlayaSantana" />
+
+    <Button
+        android:id="@+id/btnPlayaCamping"
+        android:layout_width="281dp"
+        android:layout_height="wrap_content"
+        android:text="@string/PlayaCamping"
+        app:layout_constraintBottom_toTopOf="@+id/btnPlayaHoyo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnPlayaUrbasur" />
+
+    <Button
+        android:id="@+id/btnPlayaHoyo"
+        android:layout_width="281dp"
+        android:layout_height="wrap_content"
+        android:text="@string/PlayaHoyo"
+        app:layout_constraintBottom_toTopOf="@+id/btnPlayaLitoral"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnPlayaCamping" />
+
+        <Button
+            android:id="@+id/btnPlayaRedondela"
+            android:layout_width="281dp"
+            android:layout_height="wrap_content"
+            android:text="@string/PlayaRedondela"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnPlayaLitoral" />
+
+    <Button
+        android:id="@+id/btnPlayaLitoral"
+        android:layout_width="281dp"
+        android:layout_height="wrap_content"
+        android:text="@string/PlayaLitoral"
+        app:layout_constraintBottom_toTopOf="@+id/btnPlayaRedondela"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnPlayaHoyo" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
