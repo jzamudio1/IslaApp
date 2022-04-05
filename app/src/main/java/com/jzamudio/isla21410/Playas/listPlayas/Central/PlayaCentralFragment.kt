@@ -17,8 +17,10 @@ import com.jzamudio.isla21410.databinding.PlayaCentralFragmentBinding
 
 class playaCentralFragment : Fragment(), OnMapReadyCallback {
 
+    //Necesita un MapView
     var mapView: MapView? = null
 
+    //Sobreescribe la funcion
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         mapView?.onSaveInstanceState(outState)
@@ -36,9 +38,9 @@ class playaCentralFragment : Fragment(), OnMapReadyCallback {
     ): View? {
         _binding = PlayaCentralFragmentBinding.inflate(inflater,container,false)
 
-// Gets the MapView from the XML layout and creates it
         // Gets the MapView from the XML layout and creates it
         mapView = binding.map
+        // Gets the MapView from the XML layout and creates it
         mapView!!.onCreate(savedInstanceState)
         mapView!!.getMapAsync(this) //this is important
 
@@ -53,6 +55,7 @@ class playaCentralFragment : Fragment(), OnMapReadyCallback {
     }
 
 
+    //Funciones Necesarias para que funcione el MapView
     override fun onResume() {
         super.onResume()
         mapView?.onResume()
