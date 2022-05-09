@@ -28,4 +28,29 @@
     <string name="textPlayaCentral">La Playa Central es una playa urbana de fina y dorada arena y aguas transparentes, ubicada en el entorno del paraje natural Monte Público “Dunas de Isla Cristina” por el que transcurre la Ruta del Camaleón, con una amplia riqueza paisajística y biológica, donde se puede contemplar la fauna autóctona, destacando el camaleón común. En esta playa, centro neurálgico de los servicios del resto de las playas, se encuentra un sinfín de servicios a disposición del usuario, tales como duchas individuales, rampa para minusválidos, paseo marítimo, Biblioplaya con punto de información, restaurantes, teléfono público, centro de Protección Civil y Policía Local, escuela de vela, además cuenta con los aparcamientos más amplios de todas las playas, totalmente acondicionados y señalizados. La Playa Central es la elegida para eventos veraniegos, deportivos y saludables.</string>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="textIslantilla">La Playa de Islantilla esta compartida por los municipios de Isla Cristina y Lepe, que cuentan con una mancomunidad para gestionar el desarrollo urbano y turístico del núcleo de Islantilla.  Esta playa se encuentra situada entre la playa de Urbasur al oeste y la Playa de La Antilla, al este. El nombre de Islantilla proviene de la unión de Isla Cristina y La Antilla.  Una hermosa playa de arena fina y dorada que esta abierta al océano Atlántico. Forma parte de un complejo turístico donde se conjugan a la perfección el el respeto medioambiental con el desarrollo urbanístico. Su clima es muy agradable con temperaturas medias de 19º C y más de 3 000 horas de sol al año.  Islantilla ha sido la primera franja del litoral de Huelva en ser reconocida con el distintivo Q. Cuenta con un arenal accesible para personas con movilidad reducida y dispone de un largo paseo marítimo de un kilómetro de longitud que permite distintos accesos a una playa como Islantila que se encuentra repleta de servicios: aseos, duchas, zonas de sombrillas y hamacas, escuelas de vela, módulos de salvamento y socorrismo, animación en temporada alta entre otros.</string>
+    <string name="title_activity_auth">AuthActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_register">Register</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
 </resources>

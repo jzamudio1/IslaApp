@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "676872595149",
+    "project_id": "islaapp-346314",
+    "storage_bucket": "islaapp-346314.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:676872595149:android:75e882f6e49829be632b84",
+        "android_client_info": {
+          "package_name": "com.jzamudio.isla21410"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "676872595149-r57ehj3ui66lhd78e16mel2kimi0276p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHTl6JrCvIYf6nEjB8sT6btER_7H8wBVc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "676872595149-r57ehj3ui66lhd78e16mel2kimi0276p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
