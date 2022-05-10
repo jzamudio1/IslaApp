@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.jzamudio.isla21410.InicioFragment"
-        android:label="fragment_inicio"
+        android:label="Inicio"
         tools:layout="@layout/fragment_inicio" >
         <action
             android:id="@+id/action_inicioFragment_to_playasFragment"

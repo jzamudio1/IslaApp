@@ -2,20 +2,30 @@ package com.jzamudio.isla21410
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.jzamudio.isla21410.database.conexion.FirebaseBD
 import com.jzamudio.isla21410.databinding.ActivityMainBinding
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
+
 
    // private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val DB = FirebaseBD()
+        lifecycleScope.launch {
+            DB.getlistPlayas()
+        }
+
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -28,12 +38,13 @@ class MainActivity : AppCompatActivity() {
         val drawerLayout: DrawerLayout = binding.navDrawer*/
         val navView: BottomNavigationView = binding.navView
          val navController = findNavController(R.id.nav_host_fragment_activity_main)
-
+/*
         val appBarConfiguration = AppBarConfiguration(setOf(
-            R.id.navigation_dashboard,R.id.playassd
+           R.id.navigation_home, R.id.navigation_dashboard,R.id.playassd
         )//,drawerLayout
-        )
-        setupActionBarWithNavController(navController, appBarConfiguration)
+        )*/
+
+
         navView.setupWithNavController(navController)
 
 
