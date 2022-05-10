@@ -1,6 +1,5 @@
 package com.jzamudio.isla21410.database.conexion
 
-import android.net.Uri
 import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
 import com.jzamudio.isla21410.database.model.Playa
@@ -10,6 +9,7 @@ import kotlinx.coroutines.tasks.await
 class FirebaseBD {
 
     val firebaseInstance = FirebaseFirestore.getInstance()
+
 
 
 
@@ -23,9 +23,9 @@ class FirebaseBD {
                 for (doc in it){
                     listPlayas.add(
                         Playa(
-                            Imagen = Uri.EMPTY,
+                            Imagen = doc["imagen"].toString(),
                             Nombre = doc["nombre"].toString(),
-                            Descripcion = ""
+                            Descripcion = doc["descripcion"].toString()
 
                         )
                     )
