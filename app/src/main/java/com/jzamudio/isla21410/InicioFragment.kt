@@ -5,9 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
+import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.firestore.FirebaseFirestore
+import com.jzamudio.isla21410.adapter.InicioAdapter
+
+import com.jzamudio.isla21410.database.conexion.FirebaseBD
+import com.jzamudio.isla21410.database.model.Inicio
 import com.jzamudio.isla21410.databinding.FragmentInicioBinding
+import kotlinx.coroutines.launch
 
 class InicioFragment : Fragment() {
 
@@ -20,64 +27,19 @@ class InicioFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentInicioBinding.inflate(inflater,container,false)
-        val root:View = binding.root
+        _binding = FragmentInicioBinding.inflate(inflater, container, false)
+        val root: View = binding.root
 
-        db.collection("inicio").document("text").get().addOnSuccessListener {
-            binding.txtAlojamientos.setText(it.get("Alojamiento") as String?)
-        }
-        db.collection("inicio").document("text").get().addOnSuccessListener {
-            binding.txtFiesta.setText(it.get("Fiesta") as String?)
-        }
-        db.collection("inicio").document("text").get().addOnSuccessListener {
-            binding.txtGastromia.setText(it.get("Gastronomia") as String?)
-        }
-        db.collection("inicio").document("text").get().addOnSuccessListener {
-            binding.txtIslantilla.setText(it.get("Islantilla") as String?)
-        }
-        db.collection("inicio").document("text").get().addOnSuccessListener {
-            binding.txtNaturaleza.setText(it.get("Naturaleza") as String?)
-        }
-        db.collection("inicio").document("text").get().addOnSuccessListener {
-            binding.txtOcio.setText(it.get("Ocio") as String?)
-        }
-        db.collection("inicio").document("text").get().addOnSuccessListener {
-            binding.txtPatrimonio.setText(it.get("Patrimonio") as String?)
-        }
-        db.collection("inicio").document("text").get().addOnSuccessListener {
-            binding.txtPlayas.setText(it.get("Playas") as String?)
-        }
-        db.collection("inicio").document("text").get().addOnSuccessListener {
-            binding.txtRutas.setText(it.get("Rutas") as String?)
-        }
 
-        binding.Alojamiento.setOnClickListener {
 
-        }
-        binding.Fiesta.setOnClickListener {
-
-        }
-
-        binding.Gastronomia.setOnClickListener {
-
-        }
-        binding.Naturaleza.setOnClickListener {
-
-        }
-        binding.Islantilla.setOnClickListener {
-
-        }
-        binding.Ocio.setOnClickListener {
-
-        }
-        binding.txtPatrimonio.setOnClickListener {
-            findNavController().navigate(R.id.action_inicioFragment_to_listPatrimonioFragment)
-        }
-        binding.Playas.setOnClickListener {
-            findNavController().navigate(R.id.action_inicioFragment_to_playasFragment)
-        }
-        binding.Rutas.setOnClickListener {
-
+        lifecycleScope.launch {
+            binding.recycleInicio.adapter = InicioAdapter(FirebaseBD().getAllInicio()) { inicio ->
+                onItemSelect(
+                    inicio
+                )
+            }
+            binding.recycleInicio.layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         }
 
         return root
@@ -86,5 +48,10 @@ class InicioFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun onItemSelect(inicio: Inicio) {
+
+
     }
 }

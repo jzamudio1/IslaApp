@@ -1,4 +1,5 @@
 package com.jzamudio.isla21410.database.model
 
-class Inicio {
-}
+data class Inicio (
+    val nombre:String
+    )
