@@ -1,6 +1,7 @@
 package com.jzamudio.isla21410.adapter
 
 
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -25,7 +26,7 @@ class PlayaAdapter(
     override fun onBindViewHolder(holder: PlayaViewHolder, position: Int) {
 
         holder.binding.txtPlayaCentral.text = listPlaya[position].Nombre
-       Picasso.get().load(listPlaya[position].Imagen).into(holder.binding.imgPlayaCentral)
+       Picasso.get().load(Uri.parse(listPlaya[position].Imagen)).into(holder.binding.imgPlayaCentral)
     }
 
     //Devuelve el numero de elementos
