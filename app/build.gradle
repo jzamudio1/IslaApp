@@ -4,7 +4,7 @@ plugins {
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 // Add this line
     id 'com.google.gms.google-services'
-    id("androidx.navigation.safeargs")
+    id 'androidx.navigation.safeargs.kotlin'
     id 'kotlin-android-extensions'
 }
 
@@ -72,4 +72,6 @@ plugins {
         implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.1'
         implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.6.0'
         implementation 'androidx.cardview:cardview:1.0.0'
+        implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
+        implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     }

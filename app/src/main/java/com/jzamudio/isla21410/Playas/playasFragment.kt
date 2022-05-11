@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.FirebaseDatabase
@@ -19,6 +20,7 @@ import com.jzamudio.isla21410.adapter.PlayaAdapter
 import com.jzamudio.isla21410.database.conexion.FirebaseBD
 import com.jzamudio.isla21410.databinding.PlayasFragmentBinding
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.playas_fragment.*
 import kotlinx.coroutines.launch
 
 class playasFragment : Fragment() {

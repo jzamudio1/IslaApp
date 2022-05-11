@@ -12,100 +12,34 @@
         tools:layout="@layout/fragment_inicio" >
         <action
             android:id="@+id/action_inicioFragment_to_playasFragment"
-            app:destination="@id/playassd" />
+            app:destination="@id/listPlayas" />
         <action
             android:id="@+id/action_inicioFragment_to_listPatrimonioFragment"
             app:destination="@id/listPatrimonioFragment" />
     </fragment>
     <fragment
-        android:id="@+id/playassd"
+        android:id="@+id/listPlayas"
         android:name="com.jzamudio.isla21410.Playas.playasFragment"
         android:label="playas_fragment"
         tools:layout="@layout/playas_fragment" >
         <action
-            android:id="@+id/action_playasFragment_to_playaCentralFragment"
-            app:destination="@id/navigation_dashboard" />
-        <action
-            android:id="@+id/action_playassd_to_islantillaFragment"
-            app:destination="@id/islantillaFragment" />
-        <action
-            android:id="@+id/action_playassd_to_playaCaimanFragment"
-            app:destination="@id/playaCaimanFragment" />
-        <action
-            android:id="@+id/action_playassd_to_playaCampingFragment"
+            android:id="@+id/action_listPlayas_to_playaCampingFragment"
             app:destination="@id/playaCampingFragment" />
-        <action
-            android:id="@+id/action_playassd_to_playaCasitaAzulFragment"
-            app:destination="@id/playaCasitaAzulFragment" />
-        <action
-            android:id="@+id/action_playassd_to_playaCruceRedonFragment"
-            app:destination="@id/playaCruceRedonFragment" />
-        <action
-            android:id="@+id/action_playassd_to_playaHoyoFragment"
-            app:destination="@id/playaHoyoFragment" />
-        <action
-            android:id="@+id/action_playassd_to_playaLitoralFragment"
-            app:destination="@id/playaLitoralFragment" />
-        <action
-            android:id="@+id/action_playassd_to_playaPesmarFragment"
-            app:destination="@id/playaPesmarFragment" />
-        <action
-            android:id="@+id/action_playassd_to_playaUrbasurFragment"
-            app:destination="@id/playaUrbasurFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.jzamudio.isla21410.Playas.listPlayas.Central.playaCentralFragment"
-        android:label="playa_central_fragment"
-        tools:layout="@layout/playa_central_fragment" />
     <fragment
         android:id="@+id/listPatrimonioFragment"
         android:name="com.jzamudio.isla21410.patrimonio.listPatrimonioFragment"
         android:label="list_patrimonio_fragment"
         tools:layout="@layout/list_patrimonio_fragment" />
     <fragment
-        android:id="@+id/islantillaFragment"
-        android:name="com.jzamudio.isla21410.Playas.listPlayas.Islantilla.IslantillaFragment"
-        android:label="islantilla_fragment"
-        tools:layout="@layout/islantilla_fragment" />
-    <fragment
-        android:id="@+id/playaCaimanFragment"
-        android:name="com.jzamudio.isla21410.Playas.listPlayas.PuntaCaiman.PlayaCaimanFragment"
-        android:label="playa_caiman_fragment"
-        tools:layout="@layout/playa_caiman_fragment" />
-    <fragment
         android:id="@+id/playaCampingFragment"
         android:name="com.jzamudio.isla21410.Playas.listPlayas.Camping.PlayaCampingFragment"
         android:label="playa_camping_fragment"
-        tools:layout="@layout/playa_camping_fragment" />
-    <fragment
-        android:id="@+id/playaCasitaAzulFragment"
-        android:name="com.jzamudio.isla21410.Playas.listPlayas.CasitaAzul.playaCasitaAzulFragment"
-        android:label="playa_casita_azul_fragment"
-        tools:layout="@layout/playa_casita_azul_fragment" />
-    <fragment
-        android:id="@+id/playaCruceRedonFragment"
-        android:name="com.jzamudio.isla21410.Playas.listPlayas.CruceRedondela.PlayaCruceRedonFragment"
-        android:label="playa_cruce_redon_fragment"
-        tools:layout="@layout/playa_cruce_redon_fragment" />
-    <fragment
-        android:id="@+id/playaHoyoFragment"
-        android:name="com.jzamudio.isla21410.Playas.listPlayas.Hoyo.PlayaHoyoFragment"
-        android:label="playa_hoyo_fragment"
-        tools:layout="@layout/playa_hoyo_fragment" />
-    <fragment
-        android:id="@+id/playaLitoralFragment"
-        android:name="com.jzamudio.isla21410.Playas.listPlayas.ParqueLitoral.PlayaLitoralFragment"
-        android:label="playa_litoral_fragment"
-        tools:layout="@layout/playa_litoral_fragment" />
-    <fragment
-        android:id="@+id/playaPesmarFragment"
-        android:name="com.jzamudio.isla21410.Playas.listPlayas.Pesmar.playaPesmarFragment"
-        android:label="playa_pesmar_fragment"
-        tools:layout="@layout/playa_pesmar_fragment" />
-    <fragment
-        android:id="@+id/playaUrbasurFragment"
-        android:name="com.jzamudio.isla21410.Playas.listPlayas.Urbasur.PlayaUrbasurFragment"
-        android:label="playa_urbasur_fragment"
-        tools:layout="@layout/playa_urbasur_fragment" />
+        tools:layout="@layout/playa_camping_fragment" >
+        <argument
+            android:name="foto"
+            app:argType="string" />
+        <argument android:name="descripcion"
+            app:argType="string" />
+    </fragment>
 </navigation>

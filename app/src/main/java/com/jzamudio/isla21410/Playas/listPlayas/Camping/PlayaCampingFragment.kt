@@ -1,5 +1,6 @@
 package com.jzamudio.isla21410.Playas.listPlayas.Camping
 
+import android.net.Uri
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -12,10 +13,9 @@ import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.jzamudio.isla21410.R
-import com.jzamudio.isla21410.databinding.IslantillaFragmentBinding
 import com.jzamudio.isla21410.databinding.PlayaCampingFragmentBinding
-import com.jzamudio.isla21410.databinding.PlayaCentralFragmentBinding
+
+import com.squareup.picasso.Picasso
 
 class PlayaCampingFragment : Fragment(), OnMapReadyCallback {
     //Necesita un MapView
@@ -36,6 +36,13 @@ class PlayaCampingFragment : Fragment(), OnMapReadyCallback {
         savedInstanceState: Bundle?
     ): View? {
         _binding = PlayaCampingFragmentBinding.inflate(inflater,container,false)
+
+        val args = PlayaCampingFragmentArgs.fromBundle(requireArguments())
+
+
+        Picasso.get().load(Uri.parse(args.foto)).into(binding.imgPlaya)
+        binding.txtDescripcion.text = args.descripcion
+
         // Gets the MapView from the XML layout and creates it
         mapView = binding.map
         // Gets the MapView from the XML layout and creates it
