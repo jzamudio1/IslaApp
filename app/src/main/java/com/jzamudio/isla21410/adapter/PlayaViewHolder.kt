@@ -1,23 +1,17 @@
 package com.jzamudio.isla21410.adapter
 
-
-import android.app.PendingIntent.getActivity
 import android.net.Uri
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.FragmentManager
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.jzamudio.isla21410.Playas.playasFragmentDirections
+import com.jzamudio.isla21410.Principal.turismo.Playas.playasFragmentDirections
 import com.jzamudio.isla21410.database.model.Playa
 import com.jzamudio.isla21410.databinding.ItemPlayaAdapterBinding
 import com.squareup.picasso.Picasso
 
 class PlayaViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-    val binding = ItemPlayaAdapterBinding.bind(view)
 
+    val binding = ItemPlayaAdapterBinding.bind(view)
 
     fun render(playa: Playa){
 

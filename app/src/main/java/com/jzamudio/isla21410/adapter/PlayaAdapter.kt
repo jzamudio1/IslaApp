@@ -1,16 +1,10 @@
 package com.jzamudio.isla21410.adapter
 
-
-import android.net.Uri
-import android.service.autofill.OnClickAction
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.jzamudio.isla21410.R
 import com.jzamudio.isla21410.database.model.Playa
-import com.jzamudio.isla21410.databinding.ItemPlayaAdapterBinding
-import com.squareup.picasso.Picasso
-
 
 class PlayaAdapter(
     private val listPlaya:List<Playa>

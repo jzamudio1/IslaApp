@@ -20,10 +20,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         val DB = FirebaseBD()
-        lifecycleScope.launch {
-            DB.getlistPlayas()
-        }
 
+
+        lifecycleScope.launch {
+            DB.getlistPatrimonio()
+        }
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

@@ -1,9 +1,7 @@
 package com.jzamudio.isla21410.database.model
 
-
-data class Playa(
-    val Imagen: String,
+data class Patrimonio(
     val Nombre: String,
+    val Foto: String,
     val Descripcion: String
 )
-

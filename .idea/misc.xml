@@ -43,18 +43,25 @@
         <entry key="..\:/Windows/Programas/Github/IslaApp/app/src/main/res/layout/activity_main2.xml" value="0.14492753623188406" />
         <entry key="..\:/Windows/Programas/Github/IslaApp/app/src/main/res/layout/app_bar_main.xml" value="0.25" />
         <entry key="..\:/Windows/Programas/Github/IslaApp/app/src/main/res/layout/app_bar_main2.xml" value="0.12158054711246201" />
+        <entry key="..\:/Windows/Programas/Github/IslaApp/app/src/main/res/layout/casa_blas_infante_fragment.xml" value="0.1762917933130699" />
         <entry key="..\:/Windows/Programas/Github/IslaApp/app/src/main/res/layout/circle.xml" value="0.2259963768115942" />
-        <entry key="..\:/Windows/Programas/Github/IslaApp/app/src/main/res/layout/content_main.xml" value="0.12158054711246201" />
+        <entry key="..\:/Windows/Programas/Github/IslaApp/app/src/main/res/layout/content_main.xml" value="0.25" />
         <entry key="..\:/Windows/Programas/Github/IslaApp/app/src/main/res/layout/content_main2.xml" value="0.22282608695652173" />
         <entry key="..\:/Windows/Programas/Github/IslaApp/app/src/main/res/layout/fragment_blank.xml" value="0.24547101449275363" />
         <entry key="..\:/Windows/Programas/Github/IslaApp/app/src/main/res/layout/fragment_dashboard.xml" value="0.25" />
+        <entry key="..\:/Windows/Programas/Github/IslaApp/app/src/main/res/layout/fragment_empresas.xml" value="0.3625" />
         <entry key="..\:/Windows/Programas/Github/IslaApp/app/src/main/res/layout/fragment_inicio.xml" value="0.4" />
+        <entry key="..\:/Windows/Programas/Github/IslaApp/app/src/main/res/layout/fragment_list_empresa.xml" value="0.1762917933130699" />
         <entry key="..\:/Windows/Programas/Github/IslaApp/app/src/main/res/layout/fragment_notifications.xml" value="0.25" />
+        <entry key="..\:/Windows/Programas/Github/IslaApp/app/src/main/res/layout/fragment_plantilla_casas.xml" value="0.3625" />
         <entry key="..\:/Windows/Programas/Github/IslaApp/app/src/main/res/layout/fragment_slideshow.xml" value="0.25" />
         <entry key="..\:/Windows/Programas/Github/IslaApp/app/src/main/res/layout/islantilla_fragment.xml" value="0.17300724637681159" />
+        <entry key="..\:/Windows/Programas/Github/IslaApp/app/src/main/res/layout/item_empresa_init_adapter.xml" value="0.3625" />
+        <entry key="..\:/Windows/Programas/Github/IslaApp/app/src/main/res/layout/item_empresas_adapter.xml" value="0.3625" />
         <entry key="..\:/Windows/Programas/Github/IslaApp/app/src/main/res/layout/item_inicio_adapter.xml" value="0.3016304347826087" />
+        <entry key="..\:/Windows/Programas/Github/IslaApp/app/src/main/res/layout/item_patrimonio_adapter.xml" value="0.3625" />
         <entry key="..\:/Windows/Programas/Github/IslaApp/app/src/main/res/layout/item_playa_adapter.xml" value="0.3016304347826087" />
-        <entry key="..\:/Windows/Programas/Github/IslaApp/app/src/main/res/layout/list_patrimonio_fragment.xml" value="0.25" />
+        <entry key="..\:/Windows/Programas/Github/IslaApp/app/src/main/res/layout/list_patrimonio_fragment.xml" value="0.33" />
         <entry key="..\:/Windows/Programas/Github/IslaApp/app/src/main/res/layout/nav_header_main.xml" value="0.25" />
         <entry key="..\:/Windows/Programas/Github/IslaApp/app/src/main/res/layout/patio_san_francisco_fragment.xml" value="0.16621376811594202" />
         <entry key="..\:/Windows/Programas/Github/IslaApp/app/src/main/res/layout/playa_caiman_fragment.xml" value="0.3500905797101449" />

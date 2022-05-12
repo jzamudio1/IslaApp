@@ -8,20 +8,21 @@
     </data>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/btnVerCasas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         app:cardElevation="20dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/btnPlayaCentral"
+            android:id="@+id/btnCasas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/borde"
             android:foregroundTint="#FAE6E6">
 
             <TextView
-                android:id="@+id/txtPlayaCentral"
+                android:id="@+id/txtNombres"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="148dp"
@@ -32,7 +33,7 @@
                 app:layout_constraintVertical_bias="0.51" />
 
             <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/imgPlayaCentral"
+                android:id="@+id/imgCasas"
                 android:layout_width="68dp"
                 android:layout_height="66dp"
                 android:layout_marginStart="4dp"
