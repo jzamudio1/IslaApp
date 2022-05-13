@@ -11,20 +11,11 @@
         android:label="Inicio"
         tools:layout="@layout/fragment_inicio" >
         <action
-            android:id="@+id/action_inicioFragment_to_playasFragment"
-            app:destination="@id/listPlayas" />
-        <action
             android:id="@+id/action_inicioFragment_to_listPatrimonioFragment"
             app:destination="@id/listPatrimonioFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/listPlayas"
-        android:name="com.jzamudio.isla21410.Principal.turismo.Playas.playasFragment"
-        android:label="playas_fragment"
-        tools:layout="@layout/playas_fragment" >
         <action
-            android:id="@+id/action_listPlayas_to_playaCampingFragment"
-            app:destination="@id/playaCampingFragment" />
+            android:id="@+id/action_navigation_turismo_to_playasFragment"
+            app:destination="@id/playasFragment" />
     </fragment>
     <fragment
         android:id="@+id/listPatrimonioFragment"
@@ -34,17 +25,6 @@
         <action
             android:id="@+id/action_listPatrimonioFragment_to_casasFragment"
             app:destination="@id/casasFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/playaCampingFragment"
-        android:name="com.jzamudio.isla21410.Principal.turismo.Playas.listPlayas.Camping.PlayaCampingFragment"
-        android:label="playa_camping_fragment"
-        tools:layout="@layout/playa_camping_fragment" >
-        <argument
-            android:name="foto"
-            app:argType="string" />
-        <argument android:name="descripcion"
-            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/navigation_empresas"
@@ -78,8 +58,48 @@
         android:id="@+id/listEmpresaFragment"
         android:name="com.jzamudio.isla21410.Principal.empresa.listEmpresaFragment"
         android:label="listEmpresaFragment" >
+        <action
+            android:id="@+id/action_listEmpresaFragment_to_detailEmpresaFragment"
+            app:destination="@id/detailEmpresaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailEmpresaFragment"
+        android:name="com.jzamudio.isla21410.Principal.empresa.DetailEmpresaFragment"
+        android:label="DetailEmpresaFragment" >
         <argument
             android:name="nombre"
             app:argType="string" />
+        <argument android:name="descripcion"
+            app:argType="string" />
+        <argument android:name="foto"
+            app:argType="string" />
+        <argument
+            android:name="correo"
+            app:argType="string" />
+        <argument android:name="telefono"
+            app:argType="string" />
+        <argument
+            android:name="paginaweb"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/playaCampingFragment"
+        android:name="com.jzamudio.isla21410.Principal.turismo.Playas.listPlayas.Camping.PlayaCampingFragment"
+        android:label="playa_camping_fragment"
+        tools:layout="@layout/playa_camping_fragment" >
+        <argument
+            android:name="foto"
+            app:argType="string" />
+        <argument
+            android:name="descripcion"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/playasFragment"
+        android:name="com.jzamudio.isla21410.Principal.turismo.Playas.playasFragment"
+        android:label="playasFragment" >
+        <action
+            android:id="@+id/action_playasFragment_to_playaCampingFragment"
+            app:destination="@id/playaCampingFragment" />
     </fragment>
 </navigation>

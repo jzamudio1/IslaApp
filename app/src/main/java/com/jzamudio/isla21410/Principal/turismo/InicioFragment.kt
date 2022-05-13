@@ -26,7 +26,7 @@ class InicioFragment : Fragment() {
         val root: View = binding.root
 
         binding.btnBeach.setOnClickListener {
-            findNavController().navigate(R.id.action_inicioFragment_to_playasFragment)
+            findNavController().navigate(R.id.action_navigation_turismo_to_playasFragment)
         }
         binding.btnPatrimonio.setOnClickListener {
             findNavController().navigate(R.id.action_inicioFragment_to_listPatrimonioFragment)

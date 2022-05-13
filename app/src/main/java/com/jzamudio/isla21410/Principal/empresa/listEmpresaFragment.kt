@@ -7,13 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.jzamudio.isla21410.Principal.turismo.Playas.listPlayas.Camping.PlayaCampingFragmentArgs
-import com.jzamudio.isla21410.R
-import com.jzamudio.isla21410.adapter.EmpresaInitAdapter
 import com.jzamudio.isla21410.adapter.EmpresasAdapter
 import com.jzamudio.isla21410.database.conexion.FirebaseBD
-import com.jzamudio.isla21410.databinding.FragmentEmpresasBinding
 import com.jzamudio.isla21410.databinding.FragmentListEmpresaBinding
+import com.jzamudio.isla21410.util.ClickListner
 import kotlinx.coroutines.launch
 
 class listEmpresaFragment : Fragment() {
@@ -27,13 +24,26 @@ class listEmpresaFragment : Fragment() {
     ): View? {
         _binding = FragmentListEmpresaBinding.inflate(inflater, container, false)
 
-        val args = listEmpresaFragmentArgs.fromBundle(requireArguments())
+        //val args = listEmpresaFragmentArgs.fromBundle(requireArguments())
 
-        lifecycleScope.launch {
-            binding.btnEmpresas.adapter = EmpresasAdapter(FirebaseBD().getlistEmpresas())
-            binding.btnEmpresas.layoutManager=
-                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,false)
+        if(ClickListner.Alojamiento){
+            lifecycleScope.launch {
+                binding.btnEmpresas.adapter = EmpresasAdapter(FirebaseBD().getlistEmpresasAlojamiento())
+                binding.btnEmpresas.layoutManager=
+                    LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,false)
+                ClickListner.Alojamiento=false
+            }
         }
+
+        if (ClickListner.Servicio){
+            lifecycleScope.launch {
+                binding.btnEmpresas.adapter = EmpresasAdapter(FirebaseBD().getlistEmpresasServicio())
+                binding.btnEmpresas.layoutManager=
+                    LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,false)
+                ClickListner.Servicio=false
+            }
+        }
+
 
 
         // Inflate the layout for this fragment

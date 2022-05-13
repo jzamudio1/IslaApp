@@ -4,7 +4,7 @@ import android.graphics.pdf.PdfDocument
 
 data class Empresa(
     val nombre:String,
-    val telefono: Int,
+    val telefono: String,
     val correo:String,
     val paginaWeb:String,
     val foto:String,

@@ -37,7 +37,6 @@ class PlayaCampingFragment : Fragment(), OnMapReadyCallback {
     ): View? {
         _binding = PlayaCampingFragmentBinding.inflate(inflater,container,false)
 
-
         val args = PlayaCampingFragmentArgs.fromBundle(requireArguments())
 
         Picasso.get().load(Uri.parse(args.foto)).into(binding.imgPlaya)
@@ -93,7 +92,6 @@ class PlayaCampingFragment : Fragment(), OnMapReadyCallback {
         val coordinates = LatLng(37.19578984110032, -7.305566901290446)
         //googleMap.getUiSettings()?.setZoomControlsEnabled(true);
         // googleMap.addMarker(MarkerOptions().position(coordinates))
-
         googleMap.addMarker(MarkerOptions().position(coordinates).title("Marker"))
         googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(coordinates, 14.5f),4000,null)
 

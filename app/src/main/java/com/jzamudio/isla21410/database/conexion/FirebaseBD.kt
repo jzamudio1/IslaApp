@@ -1,9 +1,9 @@
 package com.jzamudio.isla21410.database.conexion
 
-import android.graphics.pdf.PdfDocument
 import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
 import com.jzamudio.isla21410.database.model.*
+import com.jzamudio.isla21410.util.ClickListner
 import kotlinx.coroutines.tasks.await
 
 
@@ -11,48 +11,55 @@ class FirebaseBD {
 
     val firebaseInstance = FirebaseFirestore.getInstance()
 
-    suspend fun getlistEmpresaInit():List<EmpresaInit>{
 
-        val listEmpresaInit = mutableListOf<EmpresaInit>()
+    suspend fun getlistEmpresasServicio():List<Empresa>{
 
-        firebaseInstance.collection("empresas").get()
+        val listEmpresaServicio= mutableListOf<Empresa>()
+
+        firebaseInstance.collection("/empresas/ServicioTuristicos/serviciosturs").get()
             .addOnSuccessListener {
 
                 for (doc in it){
-                    listEmpresaInit.add(
-                        EmpresaInit(
-                            nombre = doc["nombre"].toString()
-
-                        )
-                    )
-                }
-            }.await()
-        Log.i("listaEmpresa","$listEmpresaInit")
-        return listEmpresaInit
-    }
-
-    suspend fun getlistEmpresas():List<Empresa>{
-
-        val listEmpresa = mutableListOf<Empresa>()
-
-        firebaseInstance.collection("empresas/Servicios/Hotel").get()
-            .addOnSuccessListener {
-
-                for (doc in it){
-                    listEmpresa.add(
+                    listEmpresaServicio.add(
                         Empresa(
                             nombre = doc["nombre"].toString(),
-                            foto = doc["nombre"].toString(),
-                            descripcion = doc["nombre"].toString(),
-                            paginaWeb = doc["nombre"].toString(),
-                            telefono = doc["nombre"] as Int,
-                            correo = doc["nombre"].toString()
+                            foto = doc["foto"].toString(),
+                            descripcion = doc["descripcion"].toString(),
+                            paginaWeb = doc["paginaweb"].toString(),
+                            telefono = doc["telefono"].toString(),
+                            correo = doc["correo"].toString()
+                        )
+                    )
+                    //Integer.parseInt(doc["telefono"].toString())
+                }
+            }.await()
+        Log.i("listaEmpresa","$listEmpresaServicio")
+        return listEmpresaServicio
+    }
+
+
+    suspend fun getlistEmpresasAlojamiento():List<Empresa>{
+
+        val listEmpresaAlojamiento = mutableListOf<Empresa>()
+
+        firebaseInstance.collection("/empresas/alojamiento/Hotel").get()
+            .addOnSuccessListener {
+
+                for (doc in it){
+                    listEmpresaAlojamiento.add(
+                        Empresa(
+                            nombre = doc["nombre"].toString(),
+                            foto = doc["foto"].toString(),
+                            descripcion = doc["descripcion"].toString(),
+                            paginaWeb = doc["paginaweb"].toString(),
+                            telefono = doc["telefono"].toString(),
+                            correo = doc["correo"].toString()
                       )
                     )
                 }
             }.await()
-        Log.i("listaEmpresa","$listEmpresa")
-        return listEmpresa
+        Log.i("listaEmpresa","$listEmpresaAlojamiento")
+        return listEmpresaAlojamiento
     }
 
     suspend fun getlistPatrimonio():List<Patrimonio>{
@@ -115,6 +122,8 @@ class FirebaseBD {
                     )
                 }
             }.await()
+
+       Log.i("listPlayas","$listPlayas")
 
         return listPlayas
 
