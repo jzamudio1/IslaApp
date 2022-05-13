@@ -15,7 +15,7 @@ class PatrimonioAdapter(
 
         return PatrimonioViewHolder(
             layoutInflater.inflate(
-                R.layout.item_patrimonio_adapter,
+                R.layout.item_playa_adapter,
                 parent,
                 false
             )

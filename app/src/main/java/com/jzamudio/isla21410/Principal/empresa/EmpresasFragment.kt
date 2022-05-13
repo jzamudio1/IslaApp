@@ -6,9 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.jzamudio.isla21410.adapter.EmpresaInitAdapter
+import com.jzamudio.isla21410.database.conexion.FirebaseBD
 import com.jzamudio.isla21410.databinding.FragmentEmpresasBinding
-import com.jzamudio.isla21410.util.ClickListner
+import kotlinx.coroutines.launch
 
 class EmpresasFragment : Fragment() {
 
@@ -22,15 +26,10 @@ class EmpresasFragment : Fragment() {
         _binding = FragmentEmpresasBinding.inflate(inflater, container, false)
 
 
-        binding.btnAlojamiento.setOnClickListener {
-            ClickListner.Alojamiento = true
-            findNavController().navigate(EmpresasFragmentDirections.actionNavigationEmpresasToListEmpresaFragment())
-        }
-
-
-        binding.btnServicios.setOnClickListener {
-            ClickListner.Servicio = true
-            findNavController().navigate(EmpresasFragmentDirections.actionNavigationEmpresasToListEmpresaFragment())
+        lifecycleScope.launch {
+            binding.btnEmpresas.adapter = EmpresaInitAdapter(FirebaseBD().getlistEmpresaInit())
+            binding.btnEmpresas.layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         }
 
         // Inflate the layout for this fragment

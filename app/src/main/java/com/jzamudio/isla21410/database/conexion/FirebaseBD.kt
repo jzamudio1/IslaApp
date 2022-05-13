@@ -3,7 +3,6 @@ package com.jzamudio.isla21410.database.conexion
 import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
 import com.jzamudio.isla21410.database.model.*
-import com.jzamudio.isla21410.util.ClickListner
 import kotlinx.coroutines.tasks.await
 
 
@@ -11,6 +10,28 @@ class FirebaseBD {
 
     val firebaseInstance = FirebaseFirestore.getInstance()
 
+
+
+
+    suspend fun getlistEmpresaInit():List<EmpresaInit>{
+
+        val listEmpresaInit= mutableListOf<EmpresaInit>()
+
+        firebaseInstance.collection("/empresas").get()
+            .addOnSuccessListener {
+
+                for (doc in it){
+                    listEmpresaInit.add(
+                        EmpresaInit(
+                            nombre = doc["nombre"].toString()
+                        )
+                    )
+                    //Integer.parseInt(doc["telefono"].toString())
+                }
+            }.await()
+        Log.i("listaEmpresa","$listEmpresaInit")
+        return listEmpresaInit
+    }
 
     suspend fun getlistEmpresasServicio():List<Empresa>{
 
@@ -87,7 +108,7 @@ class FirebaseBD {
 
         val listInicio = mutableListOf<Inicio>()
 
-        firebaseInstance.collection("inicio").get()
+        firebaseInstance.collection("images").get()
             .addOnSuccessListener {
 
                 for (doc in it){

@@ -12,19 +12,23 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
+import com.jzamudio.isla21410.adapter.EmpresasAdapter
+import com.jzamudio.isla21410.adapter.PatrimonioAdapter
 import com.jzamudio.isla21410.adapter.PlayaAdapter
 import com.jzamudio.isla21410.database.conexion.FirebaseBD
 import com.jzamudio.isla21410.databinding.PlayasFragmentBinding
+import com.jzamudio.isla21410.util.ClickEmpresas
+import com.jzamudio.isla21410.util.ClickTurismo
 import kotlinx.coroutines.launch
 
 class playasFragment : Fragment() {
     private val db = FirebaseFirestore.getInstance()
-    val  storage = Firebase.storage
+    val storage = Firebase.storage
     val storageRef = storage.reference
 
     // Create a reference with an initial file path and name
     val pathReference = storageRef.child("images/stars.jpg")
-  val mstorage = FirebaseStorage.getInstance().getReference()
+    val mstorage = FirebaseStorage.getInstance().getReference()
 
     //Binding
     private var _binding: PlayasFragmentBinding? = null
@@ -39,11 +43,8 @@ class playasFragment : Fragment() {
     ): View? {
         _binding = PlayasFragmentBinding.inflate(inflater, container, false)
 
-        lifecycleScope.launch {
-            binding.listadoPlayas.adapter = PlayaAdapter(FirebaseBD().getlistPlayas())
-            binding.listadoPlayas.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
-        }
 
+        tipo()
         return binding.root
     }
 
@@ -51,6 +52,31 @@ class playasFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(PlayasViewModel::class.java)
         // TODO: Use the ViewModel
+    }
+
+
+    fun tipo() {
+        when (ClickTurismo.tipo) {
+
+            ClickTurismo.patrimonio ->
+                lifecycleScope.launch {
+                    binding.listadoPlayas.adapter = PlayaAdapter(FirebaseBD().getlistPlayas())
+
+                    binding.listadoPlayas.layoutManager =
+                        LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+
+                }
+            ClickTurismo.playa ->
+                lifecycleScope.launch {
+                    binding.listadoPlayas.adapter =
+                        PatrimonioAdapter(FirebaseBD().getlistPatrimonio())
+
+                    binding.listadoPlayas.layoutManager =
+                        LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+
+                }
+
+        }
     }
 
 }

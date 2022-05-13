@@ -25,9 +25,7 @@ class listPatrimonioFragment : Fragment() {
     ): View? {
         _binding = ListPatrimonioFragmentBinding.inflate(inflater, container, false)
 
-        binding.button.setOnClickListener {
-            findNavController().navigate(R.id.action_listPatrimonioFragment_to_casasFragment)
-        }
+
 
         return binding.root
     }

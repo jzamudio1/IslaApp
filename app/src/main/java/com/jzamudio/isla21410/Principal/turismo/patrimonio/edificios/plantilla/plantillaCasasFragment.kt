@@ -20,11 +20,11 @@ class plantillaCasasFragment : Fragment() {
     ): View? {
         _binding = FragmentPlantillaCasasBinding.inflate(inflater, container, false)
 
-        val args = plantillaCasasFragmentArgs.fromBundle(requireArguments())
+        //val args = plantillaCasasFragmentArgs.fromBundle(requireArguments())
 
 
-        Picasso.get().load(Uri.parse(args.foto)).into(binding.imgPlaya)
-        binding.txtDescripcion.text = args.descripcion
+       // Picasso.get().load(Uri.parse(args.foto)).into(binding.imgPlaya)
+       // binding.txtDescripcion.text = args.descripcion
 
         // Inflate the layout for this fragment
         return binding.root

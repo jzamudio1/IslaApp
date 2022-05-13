@@ -11,20 +11,8 @@
         android:label="Inicio"
         tools:layout="@layout/fragment_inicio" >
         <action
-            android:id="@+id/action_inicioFragment_to_listPatrimonioFragment"
-            app:destination="@id/listPatrimonioFragment" />
-        <action
             android:id="@+id/action_navigation_turismo_to_playasFragment"
             app:destination="@id/playasFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/listPatrimonioFragment"
-        android:name="com.jzamudio.isla21410.Principal.turismo.patrimonio.listPatrimonioFragment"
-        android:label="list_patrimonio_fragment"
-        tools:layout="@layout/list_patrimonio_fragment" >
-        <action
-            android:id="@+id/action_listPatrimonioFragment_to_casasFragment"
-            app:destination="@id/casasFragment" />
     </fragment>
     <fragment
         android:id="@+id/navigation_empresas"
@@ -34,25 +22,6 @@
         <action
             android:id="@+id/action_navigation_empresas_to_listEmpresaFragment"
             app:destination="@id/listEmpresaFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/plantillaCasasFragment"
-        android:name="com.jzamudio.isla21410.Principal.turismo.patrimonio.edificios.plantilla.plantillaCasasFragment"
-        android:label="plantillaCasasFragment" >
-        <argument
-            android:name="foto"
-            app:argType="string" />
-        <argument
-            android:name="descripcion"
-            app:argType="string" />
-    </fragment>
-    <fragment
-        android:id="@+id/casasFragment"
-        android:name="com.jzamudio.isla21410.Principal.turismo.patrimonio.edificios.listEdificios.CasasFragment"
-        android:label="CasasFragment" >
-        <action
-            android:id="@+id/action_casasFragment_to_plantillaCasasFragment"
-            app:destination="@id/plantillaCasasFragment" />
     </fragment>
     <fragment
         android:id="@+id/listEmpresaFragment"
