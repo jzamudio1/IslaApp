@@ -12,7 +12,7 @@ class ClickEmpresas : Application(){
         const val playa = 4
         const val casas = 5
         const val nada = 0
-        var tipo = nada
+        var tipo = 0
 
     }
 

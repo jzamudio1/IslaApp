@@ -23,8 +23,16 @@
         <entry key="..\:/Windows/Github/IslaApp/app/src/main/res/layout/activity_auth.xml" value="0.36666666666666664" />
         <entry key="..\:/Windows/Github/IslaApp/app/src/main/res/layout/activity_register.xml" value="0.36666666666666664" />
         <entry key="..\:/Windows/Github/IslaApp/app/src/main/res/layout/content_main2.xml" value="0.36666666666666664" />
+        <entry key="..\:/Windows/Github/IslaApp/app/src/main/res/layout/fragment_detail_empresa.xml" value="0.36666666666666664" />
+        <entry key="..\:/Windows/Github/IslaApp/app/src/main/res/layout/fragment_empresas.xml" value="0.36666666666666664" />
         <entry key="..\:/Windows/Github/IslaApp/app/src/main/res/layout/fragment_inicio.xml" value="0.36666666666666664" />
+        <entry key="..\:/Windows/Github/IslaApp/app/src/main/res/layout/fragment_list_empresa.xml" value="0.36666666666666664" />
+        <entry key="..\:/Windows/Github/IslaApp/app/src/main/res/layout/fragment_new_empresa.xml" value="0.33" />
+        <entry key="..\:/Windows/Github/IslaApp/app/src/main/res/layout/fragment_plantilla_casas.xml" value="0.36666666666666664" />
         <entry key="..\:/Windows/Github/IslaApp/app/src/main/res/layout/fragment_register.xml" value="0.36666666666666664" />
+        <entry key="..\:/Windows/Github/IslaApp/app/src/main/res/layout/item_empresa_init_adapter.xml" value="0.36666666666666664" />
+        <entry key="..\:/Windows/Github/IslaApp/app/src/main/res/layout/item_empresas_adapter.xml" value="0.36666666666666664" />
+        <entry key="..\:/Windows/Github/IslaApp/app/src/main/res/layout/item_inicio_adapter.xml" value="0.36666666666666664" />
         <entry key="..\:/Windows/Github/IslaApp/app/src/main/res/layout/item_playa_adapter.xml" value="0.36666666666666664" />
         <entry key="..\:/Windows/Github/IslaApp/app/src/main/res/layout/list_patrimonio_fragment.xml" value="0.36666666666666664" />
         <entry key="..\:/Windows/Github/IslaApp/app/src/main/res/layout/playa_central_fragment.xml" value="0.36666666666666664" />

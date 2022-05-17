@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.jzamudio.isla21410.R
 import com.jzamudio.isla21410.adapter.EmpresaInitAdapter
 import com.jzamudio.isla21410.database.conexion.FirebaseBD
 import com.jzamudio.isla21410.databinding.FragmentEmpresasBinding
@@ -32,6 +33,9 @@ class EmpresasFragment : Fragment() {
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         }
 
+        binding.floatingActionButton.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_empresas_to_newEmpresaFragment)
+        }
         // Inflate the layout for this fragment
         return binding.root
     }

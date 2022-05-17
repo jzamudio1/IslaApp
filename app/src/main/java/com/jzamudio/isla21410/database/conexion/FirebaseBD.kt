@@ -1,6 +1,7 @@
 package com.jzamudio.isla21410.database.conexion
 
 import android.util.Log
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.jzamudio.isla21410.database.model.*
 import kotlinx.coroutines.tasks.await
@@ -9,6 +10,15 @@ import kotlinx.coroutines.tasks.await
 class FirebaseBD {
 
     val firebaseInstance = FirebaseFirestore.getInstance()
+    val firebaseBD = FirebaseDatabase.getInstance().getReference()
+
+
+    suspend fun insertEmpresa(tipo:String,tipo2:String, empresa : Empresa){
+
+        firebaseBD.child("/empresas/$tipo/$tipo2")
+        firebaseBD.push().setValue(empresa)
+
+    }
 
 
 

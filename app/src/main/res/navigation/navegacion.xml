@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_navigation_empresas_to_listEmpresaFragment"
             app:destination="@id/listEmpresaFragment" />
+        <action
+            android:id="@+id/action_navigation_empresas_to_newEmpresaFragment"
+            app:destination="@id/newEmpresaFragment" />
     </fragment>
     <fragment
         android:id="@+id/listEmpresaFragment"
@@ -71,4 +74,8 @@
             android:id="@+id/action_playasFragment_to_playaCampingFragment"
             app:destination="@id/playaCampingFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/newEmpresaFragment"
+        android:name="com.jzamudio.isla21410.Principal.empresa.NewEmpresaFragment"
+        android:label="NewEmpresaFragment" />
 </navigation>
