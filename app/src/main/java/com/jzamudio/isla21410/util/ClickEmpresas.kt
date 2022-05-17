@@ -6,7 +6,7 @@ import android.app.Application
 class ClickEmpresas : Application(){
 
     companion object {
-        const val Comida = 1
+        const val Comida = 0
         const val Servicio = 1
         const val Alojamiento = 2
         const val playa = 4
