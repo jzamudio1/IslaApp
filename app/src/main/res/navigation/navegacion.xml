@@ -65,6 +65,12 @@
         <argument
             android:name="descripcion"
             app:argType="string" />
+        <argument
+            android:name="latitud"
+            app:argType="string" />
+        <argument
+            android:name="longitud"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/playasFragment"

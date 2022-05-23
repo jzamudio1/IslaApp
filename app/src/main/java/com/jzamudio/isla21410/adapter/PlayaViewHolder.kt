@@ -22,7 +22,7 @@ class PlayaViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         binding.btnPlayaCentral.setOnClickListener {
 
-            it.findNavController().navigate(playasFragmentDirections.actionPlayasFragmentToPlayaCampingFragment(playa.Imagen,playa.Descripcion))
+            it.findNavController().navigate(playasFragmentDirections.actionPlayasFragmentToPlayaCampingFragment(playa.Imagen,playa.Descripcion,playa.latitud,playa.longitud))
 
         }
         }

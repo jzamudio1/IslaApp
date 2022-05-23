@@ -4,8 +4,10 @@ import android.util.Log
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.jzamudio.isla21410.database.model.*
+import com.jzamudio.isla21410.util.ClickEmpresas.Companion.coleccion
+import com.jzamudio.isla21410.util.ClickEmpresas.Companion.documento
+import com.jzamudio.isla21410.util.ClickEmpresas.Companion.tipo
 import kotlinx.coroutines.tasks.await
-
 
 class FirebaseBD {
 
@@ -13,11 +15,86 @@ class FirebaseBD {
     val firebaseBD = FirebaseDatabase.getInstance().getReference()
 
 
-    suspend fun insertEmpresa(tipo:String, empresa : Empresa){
+
+    suspend fun getlistvaloracione():List<valoraciones> {
+
+        val listValoraciones = mutableListOf<valoraciones>()
+
+        firebaseInstance.collection("/$coleccion/$documento/comentarios").get()
+            .addOnSuccessListener {
+
+                for (doc in it) {
+                    listValoraciones.add(
+                        valoraciones(
+
+                            comentario = doc["comentario"].toString(),
 
 
-        firebaseBD.child("/$tipo/")
-        firebaseBD.push().setValue(empresa)
+                        )
+                    )
+                }
+            }.await()
+
+        Log.i("valoraciones","$coleccion,$documento,$listValoraciones")
+        return listValoraciones
+    }
+
+    suspend fun getlistTalleres():List<Empresa> {
+
+        val listTalleres = mutableListOf<Empresa>()
+
+        firebaseInstance.collection("/Talleres").get()
+            .addOnSuccessListener {
+
+                for (doc in it) {
+                    listTalleres.add(
+                        Empresa(
+                            carta = doc["carta"].toString(),
+                            correo = doc["correo"].toString(),
+                            telefono = doc["telefono"].toString(),
+                            nombre = doc["nombre"].toString(),
+                            descripcion = doc["descripcion"].toString(),
+                            paginaWeb = doc["imagen"].toString(),
+                            foto = doc["nombre"].toString(),
+                            )
+                    )
+                }
+            }.await()
+
+        return listTalleres
+    }
+
+     fun insertEmpresa(tipo:String, empresa : Empresa){
+
+             firebaseInstance.collection(tipo).document(empresa.nombre)
+                 .set(
+                     hashMapOf(
+                         "nombre" to empresa.nombre.toString(),
+                         "telefono" to empresa.telefono.toString(),
+                         "correo" to empresa.correo.toString(),
+                         "paginaWeb" to empresa.paginaWeb.toString(),
+                         "foto" to empresa.foto.toString(),
+                         "descripcion" to empresa.descripcion.toString(),
+                         "carta" to empresa.carta.toString()
+                     )
+                 )
+
+         Log.i("tipo","$tipo")
+
+    }
+
+    fun insertComentario(valoraciones: valoraciones){
+
+        firebaseInstance.collection("/$coleccion/$documento/comentarios").document(valoraciones.comentario)
+            .set(
+                hashMapOf(
+
+                    "comentario" to valoraciones.comentario.toString()
+
+
+                )
+            )
+
 
     }
 
@@ -105,7 +182,9 @@ class FirebaseBD {
                         Playa(
                             Imagen = doc["imagen"].toString(),
                             Nombre = doc["nombre"].toString(),
-                            Descripcion = doc["descripcion"].toString()
+                            Descripcion = doc["descripcion"].toString(),
+                            latitud = doc["latitud"].toString(),
+                            longitud = doc["longitud"].toString(),
                         )
                     )
                 }
@@ -129,7 +208,9 @@ class FirebaseBD {
                         Playa(
                             Imagen = doc["imagen"].toString(),
                             Nombre = doc["nombre"].toString(),
-                            Descripcion = doc["descripcion"].toString()
+                            Descripcion = doc["descripcion"].toString(),
+                           longitud =  doc["longitud"].toString(),
+                            latitud = doc["latitud"].toString(),
                         )
                     )
                 }
@@ -271,7 +352,9 @@ class FirebaseBD {
                         Playa(
                             Imagen = doc["imagen"].toString(),
                             Nombre = doc["nombre"].toString(),
-                            Descripcion = doc["descripcion"].toString()
+                            Descripcion = doc["descripcion"].toString(),
+                            longitud = doc["longitud"].toString(),
+                            latitud = doc["latitud"].toString(),
                         )
                     )
                 }

@@ -55,6 +55,7 @@ class NewEmpresaFragment : Fragment(), LifecycleObserver {
                 AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                     val prueba = binding.spinner.getItemAtPosition(p2).toString()
+
                     Log.i("pruebaaaaaaa", "${prueba}")
                 }
 
@@ -102,9 +103,8 @@ class NewEmpresaFragment : Fragment(), LifecycleObserver {
             binding.etDescripcion.text.toString(),
 
             )
-        lifecycleScope.launch {
             FirebaseBD().insertEmpresa(tipo, empresa)
-        }
+
     }
 
 

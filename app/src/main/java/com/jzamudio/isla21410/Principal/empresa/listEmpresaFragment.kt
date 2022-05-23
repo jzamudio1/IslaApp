@@ -45,6 +45,7 @@ class listEmpresaFragment : Fragment() {
     }
 
 
+
     fun select() {
         when (ClickEmpresas.tipo) {
             ClickEmpresas.abogado ->
@@ -108,7 +109,10 @@ class listEmpresaFragment : Fragment() {
             ClickEmpresas.talleres ->
                 lifecycleScope.launch {
 
+                    binding.btnEmpresas.adapter = EmpresasAdapter(FirebaseBD().getlistTalleres())
 
+                    binding.btnEmpresas.layoutManager =
+                        LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
                 }
             ClickEmpresas.taxis ->
                 lifecycleScope.launch {

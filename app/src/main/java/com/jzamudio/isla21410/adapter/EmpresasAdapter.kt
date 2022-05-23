@@ -1,7 +1,6 @@
 package com.jzamudio.isla21410.adapter
 
 
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
