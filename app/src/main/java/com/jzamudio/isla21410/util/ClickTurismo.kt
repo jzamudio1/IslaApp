@@ -3,8 +3,12 @@ package com.jzamudio.isla21410.util
 class ClickTurismo {
 
     companion object{
-        var patrimonio = 1
-        var playa = 2
+        const val Fiesta = 0
+        const val Gastronomia = 1
+        const val Naturaleza = 2
+        const val Ocio = 3
+        const val patrimonios = 4
+        const val Playas = 5
         var tipo = 0
 
     }

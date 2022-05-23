@@ -13,13 +13,133 @@ class FirebaseBD {
     val firebaseBD = FirebaseDatabase.getInstance().getReference()
 
 
-    suspend fun insertEmpresa(tipo:String,tipo2:String, empresa : Empresa){
+    suspend fun insertEmpresa(tipo:String, empresa : Empresa){
 
-        firebaseBD.child("/empresas/$tipo/$tipo2")
+
+        firebaseBD.child("/$tipo/")
         firebaseBD.push().setValue(empresa)
 
     }
 
+    suspend fun getlistAutoescuelas():List<Empresa> {
+
+        val listAutoescuelas = mutableListOf<Empresa>()
+
+        firebaseInstance.collection("/AutoEscuelas").get()
+            .addOnSuccessListener {
+
+                for (doc in it) {
+                    listAutoescuelas.add(
+                        Empresa(
+                            carta = doc["carta"].toString(),
+                            correo = doc["correo"].toString(),
+                            telefono = doc["telefono"].toString(),
+                            nombre = doc["nombre"].toString(),
+                            descripcion = doc["descripcion"].toString(),
+                            paginaWeb = doc["imagen"].toString(),
+                            foto = doc["nombre"].toString(),
+                        )
+                    )
+                }
+            }.await()
+        return listAutoescuelas
+    }
+        suspend fun getlistAlimentacion():List<Empresa> {
+
+            val listAlimentacion = mutableListOf<Empresa>()
+
+            firebaseInstance.collection("/Alimentacion").get()
+                .addOnSuccessListener {
+
+                    for (doc in it) {
+                        listAlimentacion.add(
+                            Empresa(
+                                carta = doc["carta"].toString(),
+                                correo = doc["correo"].toString(),
+                                telefono = doc["telefono"].toString(),
+                                nombre = doc["nombre"].toString(),
+                                descripcion = doc["descripcion"].toString(),
+                                paginaWeb = doc["imagen"].toString(),
+                                foto = doc["nombre"].toString(),
+                            )
+                        )
+                    }
+                }.await()
+            return listAlimentacion
+        }
+            suspend fun getlistRestaurantes():List<Empresa> {
+
+                val listRestaurantes = mutableListOf<Empresa>()
+
+                firebaseInstance.collection("/patrimonio").get()
+                    .addOnSuccessListener {
+
+                        for (doc in it) {
+                            listRestaurantes.add(
+                                Empresa(
+                                    carta = doc["carta"].toString(),
+                                    correo = doc["correo"].toString(),
+                                    telefono = doc["telefono"].toString(),
+                                    nombre = doc["nombre"].toString(),
+                                    descripcion = doc["descripcion"].toString(),
+                                    paginaWeb = doc["imagen"].toString(),
+                                    foto = doc["nombre"].toString(),
+                                )
+                            )
+                        }
+                    }.await()
+                return listRestaurantes
+            }
+
+
+
+    suspend fun getlistpatrimonios():List<Playa>{
+
+        val listPlayas = mutableListOf<Playa>()
+
+        firebaseInstance.collection("/patrimonio").get()
+            .addOnSuccessListener {
+
+                for (doc in it){
+                    listPlayas.add(
+                        Playa(
+                            Imagen = doc["imagen"].toString(),
+                            Nombre = doc["nombre"].toString(),
+                            Descripcion = doc["descripcion"].toString()
+                        )
+                    )
+                }
+            }.await()
+
+        Log.i("listPlayas","$listPlayas")
+
+        return listPlayas
+
+    }
+
+    suspend fun getlistNaturaleza():List<Playa>{
+
+        val listPlayas = mutableListOf<Playa>()
+
+        firebaseInstance.collection("/naturaleza").get()
+            .addOnSuccessListener {
+
+                for (doc in it){
+                    listPlayas.add(
+                        Playa(
+                            Imagen = doc["imagen"].toString(),
+                            Nombre = doc["nombre"].toString(),
+                            Descripcion = doc["descripcion"].toString()
+                        )
+                    )
+                }
+            }.await()
+
+        Log.i("listPlayas","$listPlayas")
+
+        return listPlayas
+
+    }
 
 
 
@@ -58,7 +178,8 @@ class FirebaseBD {
                             descripcion = doc["descripcion"].toString(),
                             paginaWeb = doc["paginaweb"].toString(),
                             telefono = doc["telefono"].toString(),
-                            correo = doc["correo"].toString()
+                            correo = doc["correo"].toString(),
+                            carta = doc["carta"].toString(),
                         )
                     )
                     //Integer.parseInt(doc["telefono"].toString())
@@ -84,7 +205,8 @@ class FirebaseBD {
                             descripcion = doc["descripcion"].toString(),
                             paginaWeb = doc["paginaweb"].toString(),
                             telefono = doc["telefono"].toString(),
-                            correo = doc["correo"].toString()
+                            correo = doc["correo"].toString(),
+                            carta = doc["carta"].toString()
                       )
                     )
                 }
@@ -92,6 +214,7 @@ class FirebaseBD {
         Log.i("listaEmpresa","$listEmpresaAlojamiento")
         return listEmpresaAlojamiento
     }
+
 
     suspend fun getlistPatrimonio():List<Patrimonio>{
 
@@ -118,7 +241,7 @@ class FirebaseBD {
 
         val listInicio = mutableListOf<Inicio>()
 
-        firebaseInstance.collection("images").get()
+        firebaseInstance.collection("/inicio").get()
             .addOnSuccessListener {
 
                 for (doc in it){

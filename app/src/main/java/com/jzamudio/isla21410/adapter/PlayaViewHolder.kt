@@ -5,6 +5,7 @@ import android.view.View
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.jzamudio.isla21410.Principal.turismo.Playas.playasFragmentDirections
+import com.jzamudio.isla21410.database.model.Patrimonio
 import com.jzamudio.isla21410.database.model.Playa
 import com.jzamudio.isla21410.databinding.ItemPlayaAdapterBinding
 import com.squareup.picasso.Picasso
@@ -12,6 +13,7 @@ import com.squareup.picasso.Picasso
 class PlayaViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     val binding = ItemPlayaAdapterBinding.bind(view)
+
 
     fun render(playa: Playa){
 

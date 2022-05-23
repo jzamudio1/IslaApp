@@ -6,15 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.firestore.FirebaseFirestore
-import com.jzamudio.isla21410.R
-import com.jzamudio.isla21410.adapter.EmpresaInitAdapter
 import com.jzamudio.isla21410.adapter.InicioAdapter
+import com.jzamudio.isla21410.adapter.PatrimonioAdapter
+import com.jzamudio.isla21410.adapter.PlayaAdapter
 import com.jzamudio.isla21410.database.conexion.FirebaseBD
-
 import com.jzamudio.isla21410.databinding.FragmentInicioBinding
+import com.jzamudio.isla21410.util.ClickTurismo
+import com.jzamudio.isla21410.util.ClickTurismo.Companion.Naturaleza
 import kotlinx.coroutines.launch
 
 class InicioFragment : Fragment() {
@@ -45,6 +45,10 @@ class InicioFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+
+
+
 
 
 }

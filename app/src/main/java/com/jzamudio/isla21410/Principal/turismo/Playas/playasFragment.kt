@@ -19,6 +19,8 @@ import com.jzamudio.isla21410.database.conexion.FirebaseBD
 import com.jzamudio.isla21410.databinding.PlayasFragmentBinding
 import com.jzamudio.isla21410.util.ClickEmpresas
 import com.jzamudio.isla21410.util.ClickTurismo
+import com.jzamudio.isla21410.util.ClickTurismo.Companion.Playas
+import com.jzamudio.isla21410.util.ClickTurismo.Companion.patrimonios
 import kotlinx.coroutines.launch
 
 class playasFragment : Fragment() {
@@ -43,8 +45,7 @@ class playasFragment : Fragment() {
     ): View? {
         _binding = PlayasFragmentBinding.inflate(inflater, container, false)
 
-
-        tipo()
+tipo()
         return binding.root
     }
 
@@ -54,22 +55,31 @@ class playasFragment : Fragment() {
         // TODO: Use the ViewModel
     }
 
-
     fun tipo() {
         when (ClickTurismo.tipo) {
 
-            ClickTurismo.patrimonio ->
+            ClickTurismo.patrimonios ->
                 lifecycleScope.launch {
-                    binding.listadoPlayas.adapter = PlayaAdapter(FirebaseBD().getlistPlayas())
+                    binding.listadoPlayas.adapter = PatrimonioAdapter(FirebaseBD().getlistPatrimonio())
 
                     binding.listadoPlayas.layoutManager =
                         LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
                 }
-            ClickTurismo.playa ->
+            ClickTurismo.Playas ->
                 lifecycleScope.launch {
                     binding.listadoPlayas.adapter =
-                        PatrimonioAdapter(FirebaseBD().getlistPatrimonio())
+                        PlayaAdapter(FirebaseBD().getlistPlayas())
+
+                    binding.listadoPlayas.layoutManager =
+                        LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+
+                }
+            ClickTurismo.Naturaleza ->
+
+                lifecycleScope.launch {
+                    binding.listadoPlayas.adapter =
+                        PlayaAdapter(FirebaseBD().getlistNaturaleza())
 
                     binding.listadoPlayas.layoutManager =
                         LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
@@ -78,5 +88,6 @@ class playasFragment : Fragment() {
 
         }
     }
+
 
 }

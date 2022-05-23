@@ -8,5 +8,6 @@ data class Empresa(
     val correo:String,
     val paginaWeb:String,
     val foto:String,
-    val descripcion:String
+    val descripcion:String,
+    val carta:String
 )
