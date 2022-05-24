@@ -21,6 +21,7 @@ class registerActivity : AppCompatActivity() {
     private val File = 1
     private val database = Firebase.database
     val myRef = database.getReference("users")
+    var uriPhoto = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,6 +62,7 @@ class registerActivity : AppCompatActivity() {
                     file_name.getDownloadUrl().addOnSuccessListener { uri ->
                         val hashMap =
                             HashMap<String, String>()
+                        uriPhoto = uri.toString()
                         hashMap["link"] = java.lang.String.valueOf(uri)
                         myRef.setValue(hashMap)
                         Log.d("Mensaje", "Se subió correctamente")
