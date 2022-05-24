@@ -29,7 +29,6 @@ class DetailEmpresaFragment : Fragment() {
     private var _binding: FragmentDetailEmpresaBinding? = null
     private val binding get() = _binding!!
     val user = FirebaseAuth.getInstance().currentUser!!.uid
-    var flagRechear = false
 
 
     override fun onCreateView(

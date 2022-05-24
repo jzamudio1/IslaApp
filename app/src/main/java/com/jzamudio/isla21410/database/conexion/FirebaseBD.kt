@@ -86,7 +86,7 @@ class FirebaseBD {
 
     fun insertComentario(valoraciones: valoraciones): Task<Void> {
 
-       return firebaseInstance.collection("/$coleccion/$documento/comentarios").document()
+       return firebaseInstance.collection("$coleccion").document("$documento").collection("comentarios").document()
             .set(
                 hashMapOf(
 
