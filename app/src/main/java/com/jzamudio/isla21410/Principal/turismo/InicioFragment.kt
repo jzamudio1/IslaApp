@@ -9,12 +9,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.firestore.FirebaseFirestore
 import com.jzamudio.isla21410.adapter.InicioAdapter
-import com.jzamudio.isla21410.adapter.PatrimonioAdapter
-import com.jzamudio.isla21410.adapter.PlayaAdapter
 import com.jzamudio.isla21410.database.conexion.FirebaseBD
 import com.jzamudio.isla21410.databinding.FragmentInicioBinding
-import com.jzamudio.isla21410.util.ClickTurismo
-import com.jzamudio.isla21410.util.ClickTurismo.Companion.Naturaleza
+import com.jzamudio.isla21410.util.ClickEmpresas
 import kotlinx.coroutines.launch
 
 class InicioFragment : Fragment() {
@@ -27,13 +24,14 @@ class InicioFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        ClickEmpresas.restauracion = "inicio"
         // Inflate the layout for this fragment
         _binding = FragmentInicioBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
 
         lifecycleScope.launch {
-            binding.btnInicio.adapter = InicioAdapter(FirebaseBD().getAllInicio())
+            binding.btnInicio.adapter = InicioAdapter(FirebaseBD().getlistSimpleName())
             binding.btnInicio.layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         }

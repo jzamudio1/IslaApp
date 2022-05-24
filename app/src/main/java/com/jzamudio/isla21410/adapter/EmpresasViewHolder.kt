@@ -21,7 +21,6 @@ class EmpresasViewHolder (view: View) : RecyclerView.ViewHolder(view) {
         binding.txtAlojamiento.text = empresa.nombre
         binding.btnAlojamiento.setOnClickListener {
             ClickEmpresas.documento = empresa.nombre
-            Log.i("documento","${ClickEmpresas.documento}")
             it.findNavController().navigate(listEmpresaFragmentDirections.actionListEmpresaFragmentToDetailEmpresaFragment(empresa.nombre,empresa.descripcion,empresa.foto,empresa.correo,
             empresa.telefono,empresa.paginaWeb))
         }

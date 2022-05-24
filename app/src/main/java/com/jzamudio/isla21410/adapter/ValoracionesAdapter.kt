@@ -1,12 +1,9 @@
 package com.jzamudio.isla21410.adapter
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.jzamudio.isla21410.R
-import com.jzamudio.isla21410.database.model.Playa
 import com.jzamudio.isla21410.database.model.valoraciones
 
 class ValoracionesAdapter(

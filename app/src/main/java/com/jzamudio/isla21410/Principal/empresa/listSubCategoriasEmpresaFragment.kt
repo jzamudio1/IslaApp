@@ -6,36 +6,34 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jzamudio.isla21410.R
-import com.jzamudio.isla21410.adapter.EmpresaInitAdapter
+import com.jzamudio.isla21410.adapter.EmpresasAdapter
+import com.jzamudio.isla21410.adapter.InicioAdapter
+import com.jzamudio.isla21410.adapter.RestauracionAdapter
 import com.jzamudio.isla21410.database.conexion.FirebaseBD
-import com.jzamudio.isla21410.databinding.FragmentEmpresasBinding
-import com.jzamudio.isla21410.util.ClickEmpresas
+import com.jzamudio.isla21410.databinding.FragmentListEmpresaBinding
+import com.jzamudio.isla21410.databinding.FragmentListSubCategoriasEmpresaBinding
+import com.jzamudio.isla21410.databinding.ItemRestauracionAdapterBinding
 import kotlinx.coroutines.launch
 
-class EmpresasFragment : Fragment() {
 
-
-    private var _binding: FragmentEmpresasBinding? = null
+class listSubCategoriasEmpresaFragment : Fragment() {
+    private var _binding: FragmentListSubCategoriasEmpresaBinding? = null
     private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        ClickEmpresas.restauracion = "empresas"
 
-        _binding = FragmentEmpresasBinding.inflate(inflater, container, false)
+        _binding = FragmentListSubCategoriasEmpresaBinding.inflate(inflater, container, false)
+
 
         lifecycleScope.launch {
-            binding.btnEmpresas.adapter = EmpresaInitAdapter(FirebaseBD().getlistSimpleName())
-            binding.btnEmpresas.layoutManager =
+            binding.reciclerRestauracion.adapter = RestauracionAdapter(FirebaseBD().getlistSimpleName())
+            binding.reciclerRestauracion.layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        }
-
-        binding.floatingActionButton.setOnClickListener {
-            findNavController().navigate(R.id.action_navigation_empresas_to_newEmpresaFragment)
         }
         // Inflate the layout for this fragment
         return binding.root

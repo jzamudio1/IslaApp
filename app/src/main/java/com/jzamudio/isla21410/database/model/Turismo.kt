@@ -1,9 +1,6 @@
 package com.jzamudio.isla21410.database.model
 
-import com.google.firebase.firestore.GeoPoint
-
-
-data class Playa(
+data class Turismo(
     val Imagen: String?=null,
     val Nombre: String?=null,
     val Descripcion: String?=null,

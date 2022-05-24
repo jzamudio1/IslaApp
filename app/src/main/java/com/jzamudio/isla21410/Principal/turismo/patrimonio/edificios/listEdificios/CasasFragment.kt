@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.jzamudio.isla21410.adapter.PatrimonioAdapter
+import com.jzamudio.isla21410.adapter.TurismoAdapter
 import com.jzamudio.isla21410.database.conexion.FirebaseBD
 import com.jzamudio.isla21410.databinding.CasasFragmentBinding
 import kotlinx.coroutines.launch
@@ -27,7 +27,7 @@ class CasasFragment : Fragment() {
         _binding = CasasFragmentBinding.inflate(inflater, container, false)
 
         lifecycleScope.launch {
-            binding.reciclerCasas.adapter = PatrimonioAdapter(FirebaseBD().getlistPatrimonio())
+            binding.reciclerCasas.adapter = TurismoAdapter(FirebaseBD().getlistTurismo())
             binding.reciclerCasas.layoutManager=
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,false)
         }

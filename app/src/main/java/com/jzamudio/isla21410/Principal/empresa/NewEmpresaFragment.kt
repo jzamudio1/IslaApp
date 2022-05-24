@@ -25,8 +25,6 @@ class NewEmpresaFragment : Fragment(), LifecycleObserver {
 
     private var _binding: FragmentNewEmpresaBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: NewEmpresaViewModel
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,15 +32,9 @@ class NewEmpresaFragment : Fragment(), LifecycleObserver {
     ): View {
         _binding = FragmentNewEmpresaBinding.inflate(inflater, container, false)
         lifecycleScope.launch {
-//            binding.spinner.adapter = ArrayAdapter(
-//                requireContext(),
-//                android.R.layout.simple_spinner_item,
-//                FirebaseBD().getlistEmpresaInit().map {
-//                    it.nombre
-//                })
             ArrayAdapter(requireContext(),
                 android.R.layout.simple_spinner_item,
-                FirebaseBD().getlistEmpresaInit().map {
+                FirebaseBD().getlistSimpleName().map {
                     it.nombre
                 }
             ).also { adapter ->
@@ -56,7 +48,6 @@ class NewEmpresaFragment : Fragment(), LifecycleObserver {
                 override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                     val prueba = binding.spinner.getItemAtPosition(p2).toString()
 
-                    Log.i("pruebaaaaaaa", "${prueba}")
                 }
 
                 override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -78,11 +69,6 @@ class NewEmpresaFragment : Fragment(), LifecycleObserver {
         return binding.root
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        lifecycle.addObserver(this)
-        viewModel = ViewModelProvider(this)[NewEmpresaViewModel::class.java]
-    }
 
     override fun onDetach() {
         super.onDetach()
@@ -103,7 +89,7 @@ class NewEmpresaFragment : Fragment(), LifecycleObserver {
             binding.etDescripcion.text.toString(),
 
             )
-            FirebaseBD().insertEmpresa(tipo, empresa)
+        FirebaseBD().insertEmpresa(tipo, empresa)
 
     }
 

@@ -4,9 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.jzamudio.isla21410.R
-import com.jzamudio.isla21410.database.model.EmpresaInit
+import com.jzamudio.isla21410.database.model.SimpleName
 
-class EmpresaInitAdapter(private val listEmpresaInit:List<EmpresaInit>) : RecyclerView.Adapter<EmpresaInitViewHolder>() {
+class EmpresaInitAdapter(private val listEmpresaInit:List<SimpleName>) : RecyclerView.Adapter<EmpresaInitViewHolder>() {
 
     //Infla la vista
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EmpresaInitViewHolder {

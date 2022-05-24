@@ -6,9 +6,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.jzamudio.isla21410.adapter.InicioAdapter
 import com.jzamudio.isla21410.database.conexion.FirebaseBD
 import com.jzamudio.isla21410.databinding.ActivityMainBinding
+import com.jzamudio.isla21410.util.ClickEmpresas
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
@@ -18,7 +21,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        
+        ClickEmpresas.restauracion = "inicio"
+        lifecycleScope.launch {
+            FirebaseBD().getlistSimpleName()
+        }
+
+
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

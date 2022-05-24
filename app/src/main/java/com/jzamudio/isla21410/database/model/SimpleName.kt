@@ -1,5 +1,5 @@
 package com.jzamudio.isla21410.database.model
 
-data class EmpresaInit(
+data class SimpleName(
     val nombre:String
 )

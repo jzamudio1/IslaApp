@@ -11,8 +11,8 @@
         android:label="Inicio"
         tools:layout="@layout/fragment_inicio" >
         <action
-            android:id="@+id/action_navigation_turismo_to_playasFragment"
-            app:destination="@id/playasFragment" />
+            android:id="@+id/action_navigation_turismo_to_plantillaTurismoFragment"
+            app:destination="@id/plantillaTurismoFragment" />
     </fragment>
     <fragment
         android:id="@+id/navigation_empresas"
@@ -33,6 +33,9 @@
         <action
             android:id="@+id/action_listEmpresaFragment_to_detailEmpresaFragment"
             app:destination="@id/detailEmpresaFragment" />
+        <action
+            android:id="@+id/action_listEmpresaFragment_to_listSubCategoriasEmpresaFragment"
+            app:destination="@id/listSubCategoriasEmpresaFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailEmpresaFragment"
@@ -55,32 +58,6 @@
             app:argType="string" />
     </fragment>
     <fragment
-        android:id="@+id/playaCampingFragment"
-        android:name="com.jzamudio.isla21410.Principal.turismo.Playas.listPlayas.Camping.PlayaCampingFragment"
-        android:label="playa_camping_fragment"
-        tools:layout="@layout/playa_camping_fragment" >
-        <argument
-            android:name="foto"
-            app:argType="string" />
-        <argument
-            android:name="descripcion"
-            app:argType="string" />
-        <argument
-            android:name="latitud"
-            app:argType="float" />
-        <argument
-            android:name="longitud"
-            app:argType="float" />
-    </fragment>
-    <fragment
-        android:id="@+id/playasFragment"
-        android:name="com.jzamudio.isla21410.Principal.turismo.Playas.playasFragment"
-        android:label="playasFragment" >
-        <action
-            android:id="@+id/action_playasFragment_to_playaCampingFragment"
-            app:destination="@id/playaCampingFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/newEmpresaFragment"
         android:name="com.jzamudio.isla21410.Principal.empresa.NewEmpresaFragment"
         android:label="NewEmpresaFragment" />
@@ -94,4 +71,64 @@
         android:name="com.jzamudio.isla21410.login.registerActivity"
         android:label="activity_register"
         tools:layout="@layout/activity_register" />
+    <fragment
+        android:id="@+id/plantillaTurismoFragment"
+        android:name="com.jzamudio.isla21410.Principal.turismo.Playas.PlantillaTurismoFragment"
+        android:label="PlantillaTurismoFragment" >
+        <action
+            android:id="@+id/action_plantillaTurismoFragment_to_playaDetailFragment"
+            app:destination="@id/playaDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/playaDetailFragment"
+        android:name="com.jzamudio.isla21410.Principal.turismo.Playas.listPlayas.Camping.PlayaDetailFragment"
+        android:label="detail_playa_fragment"
+        tools:layout="@layout/detail_playa_fragment" >
+        <argument
+            android:name="nombre"
+            app:argType="string" />
+        <argument
+            android:name="descripcion"
+            app:argType="string" />
+        <argument
+            android:name="foto"
+            app:argType="string" />
+        <argument
+            android:name="latitud"
+            app:argType="float" />
+        <argument
+            android:name="longitud"
+            app:argType="float" />
+    </fragment>
+    <fragment
+        android:id="@+id/listSubCategoriasEmpresaFragment"
+        android:name="com.jzamudio.isla21410.Principal.empresa.listSubCategoriasEmpresaFragment"
+        android:label="listSubCategoriasEmpresaFragment" >
+        <action
+            android:id="@+id/action_listSubCategoriasEmpresaFragment_to_detailSubCategoriaEmpresaFragment"
+            app:destination="@id/detailSubCategoriaEmpresaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailSubCategoriaEmpresaFragment"
+        android:name="com.jzamudio.isla21410.Principal.empresa.DetailSubCategoriaEmpresaFragment"
+        android:label="DetailSubCategoriaEmpresaFragment" >
+        <argument
+            android:name="nombre"
+            app:argType="string" />
+        <argument
+            android:name="direccion"
+            app:argType="string" />
+        <argument
+            android:name="telefono"
+            app:argType="string" />
+        <argument
+            android:name="descripcion"
+            app:argType="string" />
+        <argument
+            android:name="foto"
+            app:argType="string" />
+        <argument
+            android:name="carta"
+            app:argType="string" />
+    </fragment>
 </navigation>

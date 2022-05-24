@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    tools:context=".Principal.turismo.Playas.listPlayas.Camping.PlayaCampingFragment">
+    android:layout_marginBottom="?actionBarSize"
+    tools:context=".Principal.turismo.Playas.listPlayas.Camping.PlayaDetailFragment">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout

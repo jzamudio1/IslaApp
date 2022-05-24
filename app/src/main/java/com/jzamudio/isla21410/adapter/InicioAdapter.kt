@@ -4,11 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.jzamudio.isla21410.R
-import com.jzamudio.isla21410.database.model.Inicio
+import com.jzamudio.isla21410.database.model.SimpleName
 
 
 class InicioAdapter(
-    private val listInicio:List<Inicio>
+    private val listInicio:List<SimpleName>
 ) : RecyclerView.Adapter<InicioViewHolder>() {
 
     //Infla la vista

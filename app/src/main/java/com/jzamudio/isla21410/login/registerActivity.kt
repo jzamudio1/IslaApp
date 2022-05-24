@@ -7,6 +7,8 @@ import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.createBitmap
+import androidx.core.graphics.scale
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.firestore.FirebaseFirestore
@@ -15,13 +17,15 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.jzamudio.isla21410.R
 import kotlinx.android.synthetic.main.activity_register.*
+import java.io.IOException
 
 
 class registerActivity : AppCompatActivity() {
     private val File = 1
     private val database = Firebase.database
     val myRef = database.getReference("users")
-    var uriPhoto = ""
+    var FileUri: Uri? = null
+    var urlImage: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,52 +34,20 @@ class registerActivity : AppCompatActivity() {
 
         btnGuardar.setOnClickListener {
             createAccount()
-            showLogin()
+
         }
 
         btnGaleria.setOnClickListener {
             fileUploat()
         }
 
-        imgFoto.setOnClickListener {
-
-        }
     }
 
-
-    private fun fileUploat() {
-        val intent = Intent(Intent.ACTION_GET_CONTENT)
-        intent.type = "*/*"
-        startActivityForResult(intent, File)
-    }
-
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == File) {
-            if (resultCode == RESULT_OK) {
-                val FileUri = data!!.data
-                val Folder: StorageReference =
-                    FirebaseStorage.getInstance().getReference().child("User")
-                val file_name: StorageReference = Folder.child("file" + FileUri!!.lastPathSegment)
-                file_name.putFile(FileUri).addOnSuccessListener { taskSnapshot ->
-                    file_name.getDownloadUrl().addOnSuccessListener { uri ->
-                        val hashMap =
-                            HashMap<String, String>()
-                        uriPhoto = uri.toString()
-                        hashMap["link"] = java.lang.String.valueOf(uri)
-                        myRef.setValue(hashMap)
-                        Log.d("Mensaje", "Se subió correctamente")
-                    }
-                }
-            }
-        }
-    }
 
     private fun createAccount() {
         val auth = FirebaseAuth.getInstance()
         auth.createUserWithEmailAndPassword(
-            editTextCorreo.text.toString(),
+            editTextCorreo.text.toString().trim(),
             editTextPassword.text.toString()
         )
             .addOnCompleteListener(this) { task ->
@@ -85,8 +57,8 @@ class registerActivity : AppCompatActivity() {
                         hashMapOf(
                             "uid" to userID,
                             "nombre" to editTextNombre.text.toString(),
-                            "correo" to editTextCorreo.text.toString()
-
+                            "correo" to editTextCorreo.text.toString(),
+                            "foto" to urlImage
 
                         )
                     )
@@ -104,26 +76,49 @@ class registerActivity : AppCompatActivity() {
             }
     }
 
-    /*
-        private fun updateProfile() {
-            val user = FirebaseAuth.getInstance().currentUser
-            val profileUpdates = userProfileChangeRequest {
-                setDisplayName(editTextNombre.text.toString())
-                //photoUri = Uri.parse("https://example.com/jane-q-user/profile.jpg")
-            }
-            user!!.updateProfile(profileUpdates)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        Log.d(ContentValues.TAG, "User profile updated.")
-                    }
 
-                }
-        }
-    */
     private fun showLogin() {
         val authIntent = Intent(this, AuthActivity::class.java)
         startActivity(authIntent)
     }
 
+    private fun fileUploat() {
+        val intent = Intent(Intent.ACTION_GET_CONTENT)
+        intent.type = "*/*"
+        startActivityForResult(intent, File)
+    }
+
+    fun uploadPhoto() {
+        val Folder: StorageReference =
+            FirebaseStorage.getInstance().reference.child("User")
+        val file_name: StorageReference = Folder.child("file" + FileUri!!.lastPathSegment)
+        file_name.putFile(FileUri!!).addOnSuccessListener { taskSnapshot ->
+            file_name.downloadUrl.addOnSuccessListener { uri ->
+                val hashMap = java.lang.String.valueOf(uri)
+                Firebase.database.getReference("User").setValue(hashMap)
+                urlImage = uri
+                Log.d("Mensaje", "Se subió correctamente, $urlImage")
+            }
+
+
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == File) {
+            if (resultCode == RESULT_OK) {
+                FileUri = data!!.data
+                try {
+                    imgFoto.setImageURI(FileUri)
+                    uploadPhoto()
+
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                }
+            }
+
+        }
+    }
 
 }

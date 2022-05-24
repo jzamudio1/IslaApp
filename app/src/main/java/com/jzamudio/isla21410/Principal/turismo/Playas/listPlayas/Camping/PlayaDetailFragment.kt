@@ -13,10 +13,10 @@ import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.jzamudio.isla21410.databinding.PlayaCampingFragmentBinding
+import com.jzamudio.isla21410.databinding.DetailPlayaFragmentBinding
 import com.squareup.picasso.Picasso
 
-class PlayaCampingFragment : Fragment(), OnMapReadyCallback {
+class PlayaDetailFragment : Fragment(), OnMapReadyCallback {
 
     //Necesita un MapView
     var mapView: MapView? = null
@@ -29,20 +29,19 @@ class PlayaCampingFragment : Fragment(), OnMapReadyCallback {
         mapView?.onSaveInstanceState(outState)
     }
     //Binding
-    private var _binding: PlayaCampingFragmentBinding? = null
+    private var _binding: DetailPlayaFragmentBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: PlayaCampingViewModel
+    private lateinit var viewModel: PlayaDetailViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        val args = PlayaCampingFragmentArgs.fromBundle(requireArguments())
-
+        val args = PlayaDetailFragmentArgs.fromBundle(requireArguments())
         longitud = args.longitud.toDouble()
-        latitud = args.latitud.toDouble()
-        _binding = PlayaCampingFragmentBinding.inflate(inflater,container,false)
+         latitud = args.latitud.toDouble()
+        _binding = DetailPlayaFragmentBinding.inflate(inflater,container,false)
 
         Picasso.get().load(Uri.parse(args.foto)).into(binding.imgPlaya)
         binding.txtDescripcion.text = args.descripcion
@@ -59,7 +58,7 @@ class PlayaCampingFragment : Fragment(), OnMapReadyCallback {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(PlayaCampingViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(PlayaDetailViewModel::class.java)
         // TODO: Use the ViewModel
     }
     //Funciones Necesarias para que funcione el MapView
@@ -95,8 +94,6 @@ class PlayaCampingFragment : Fragment(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
 
         val coordinates = LatLng(latitud,longitud)
-        //googleMap.getUiSettings()?.setZoomControlsEnabled(true);
-        // googleMap.addMarker(MarkerOptions().position(coordinates))
         googleMap.addMarker(MarkerOptions().position(coordinates).title("Marker"))
         googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(coordinates, 14.5f),null)
 

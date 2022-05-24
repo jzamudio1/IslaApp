@@ -15,7 +15,7 @@ class ClickEmpresas : Application(){
         const val manodeObra = 6
         const val moda = 7
         const val peluquerias = 8
-        const val restauracion = 9
+
         const val talleres = 10
         const val taxis = 11
         const val veterinario = 12
@@ -23,6 +23,7 @@ class ClickEmpresas : Application(){
 
         lateinit var coleccion:String
         lateinit var documento:String
+        lateinit var restauracion:String
 
     }
 
