@@ -44,24 +44,23 @@ class FirebaseBD {
 
         val listTalleres = mutableListOf<Empresa>()
 
-        firebaseInstance.collection("/Talleres").get()
+        firebaseInstance.collection("$coleccion").get()
             .addOnSuccessListener {
 
                 for (doc in it) {
                     listTalleres.add(
                         Empresa(
-                            carta = doc["carta"].toString(),
+                            carta = doc["nombre"].toString(),
                             correo = doc["correo"].toString(),
                             telefono = doc["telefono"].toString(),
                             nombre = doc["nombre"].toString(),
-                            descripcion = doc["descripcion"].toString(),
-                            paginaWeb = doc["imagen"].toString(),
+                            descripcion = doc["nombre"].toString(),
+                            paginaWeb = doc["nombre"].toString(),
                             foto = doc["nombre"].toString(),
                             )
                     )
                 }
             }.await()
-
         return listTalleres
     }
 

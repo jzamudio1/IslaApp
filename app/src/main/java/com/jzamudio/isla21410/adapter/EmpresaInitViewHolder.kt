@@ -19,7 +19,7 @@ class EmpresaInitViewHolder  (view: View) : RecyclerView.ViewHolder(view) {
         binding.btnAlojamiento.setOnClickListener {
             ClickEmpresas.tipo = adapterPosition
             ClickEmpresas.coleccion = empresainit.nombre
-            Log.i("tipo","${ClickEmpresas.tipo}")
+            Log.i("coleccion","${ClickEmpresas.coleccion}")
             it.findNavController().navigate(EmpresasFragmentDirections.actionNavigationEmpresasToListEmpresaFragment())
 
         }

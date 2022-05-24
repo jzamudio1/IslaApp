@@ -27,5 +27,4 @@ class EmpresasAdapter(private val listEmpresaServicios:List<Empresa>) : Recycler
     override fun getItemCount(): Int = listEmpresaServicios.size
 
 
-
 }

@@ -32,7 +32,12 @@ class listEmpresaFragment : Fragment() {
         //val args = listEmpresaFragmentArgs.fromBundle(requireArguments())
 
 
-        select()
+        lifecycleScope.launch {
+            binding.btnEmpresas.adapter = EmpresasAdapter(FirebaseBD().getlistTalleres())
+
+            binding.btnEmpresas.layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        }
 
         // Inflate the layout for this fragment
         return binding.root
@@ -44,85 +49,5 @@ class listEmpresaFragment : Fragment() {
         // TODO: Use the ViewModel
     }
 
-
-
-    fun select() {
-        when (ClickEmpresas.tipo) {
-            ClickEmpresas.abogado ->
-                lifecycleScope.launch {
-
-                }
-            ClickEmpresas.autoescuela ->
-                lifecycleScope.launch {
-                    binding.btnEmpresas.adapter = EmpresasAdapter(FirebaseBD().getlistAutoescuelas())
-
-                    binding.btnEmpresas.layoutManager =
-                        LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-                        }
-
-            ClickEmpresas.alimentacion ->
-                lifecycleScope.launch {
-                    binding.btnEmpresas.adapter = EmpresasAdapter(FirebaseBD().getlistAlimentacion())
-
-                    binding.btnEmpresas.layoutManager =
-                        LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-                        }
-
-            ClickEmpresas.farmacias ->
-                lifecycleScope.launch {
-
-                        }
-
-
-
-            ClickEmpresas.ferreterias ->
-                lifecycleScope.launch {
-
-
-                }
-            ClickEmpresas.inmobiliarias ->
-                lifecycleScope.launch {
-
-                }
-            ClickEmpresas.manodeObra ->
-                lifecycleScope.launch {
-
-
-                }
-            ClickEmpresas.moda ->
-                lifecycleScope.launch {
-
-
-                }
-            ClickEmpresas.peluquerias ->
-                lifecycleScope.launch {
-
-                }
-            ClickEmpresas.restauracion ->
-                lifecycleScope.launch {
-                    binding.btnEmpresas.adapter = EmpresasAdapter(FirebaseBD().getlistRestaurantes())
-
-                    binding.btnEmpresas.layoutManager =
-                        LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-
-                }
-            ClickEmpresas.talleres ->
-                lifecycleScope.launch {
-
-                    binding.btnEmpresas.adapter = EmpresasAdapter(FirebaseBD().getlistTalleres())
-
-                    binding.btnEmpresas.layoutManager =
-                        LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-                }
-            ClickEmpresas.taxis ->
-                lifecycleScope.launch {
-
-                }
-            ClickEmpresas.veterinario ->
-                lifecycleScope.launch {
-
-                }
-        }
-    }
 
 }

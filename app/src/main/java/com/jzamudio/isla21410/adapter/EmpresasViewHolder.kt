@@ -1,6 +1,7 @@
 package com.jzamudio.isla21410.adapter
 
 
+import android.util.Log
 import android.view.View
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -20,6 +21,7 @@ class EmpresasViewHolder (view: View) : RecyclerView.ViewHolder(view) {
         binding.txtAlojamiento.text = empresa.nombre
         binding.btnAlojamiento.setOnClickListener {
             ClickEmpresas.documento = empresa.nombre
+            Log.i("documento","${ClickEmpresas.documento}")
             it.findNavController().navigate(listEmpresaFragmentDirections.actionListEmpresaFragmentToDetailEmpresaFragment(empresa.nombre,empresa.descripcion,empresa.foto,empresa.correo,
             empresa.telefono,empresa.paginaWeb))
         }
