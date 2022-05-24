@@ -22,7 +22,7 @@
             android:foregroundTint="#FAE6E6">
 
             <TextView
-                android:id="@+id/txtNombres"
+                android:id="@+id/txtUsuario"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="148dp"

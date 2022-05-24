@@ -19,6 +19,7 @@ import com.jzamudio.isla21410.database.conexion.FirebaseBD
 import com.jzamudio.isla21410.databinding.PlayasFragmentBinding
 import com.jzamudio.isla21410.util.ClickEmpresas
 import com.jzamudio.isla21410.util.ClickTurismo
+import com.jzamudio.isla21410.util.ClickTurismo.Companion.Naturaleza
 import com.jzamudio.isla21410.util.ClickTurismo.Companion.Playas
 import com.jzamudio.isla21410.util.ClickTurismo.Companion.patrimonios
 import kotlinx.coroutines.launch
@@ -58,7 +59,7 @@ tipo()
     fun tipo() {
         when (ClickTurismo.tipo) {
 
-            ClickTurismo.patrimonios ->
+            patrimonios ->
                 lifecycleScope.launch {
                     binding.listadoPlayas.adapter = PatrimonioAdapter(FirebaseBD().getlistPatrimonio())
 
@@ -66,7 +67,7 @@ tipo()
                         LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
                 }
-            ClickTurismo.Playas ->
+            Playas ->
                 lifecycleScope.launch {
                     binding.listadoPlayas.adapter =
                         PlayaAdapter(FirebaseBD().getlistPlayas())
@@ -75,7 +76,7 @@ tipo()
                         LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
                 }
-            ClickTurismo.Naturaleza ->
+            Naturaleza ->
 
                 lifecycleScope.launch {
                     binding.listadoPlayas.adapter =

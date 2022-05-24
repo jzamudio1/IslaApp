@@ -91,9 +91,9 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/listComentarios"
-                android:layout_width="151dp"
-                android:layout_height="207dp"
-                android:layout_marginStart="36dp"
+                android:layout_width="363dp"
+                android:layout_height="220dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginBottom="76dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />

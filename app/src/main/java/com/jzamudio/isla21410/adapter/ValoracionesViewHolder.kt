@@ -12,7 +12,8 @@ class ValoracionesViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     fun render(valoraciones: valoraciones){
 
-        binding.textView.text = valoraciones.comentario
+        binding.txtUsuario.text = valoraciones.usuario
+        binding.txtComent.text = valoraciones.comentario
 
     }
 

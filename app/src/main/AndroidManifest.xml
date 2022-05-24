@@ -11,22 +11,31 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Isla21410">
-        <activity
-            android:name=".ValoracionesAdapter"
-            android:exported="false" />
+
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyB7CeVDwwuKIH9EWgY_LBMRTFkHGLWu6rM" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".login.AuthActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".login.registerActivity"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="false">
+
+
         </activity>
     </application>
 

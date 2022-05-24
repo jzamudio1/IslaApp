@@ -3,6 +3,7 @@ package com.jzamudio.isla21410.login
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.navigation.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.jzamudio.isla21410.MainActivity
 import com.jzamudio.isla21410.R
@@ -13,23 +14,16 @@ class AuthActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
 
-        setup()
+       login.setOnClickListener {
+           setup()
+       }
+        register.setOnClickListener {
+            showRegister()
+        }
     }
 
     private fun setup() {
         title = "Autentificacion"
-        register.setOnClickListener {
-            if(username.text.isNotEmpty() && password.text.isNotEmpty()){
-                FirebaseAuth.getInstance().createUserWithEmailAndPassword(username.text.toString(),password.text.toString()).addOnCompleteListener {
-                    if(it.isSuccessful){
-                        showHome()
-                    } else {
-
-                    }
-                }
-            }
-        }
-        login.setOnClickListener {
             if(username.text.isNotEmpty() && password.text.isNotEmpty()){
                 FirebaseAuth.getInstance().signInWithEmailAndPassword(username.text.toString(),password.text.toString()).addOnCompleteListener {
                     if(it.isSuccessful){
@@ -40,10 +34,15 @@ class AuthActivity : AppCompatActivity() {
                 }
             }
         }
-    }
+
 
     private fun showHome(){
         val homeIntent = Intent(this, MainActivity::class.java)
         startActivity(homeIntent)
+    }
+
+    private fun showRegister(){
+        val registerIntent = Intent(this, registerActivity::class.java)
+        startActivity(registerIntent)
     }
 }

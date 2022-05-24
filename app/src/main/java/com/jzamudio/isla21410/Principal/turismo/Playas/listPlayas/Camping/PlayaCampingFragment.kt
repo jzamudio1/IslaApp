@@ -20,8 +20,9 @@ class PlayaCampingFragment : Fragment(), OnMapReadyCallback {
 
     //Necesita un MapView
     var mapView: MapView? = null
-  lateinit var latitud:String
-  lateinit var longitud:String
+    var longitud = 0.0
+    var latitud = 0.0
+
     //Sobreescribe la funcion
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
@@ -38,9 +39,9 @@ class PlayaCampingFragment : Fragment(), OnMapReadyCallback {
     ): View? {
 
         val args = PlayaCampingFragmentArgs.fromBundle(requireArguments())
-        latitud = args.latitud
-        longitud = args.longitud
 
+        longitud = args.longitud.toDouble()
+        latitud = args.latitud.toDouble()
         _binding = PlayaCampingFragmentBinding.inflate(inflater,container,false)
 
         Picasso.get().load(Uri.parse(args.foto)).into(binding.imgPlaya)
@@ -93,11 +94,11 @@ class PlayaCampingFragment : Fragment(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
 
-        val coordinates = LatLng(longitud.toDouble(),latitud.toDouble())
+        val coordinates = LatLng(latitud,longitud)
         //googleMap.getUiSettings()?.setZoomControlsEnabled(true);
         // googleMap.addMarker(MarkerOptions().position(coordinates))
         googleMap.addMarker(MarkerOptions().position(coordinates).title("Marker"))
-        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(coordinates, 14.5f),4000,null)
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(coordinates, 14.5f),null)
 
 
     }

@@ -1,8 +1,10 @@
 package com.jzamudio.isla21410.database.conexion
 
 import android.util.Log
+import com.google.android.gms.tasks.Task
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.toObject
 import com.jzamudio.isla21410.database.model.*
 import com.jzamudio.isla21410.util.ClickEmpresas.Companion.coleccion
 import com.jzamudio.isla21410.util.ClickEmpresas.Companion.documento
@@ -26,9 +28,8 @@ class FirebaseBD {
                 for (doc in it) {
                     listValoraciones.add(
                         valoraciones(
-
                             comentario = doc["comentario"].toString(),
-
+                            usuario = doc["usuario"].toString()
 
                         )
                     )
@@ -83,13 +84,14 @@ class FirebaseBD {
 
     }
 
-    fun insertComentario(valoraciones: valoraciones){
+    fun insertComentario(valoraciones: valoraciones): Task<Void> {
 
-        firebaseInstance.collection("/$coleccion/$documento/comentarios").document(valoraciones.comentario)
+       return firebaseInstance.collection("/$coleccion/$documento/comentarios").document()
             .set(
                 hashMapOf(
 
-                    "comentario" to valoraciones.comentario.toString()
+                    "comentario" to valoraciones.comentario.toString(),
+                        "usuario" to valoraciones.usuario.toString()
 
 
                 )
@@ -183,8 +185,8 @@ class FirebaseBD {
                             Imagen = doc["imagen"].toString(),
                             Nombre = doc["nombre"].toString(),
                             Descripcion = doc["descripcion"].toString(),
-                            latitud = doc["latitud"].toString(),
-                            longitud = doc["longitud"].toString(),
+                            latitud = doc["latitud"] as Double,
+                            longitud = doc["longitud"] as Double,
                         )
                     )
                 }
@@ -209,8 +211,8 @@ class FirebaseBD {
                             Imagen = doc["imagen"].toString(),
                             Nombre = doc["nombre"].toString(),
                             Descripcion = doc["descripcion"].toString(),
-                           longitud =  doc["longitud"].toString(),
-                            latitud = doc["latitud"].toString(),
+                           longitud =  doc["longitud"] as Double,
+                            latitud = doc["latitud"]as Double,
                         )
                     )
                 }
@@ -344,19 +346,21 @@ class FirebaseBD {
 
     val listPlayas = mutableListOf<Playa>()
 
-        firebaseInstance.collection("images/playa/playaCentral").get()
+        firebaseInstance.collection("images").document("playa").collection("playaCentral").get()
             .addOnSuccessListener {
 
-                for (doc in it){
+                for (doc in it) {
                     listPlayas.add(
                         Playa(
-                            Imagen = doc["imagen"].toString(),
-                            Nombre = doc["nombre"].toString(),
-                            Descripcion = doc["descripcion"].toString(),
-                            longitud = doc["longitud"].toString(),
-                            latitud = doc["latitud"].toString(),
-                        )
+                        Imagen = doc["imagen"].toString(),
+                        Nombre = doc["nombre"].toString(),
+                        Descripcion = doc["descripcion"].toString(),
+                        latitud = doc["latitud"].toString().toDouble(),
+                        longitud = doc["longitud"].toString().toDouble(),
+
                     )
+                    )
+
                 }
             }.await()
 

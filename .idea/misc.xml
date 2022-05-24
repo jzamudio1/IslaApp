@@ -21,6 +21,7 @@
         <entry key="..\:/Windows/Github/Isla21410/app/src/main/res/layout/playas_fragment.xml" value="0.5262096774193549" />
         <entry key="..\:/Windows/Github/Isla21410/app/src/main/res/menu/menu_main.xml" value="0.55" />
         <entry key="..\:/Windows/Github/IslaApp/app/src/main/res/layout/activity_auth.xml" value="0.36666666666666664" />
+        <entry key="..\:/Windows/Github/IslaApp/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Windows/Github/IslaApp/app/src/main/res/layout/activity_register.xml" value="0.36666666666666664" />
         <entry key="..\:/Windows/Github/IslaApp/app/src/main/res/layout/content_main2.xml" value="0.36666666666666664" />
         <entry key="..\:/Windows/Github/IslaApp/app/src/main/res/layout/fragment_detail_empresa.xml" value="0.36666666666666664" />
@@ -33,7 +34,9 @@
         <entry key="..\:/Windows/Github/IslaApp/app/src/main/res/layout/item_empresa_init_adapter.xml" value="0.36666666666666664" />
         <entry key="..\:/Windows/Github/IslaApp/app/src/main/res/layout/item_empresas_adapter.xml" value="0.36666666666666664" />
         <entry key="..\:/Windows/Github/IslaApp/app/src/main/res/layout/item_inicio_adapter.xml" value="0.36666666666666664" />
+        <entry key="..\:/Windows/Github/IslaApp/app/src/main/res/layout/item_patrimonio_adapter.xml" value="0.36666666666666664" />
         <entry key="..\:/Windows/Github/IslaApp/app/src/main/res/layout/item_playa_adapter.xml" value="0.36666666666666664" />
+        <entry key="..\:/Windows/Github/IslaApp/app/src/main/res/layout/item_valoraciones_adapter.xml" value="0.36666666666666664" />
         <entry key="..\:/Windows/Github/IslaApp/app/src/main/res/layout/list_patrimonio_fragment.xml" value="0.36666666666666664" />
         <entry key="..\:/Windows/Github/IslaApp/app/src/main/res/layout/playa_central_fragment.xml" value="0.36666666666666664" />
         <entry key="..\:/Windows/Github/IslaApp/app/src/main/res/layout/playa_cruce_redon_fragment.xml" value="0.33" />
