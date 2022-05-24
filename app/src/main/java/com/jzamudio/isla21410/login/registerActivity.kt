@@ -69,7 +69,7 @@ class registerActivity : AppCompatActivity() {
             }
         }
     }
-    
+
     private fun createAccount() {
         val auth = FirebaseAuth.getInstance()
         auth.createUserWithEmailAndPassword(
