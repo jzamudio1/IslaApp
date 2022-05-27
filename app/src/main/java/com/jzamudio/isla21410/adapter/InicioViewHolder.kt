@@ -1,28 +1,40 @@
 package com.jzamudio.isla21410.adapter
 
+import android.net.Uri
 import android.view.View
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.jzamudio.isla21410.Principal.turismo.InicioFragmentDirections
+import com.jzamudio.isla21410.Principal.turismo.TurismoListFragmentDirections
 import com.jzamudio.isla21410.database.model.SimpleName
-import com.jzamudio.isla21410.databinding.ItemInicioAdapterBinding
+import com.jzamudio.isla21410.databinding.ItemCardviewAdapterBinding
 import com.jzamudio.isla21410.util.ClickTurismo.Companion.coleccionTurismo
+import com.squareup.picasso.Picasso
 
 class InicioViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-    val binding = ItemInicioAdapterBinding.bind(view)
+    val binding = ItemCardviewAdapterBinding.bind(view)
 
-    fun render(inicio: SimpleName){
+    fun render(inicio: SimpleName) {
 
-        binding.txtBelleza.text = inicio.nombre
+        Picasso.get().load(Uri.parse(inicio.foto)).into(binding.imgCarView)
+        binding.txtCardView.text = inicio.nombre
 
-        binding.btnAlojamiento.setOnClickListener {
+        binding.btnCardView.setOnClickListener {
             coleccionTurismo = inicio.nombre
-            if(coleccionTurismo == "Playas"){
+            if (coleccionTurismo == "Playas") {
                 coleccionTurismo = "/images/playa/playaCentral"
+
             }
 
-            it.findNavController().navigate(InicioFragmentDirections.actionNavigationTurismoToPlantillaTurismoFragment())
+            if(coleccionTurismo == "patrimonio"){
+                it.findNavController()
+                     .navigate(TurismoListFragmentDirections.actionTurismoListFragmentToPatrimonioListFragment())
+            }
+
+
+          it.findNavController()
+                .navigate(InicioFragmentDirections.actionNavigationTurismoToTurismoListFragment())
 
         }
     }

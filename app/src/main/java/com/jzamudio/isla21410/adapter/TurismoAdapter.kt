@@ -8,7 +8,7 @@ import com.jzamudio.isla21410.database.model.Turismo
 
 
 class TurismoAdapter(
-  private val listadoTurismo:List<Turismo>
+    private val listadoTurismo: List<Turismo>
 ) : RecyclerView.Adapter<TurismoViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TurismoViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)

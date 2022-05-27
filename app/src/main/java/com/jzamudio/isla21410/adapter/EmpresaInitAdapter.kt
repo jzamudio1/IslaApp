@@ -11,7 +11,7 @@ class EmpresaInitAdapter(private val listEmpresaInit:List<SimpleName>) : Recycle
     //Infla la vista
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EmpresaInitViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        return EmpresaInitViewHolder(layoutInflater.inflate(R.layout.item_empresa_init_adapter,parent,false))
+        return EmpresaInitViewHolder(layoutInflater.inflate(R.layout.item_cardview_adapter,parent,false))
     }
 
     //Defino el comportamiento que va a tener el adapter con los objetos

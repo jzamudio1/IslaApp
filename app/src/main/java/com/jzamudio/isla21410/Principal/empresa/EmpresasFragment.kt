@@ -24,14 +24,13 @@ class EmpresasFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        ClickEmpresas.restauracion = "empresas"
-
+        ClickEmpresas.coleccionEmpresas = "empresas"
         _binding = FragmentEmpresasBinding.inflate(inflater, container, false)
-
+        val linearLayoutManager = LinearLayoutManager(requireContext())
+        linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
+        binding.btnEmpresas.layoutManager = linearLayoutManager
         lifecycleScope.launch {
-            binding.btnEmpresas.adapter = EmpresaInitAdapter(FirebaseBD().getlistSimpleName())
-            binding.btnEmpresas.layoutManager =
-                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            binding.btnEmpresas.adapter = EmpresaInitAdapter(FirebaseBD().getlistSimpleNameEmpresas())
         }
 
         binding.floatingActionButton.setOnClickListener {

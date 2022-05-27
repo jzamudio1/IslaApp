@@ -10,10 +10,10 @@ class ValoracionesViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     val binding = ItemValoracionesAdapterBinding.bind(view)
 
 
-    fun render(valoraciones: valoraciones){
+    fun render(valoraciones: valoraciones) {
 
         binding.txtUsuario.text = valoraciones.usuario
-        binding.txtComent.text = valoraciones.comentario
+        binding.txtComentario.text = valoraciones.comentario
 
     }
 

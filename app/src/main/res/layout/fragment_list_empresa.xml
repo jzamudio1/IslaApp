@@ -11,10 +11,12 @@
         android:layout_height="match_parent"
         android:fillViewport="true">
 
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/btnEmpresas"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:paddingBottom="?actionBarSize"
             tools:context=".Principal.empresa.listEmpresaFragment">
 
         </androidx.recyclerview.widget.RecyclerView>

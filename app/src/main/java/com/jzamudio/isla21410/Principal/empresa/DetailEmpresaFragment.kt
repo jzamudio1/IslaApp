@@ -1,5 +1,10 @@
 package com.jzamudio.isla21410.Principal.empresa
 
+import android.app.AlertDialog
+import android.app.Dialog
+import android.content.DialogInterface
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,11 +16,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 
 import com.google.firebase.firestore.FirebaseFirestore
+import com.jzamudio.isla21410.R
 
 import com.jzamudio.isla21410.adapter.ValoracionesAdapter
 import com.jzamudio.isla21410.database.conexion.FirebaseBD
 import com.jzamudio.isla21410.database.model.valoraciones
 import com.jzamudio.isla21410.databinding.FragmentDetailEmpresaBinding
+import com.squareup.picasso.Picasso
+import kotlinx.coroutines.NonCancellable.cancel
 import kotlinx.coroutines.launch
 
 class DetailEmpresaFragment : Fragment() {
@@ -29,41 +37,48 @@ class DetailEmpresaFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+        _binding = FragmentDetailEmpresaBinding.inflate(inflater, container, false)
         val args = DetailEmpresaFragmentArgs.fromBundle(requireArguments())
         // Inflate the layout for this fragment
-        _binding = FragmentDetailEmpresaBinding.inflate(inflater, container, false)
 
+        lifecycleScope.launch {
+            binding.listComentarios.adapter =
+                ValoracionesAdapter(FirebaseBD().getlistvaloraciones())
+
+        }
+
+
+
+        val number = Uri.parse("tel:" + args.telefono)
 
         binding.txtNombreEmpresa.text = args.nombre
         binding.txtCorreo.text = args.correo
-        binding.txtTelefono.text = args.telefono.toString()
-        binding.btnAddComent.setOnClickListener {
-            binding.comentario.text
-        }
-
-        lifecycleScope.launch {
-            binding.listComentarios.adapter = ValoracionesAdapter(FirebaseBD().getlistvaloraciones())
-            binding.listComentarios.layoutManager =
-                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        binding.txtTelefono.text = args.telefono
+        Picasso.get().load(Uri.parse(args.foto)).into(binding.imgEmpresa)
+        binding.txtTelefono.setOnClickListener {
+            val intent = Intent(Intent.ACTION_DIAL)
+            intent.setData(Uri.parse(number.toString()))
+            requireActivity().startActivity(intent)
 
         }
 
         binding.btnAddComent.setOnClickListener {
-            insertEmpresa()
+
+
         }
+
 
 
 
         return binding.root
     }
 
-    fun insertEmpresa() {
+    fun insertComentario() {
         FirebaseFirestore.getInstance().collection("users").document("${user}").get()
             .addOnSuccessListener {
                 val valoraciones = valoraciones(
-                    binding.comentario.text.toString(),
-                    it.get("nombre").toString()
+                    it.get("nombre").toString(),
+                    it.get("comentario").toString()
                 )
                 FirebaseBD().insertComentario(valoraciones).addOnSuccessListener {
                     refreshList()
@@ -74,9 +89,17 @@ class DetailEmpresaFragment : Fragment() {
 
     fun refreshList() {
         lifecycleScope.launch {
-            binding.listComentarios.adapter = ValoracionesAdapter(FirebaseBD().getlistvaloraciones())
+            binding.listComentarios.adapter =
+                ValoracionesAdapter(FirebaseBD().getlistvaloraciones())
         }
     }
 
+    fun dialog(){
+    val builder = AlertDialog.Builder(requireContext())
+    val view = layoutInflater.inflate(R.layout.dialogcomentario,null)
+    builder.setView(view)
+    val dialog = builder.create()
+    dialog.show()
+}
 
 }

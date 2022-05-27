@@ -12,6 +12,7 @@ import com.jzamudio.isla21410.adapter.InicioAdapter
 import com.jzamudio.isla21410.database.conexion.FirebaseBD
 import com.jzamudio.isla21410.databinding.ActivityMainBinding
 import com.jzamudio.isla21410.util.ClickEmpresas
+import com.jzamudio.isla21410.util.ClickTurismo
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
@@ -21,12 +22,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        ClickEmpresas.restauracion = "inicio"
+        ClickTurismo.coleccionTurismo = "inicio"
         lifecycleScope.launch {
-            FirebaseBD().getlistSimpleName()
+            FirebaseBD().getlistSimpleNameTurismo()
         }
-
-
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

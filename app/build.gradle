@@ -75,4 +75,5 @@ plugins {
         implementation 'androidx.cardview:cardview:1.0.0'
 
         implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+        implementation 'androidx.viewpager:viewpager:1.1.0-alpha01'
     }

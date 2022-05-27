@@ -7,9 +7,12 @@
     </data>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerTurismo"
+        android:id="@+id/reciclerTurismo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".Principal.turismo.Playas.PlantillaTurismoFragment" />
+        android:paddingBottom="?actionBarSize"
+        tools:context=".Principal.turismo.TurismoListFragment">
 
+
+    </androidx.recyclerview.widget.RecyclerView>
 </layout>

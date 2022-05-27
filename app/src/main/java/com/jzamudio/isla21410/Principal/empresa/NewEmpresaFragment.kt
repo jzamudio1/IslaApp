@@ -1,9 +1,7 @@
 package com.jzamudio.isla21410.Principal.empresa
 
-import android.content.Context
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
+import android.text.TextUtils
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,7 +15,7 @@ import com.jzamudio.isla21410.database.conexion.FirebaseBD
 import com.jzamudio.isla21410.database.model.Empresa
 
 import com.jzamudio.isla21410.databinding.FragmentNewEmpresaBinding
-import com.jzamudio.isla21410.util.ClickEmpresas
+import kotlinx.android.synthetic.main.fragment_inicio.*
 import kotlinx.coroutines.launch
 
 class NewEmpresaFragment : Fragment(), LifecycleObserver {
@@ -34,7 +32,7 @@ class NewEmpresaFragment : Fragment(), LifecycleObserver {
         lifecycleScope.launch {
             ArrayAdapter(requireContext(),
                 android.R.layout.simple_spinner_item,
-                FirebaseBD().getlistSimpleName().map {
+                FirebaseBD().getlistSimpleNameEmpresas().map {
                     it.nombre
                 }
             ).also { adapter ->
@@ -64,7 +62,6 @@ class NewEmpresaFragment : Fragment(), LifecycleObserver {
         }
 
 
-        // FirebaseBD().getlistEmpresaInit()[binding.spinner.selectedItemPosition]
 
         return binding.root
     }
@@ -76,21 +73,80 @@ class NewEmpresaFragment : Fragment(), LifecycleObserver {
     }
 
     fun insertEmpresa() {
-
         val tipo = binding.spinner.selectedItem.toString()
-
-        val empresa = Empresa(
-            binding.etNombreEmpresa.text.toString(),
-            binding.etTelefono.text.toString(),
-            binding.etCorreo.text.toString(),
-            binding.etPaginaWeb.text.toString(),
-            binding.imgFotoEmpresa.toString(),
-            binding.etDescripcion.text.toString(),
-            binding.etDescripcion.text.toString(),
-
+        if (validarForm()) {
+            val empresa = Empresa(
+                binding.etNombreEmpresa.text.toString(),
+                binding.etTelefono.text.toString(),
+                binding.etCorreo.text.toString(),
+                binding.etPaginaWeb.text.toString(),
+                binding.imgFotoEmpresa.toString(),
+                binding.etDescripcion.text.toString(),
+                binding.etDireccion.text.toString(),
             )
-        FirebaseBD().insertEmpresa(tipo, empresa)
+            FirebaseBD().insertEmpresa(tipo, empresa)
+        }
 
+
+    }
+
+
+
+
+    private fun validarForm(): Boolean {
+        var esValido = true
+       val min = 5
+
+        if (TextUtils.isEmpty(binding.etNombreEmpresa.text.toString())) {
+            // Si la propiedad error tiene valor, se muestra el aviso.
+            binding.etNombreEmpresa.error = "Requerido"
+            esValido = false
+        } else binding.etNombreEmpresa.error = null
+
+        if(binding.etNombreEmpresa.text.toString().trim() < min.toString()){
+            // Si la propiedad error tiene valor, se muestra el aviso.
+            binding.etNombreEmpresa.error = "Caracteres Minimo 5"
+            esValido = false
+        } else binding.etNombreEmpresa.error = null
+
+        if (TextUtils.isEmpty(binding.etTelefono.text.toString())) {
+            binding.etTelefono.error = "Requerido"
+            esValido = false
+        } else binding.etTelefono.error = null
+
+        if (binding.etTelefono.text.toString() < min.toString()) {
+            binding.etTelefono.error = "Caracteres Minimo 5"
+            esValido = false
+        } else binding.etTelefono.error = null
+
+        if (TextUtils.isEmpty(binding.etCorreo.text.toString())) {
+            binding.etCorreo.error = "Requerido"
+            esValido = false
+        } else binding.etCorreo.error = null
+
+        if (binding.etCorreo.text.toString() < min.toString()) {
+            binding.etCorreo.error = "Caracteres Minimo 5"
+            esValido = false
+        } else binding.etCorreo.error = null
+
+        if (TextUtils.isEmpty(binding.etDescripcion.text.toString())) {
+            binding.etDescripcion.error = "Requerido"
+            esValido = false
+        } else binding.etDescripcion.error = null
+        if (binding.etDescripcion.text.toString() < min.toString()) {
+            binding.etDescripcion.error = "Caracteres Minimo 5"
+            esValido = false
+        } else binding.etDescripcion.error = null
+        if (TextUtils.isEmpty(binding.etDireccion.text.toString())) {
+            binding.etDireccion.error = "Requerido"
+            esValido = false
+        } else binding.etDireccion.error = null
+        if (binding.etDireccion.text.toString() < min.toString()) {
+            binding.etDireccion.error = "Caracteres Minimo 5"
+            esValido = false
+        } else binding.etDireccion.error = null
+
+        return esValido
     }
 
 

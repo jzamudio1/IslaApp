@@ -11,9 +11,11 @@ class ClickTurismo  : Application() {
         const val Ocio = 3
         const val Patrimonio = 4
         const val Playas = 5
-var tipo = 0
+        var tipo = 0
         lateinit var coleccionTurismo:String
         lateinit var documentTurismo:String
+        lateinit var coleccionTurismo2:String
+        lateinit var documentTurismo2:String
 
     }
 }

@@ -1,23 +1,24 @@
-package com.jzamudio.isla21410.Principal.turismo.Playas.listPlayas.Camping
+package com.jzamudio.isla21410.Principal.turismo
 
 import android.net.Uri
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.jzamudio.isla21410.databinding.DetailPlayaFragmentBinding
+import com.jzamudio.isla21410.R
+import com.jzamudio.isla21410.databinding.FragmentDetailTurismoBinding
+import com.jzamudio.isla21410.databinding.FragmentInicioBinding
 import com.squareup.picasso.Picasso
 
-class PlayaDetailFragment : Fragment(), OnMapReadyCallback {
-
+class DetailTurismoFragment : Fragment(), OnMapReadyCallback {
     //Necesita un MapView
     var mapView: MapView? = null
     var longitud = 0.0
@@ -28,20 +29,19 @@ class PlayaDetailFragment : Fragment(), OnMapReadyCallback {
         super.onSaveInstanceState(outState)
         mapView?.onSaveInstanceState(outState)
     }
-    //Binding
-    private var _binding: DetailPlayaFragmentBinding? = null
-    private val binding get() = _binding!!
-    private lateinit var viewModel: PlayaDetailViewModel
 
+    private var _binding: FragmentDetailTurismoBinding? = null
+    private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        val args = PlayaDetailFragmentArgs.fromBundle(requireArguments())
+        _binding = FragmentDetailTurismoBinding.inflate(inflater, container, false)
+        val args = DetailTurismoFragmentArgs.fromBundle(requireArguments())
         longitud = args.longitud.toDouble()
-         latitud = args.latitud.toDouble()
-        _binding = DetailPlayaFragmentBinding.inflate(inflater,container,false)
+        latitud = args.latitud.toDouble()
+
 
         Picasso.get().load(Uri.parse(args.foto)).into(binding.imgPlaya)
         binding.txtDescripcion.text = args.descripcion
@@ -52,15 +52,9 @@ class PlayaDetailFragment : Fragment(), OnMapReadyCallback {
         mapView!!.onCreate(savedInstanceState)
         mapView!!.getMapAsync(this) //this is important
 
-
         return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(PlayaDetailViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
     //Funciones Necesarias para que funcione el MapView
     override fun onResume() {
         super.onResume()

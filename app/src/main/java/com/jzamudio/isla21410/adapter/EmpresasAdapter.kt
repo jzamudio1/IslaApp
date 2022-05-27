@@ -8,13 +8,19 @@ import com.jzamudio.isla21410.R
 import com.jzamudio.isla21410.database.model.Empresa
 
 
-
-class EmpresasAdapter(private val listEmpresaServicios:List<Empresa>) : RecyclerView.Adapter<EmpresasViewHolder>() {
+class EmpresasAdapter(private val listEmpresaServicios: List<Empresa>) :
+    RecyclerView.Adapter<EmpresasViewHolder>() {
 
     //Infla la vista
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EmpresasViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        return EmpresasViewHolder(layoutInflater.inflate(R.layout.item_empresa_init_adapter,parent,false))
+        return EmpresasViewHolder(
+            layoutInflater.inflate(
+                R.layout.item_cardview_adapter,
+                parent,
+                false
+            )
+        )
     }
 
     //Defino el comportamiento que va a tener el adapter con los objetos

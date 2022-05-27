@@ -3,7 +3,8 @@ package com.jzamudio.isla21410.login
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.navigation.findNavController
+import android.text.TextUtils
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.jzamudio.isla21410.MainActivity
 import com.jzamudio.isla21410.R
@@ -14,35 +15,79 @@ class AuthActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
 
-       login.setOnClickListener {
-           showHome()
-       }
+        login.setOnClickListener {
+            //setup()
+            showHome()
+        }
         register.setOnClickListener {
             showRegister()
         }
     }
 
+
+
+    private fun toast(){
+        val text = "Debes Iniciar Sesion"
+        val duration = Toast.LENGTH_SHORT
+        val toast = Toast.makeText(applicationContext, text, duration)
+        toast.show()
+    }
+
     private fun setup() {
-        title = "Autentificacion"
-            if(username.text.isNotEmpty() && password.text.isNotEmpty()){
-                FirebaseAuth.getInstance().signInWithEmailAndPassword(username.text.toString(),password.text.toString()).addOnCompleteListener {
-                    if(it.isSuccessful){
+        if (validarForm()) {
+            FirebaseAuth.getInstance()
+                .signInWithEmailAndPassword(username.text.toString(), password.text.toString())
+                .addOnCompleteListener {
+                    if (it.isSuccessful) {
                         showHome()
                     } else {
 
                     }
                 }
-            }
-        }
+        } else
+            toast()
+    }
 
 
-    private fun showHome(){
+    private fun showHome() {
         val homeIntent = Intent(this, MainActivity::class.java)
         startActivity(homeIntent)
     }
 
-    private fun showRegister(){
+    private fun showRegister() {
         val registerIntent = Intent(this, registerActivity::class.java)
         startActivity(registerIntent)
+    }
+
+
+    private fun validarForm(): Boolean {
+        var esValido = true
+        val min = 5
+
+        if (TextUtils.isEmpty(username.text.toString())) {
+            // Si la propiedad error tiene valor, se muestra el aviso.
+            username.error = "Requerido"
+            esValido = false
+        } else username.error = null
+
+        if (username.text.toString() < min.toString()) {
+            // Si la propiedad error tiene valor, se muestra el aviso.
+            username.error = "Minimo 5 Caracteres"
+            esValido = false
+        } else username.error = null
+
+        if (TextUtils.isEmpty(password.text.toString())) {
+            // Si la propiedad error tiene valor, se muestra el aviso.
+            password.error = "Requerido"
+            esValido = false
+        } else password.error = null
+
+        if (password.text.toString() < min.toString()) {
+            // Si la propiedad error tiene valor, se muestra el aviso.
+            password.error = "Minimo 5 Caracteres"
+            esValido = false
+        } else password.error = null
+
+        return esValido
     }
 }

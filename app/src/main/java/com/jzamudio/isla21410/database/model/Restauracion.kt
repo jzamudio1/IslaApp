@@ -1,13 +1,11 @@
 package com.jzamudio.isla21410.database.model
 
-import android.graphics.pdf.PdfDocument
-
-data class Empresa(
+data class Restauracion(
     val nombre: String,
     val direccion: String,
     val telefono: String,
-    val correo: String,
-    val paginaWeb: String,
+    val descripcion: String,
     val foto: String,
-    val descripcion: String
+    val carta: String
+
 )

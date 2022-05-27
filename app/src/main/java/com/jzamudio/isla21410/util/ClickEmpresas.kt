@@ -21,9 +21,10 @@ class ClickEmpresas : Application(){
         const val veterinario = 12
         var tipo = 0
 
-        lateinit var coleccion:String
-        lateinit var documento:String
-        lateinit var restauracion:String
+        lateinit var coleccionEmpresas:String
+        lateinit var documentoEmpresas:String
+        lateinit var documentoRestauracion:String
+
 
     }
 
