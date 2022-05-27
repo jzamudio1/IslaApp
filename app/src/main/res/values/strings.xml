@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Isla21410</string>
+    <string name="app_name">IslApp</string>
     <string name="title_activity_inicio">Inicio</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
