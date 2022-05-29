@@ -6,23 +6,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.jzamudio.isla21410.R
 import com.jzamudio.isla21410.databinding.FragmentDetailTurismoBinding
-import com.jzamudio.isla21410.databinding.FragmentInicioBinding
 import com.squareup.picasso.Picasso
 
 class DetailTurismoFragment : Fragment(), OnMapReadyCallback {
     //Necesita un MapView
-    var mapView: MapView? = null
-    var longitud = 0.0
-    var latitud = 0.0
+    private var mapView: MapView? = null
+    private var longitud = 0.0
+    private var latitud = 0.0
 
     //Sobreescribe la funcion
     override fun onSaveInstanceState(outState: Bundle) {
@@ -35,7 +32,7 @@ class DetailTurismoFragment : Fragment(), OnMapReadyCallback {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentDetailTurismoBinding.inflate(inflater, container, false)
         val args = DetailTurismoFragmentArgs.fromBundle(requireArguments())

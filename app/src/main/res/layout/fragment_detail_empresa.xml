@@ -30,7 +30,7 @@
                 android:id="@+id/txtNombreEmpresa"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginEnd="60dp"
                 android:text="TextView"
                 app:layout_constraintBottom_toTopOf="@+id/txtDireccion"
@@ -43,8 +43,10 @@
                 android:id="@+id/txtTelefono"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginEnd="60dp"
+                android:autoLink="phone"
+                android:linksClickable="true"
                 android:text="TextView"
                 app:layout_constraintBottom_toTopOf="@+id/txtCorreo"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -56,8 +58,10 @@
                 android:id="@+id/txtCorreo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginEnd="60dp"
+                android:autoLink="email"
+                android:linksClickable="true"
                 android:text="TextView"
                 app:layout_constraintBottom_toTopOf="@+id/txtPaginaWeb"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -70,27 +74,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
-                android:layout_marginBottom="132dp"
+                android:layout_marginBottom="112dp"
                 android:text="Comentar"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/listComentarios"
-                android:layout_width="383dp"
-                android:layout_height="228dp"
-                android:layout_marginBottom="196dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.444"
-                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/txtDireccion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginEnd="60dp"
+                android:autoLink="map"
+                android:linksClickable="true"
                 android:text="TextView"
                 app:layout_constraintBottom_toTopOf="@+id/txtTelefono"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -102,8 +98,10 @@
                 android:id="@+id/txtPaginaWeb"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginEnd="60dp"
+                android:autoLink="web"
+                android:linksClickable="true"
                 android:text="TextView"
                 app:layout_constraintBottom_toBottomOf="@+id/imgEmpresa"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -116,10 +114,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginBottom="12dp"
+                android:layout_marginTop="54dp"
                 android:text="Valoraciones:"
-                app:layout_constraintBottom_toTopOf="@+id/listComentarios"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imgEmpresa" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/listadoComentarios"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.384"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtValor" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

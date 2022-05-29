@@ -11,7 +11,7 @@ import kotlinx.coroutines.tasks.await
 
 class FirebaseBD {
 
-    val firebaseInstance = FirebaseFirestore.getInstance()
+    private val firebaseInstance = FirebaseFirestore.getInstance()
 
 
     /**
@@ -29,12 +29,12 @@ class FirebaseBD {
                         valoraciones(
                             comentario = doc["comentario"].toString(),
                             usuario = doc["usuario"].toString()
-
                         )
+
                     )
                 }
             }.await()
-
+        Log.i("comentarios", listValoraciones.toString())
         return listValoraciones
     }
 
@@ -45,7 +45,7 @@ class FirebaseBD {
 
         val listTalleres = mutableListOf<Empresa>()
 
-        firebaseInstance.collection("$coleccionEmpresas").get()
+        firebaseInstance.collection(coleccionEmpresas).get()
             .addOnSuccessListener {
 
                 for (doc in it) {
@@ -72,7 +72,7 @@ class FirebaseBD {
 
         val listRestauracion = mutableListOf<Restauracion>()
 
-        firebaseInstance.collection("$coleccionEmpresas").get()
+        firebaseInstance.collection(coleccionEmpresas).get()
             .addOnSuccessListener {
 
                 for (doc in it) {
@@ -100,13 +100,13 @@ class FirebaseBD {
         firebaseInstance.collection(tipo).document(empresa.nombre)
             .set(
                 hashMapOf(
-                    "nombre" to empresa.nombre.toString(),
-                    "telefono" to empresa.telefono.toString(),
-                    "correo" to empresa.correo.toString(),
-                    "paginaWeb" to empresa.paginaWeb.toString(),
-                    "foto" to empresa.foto.toString(),
-                    "descripcion" to empresa.descripcion.toString(),
-                    "direccion" to empresa.direccion.toString()
+                    "nombre" to empresa.nombre,
+                    "telefono" to empresa.telefono,
+                    "correo" to empresa.correo,
+                    "paginaWeb" to empresa.paginaWeb,
+                    "foto" to empresa.foto,
+                    "descripcion" to empresa.descripcion,
+                    "direccion" to empresa.direccion
                 )
             )
     }
@@ -114,15 +114,16 @@ class FirebaseBD {
     /**
      * Insertar un comentario
      */
-    fun insertComentario(valoraciones: valoraciones): Task<Void> {
+    fun insertComentario(valoraciones: valoraciones, uid: String): Task<Void> {
 
-        return firebaseInstance.collection("$coleccionEmpresas").document("$documentoEmpresas")
+        return firebaseInstance.collection(coleccionEmpresas).document(documentoEmpresas)
             .collection("comentarios").document()
             .set(
                 hashMapOf(
 
-                    "comentario" to valoraciones.comentario.toString(),
-                    "usuario" to valoraciones.usuario.toString()
+                    "uid" to uid,
+                    "comentario" to valoraciones.comentario,
+                    "usuario" to valoraciones.usuario
 
 
                 )
@@ -131,118 +132,156 @@ class FirebaseBD {
 
     }
 
-    suspend fun getlistSimpleNameEmpresas(): List<SimpleName> {
+
+  /*  suspend fun getlistSimpleNameEdfs(): List<SimpleName> {
 
         val listSimpleNameEmpresa = mutableListOf<SimpleName>()
-
-        firebaseInstance.collection("$coleccionEmpresas").get()
+        var coleccion1: String
+        var documento1: String
+        val comentario = "comentarios"
+        var docComent: String
+        firebaseInstance.collection("/empresas").document().get()
             .addOnSuccessListener {
+                coleccion1 = it.get
+                for (doc in coleccion1) {
+                    firebaseInstance.collection(coleccion1).get()
+                        .addOnSuccessListener {
+                            documento1 = it.documents.toString()
+                            for (doc in documento1) {
+                                firebaseInstance.collection(documento1).get()
+                                    .addOnSuccessListener {
+                                        firebaseInstance.collection(comentario).get()
+                                            .addOnSuccessListener {
+                                                docComent = it.documents.toString()
+                                                for (doc in docComent) {
+                                                    val user = FirebaseAuth.getInstance().currentUser!!.uid
 
-                for (doc in it) {
-                    listSimpleNameEmpresa.add(
-                        SimpleName(
-                            nombre = doc["nombre"].toString(),
-                            foto = doc["foto"].toString()
-                        )
-                    )
+                                                }
+                                            }
+                                    }
+
+                            }
+
+
+                        }.await()
+
+
                 }
-            }.await()
+                return listSimpleNameEmpresa
+            }*/
 
-        return listSimpleNameEmpresa
-    }
+        suspend fun getlistSimpleNameEmpresas(): List<SimpleName> {
 
-    suspend fun getlistSimpleNameTurismo(): List<SimpleName> {
+            val listSimpleNameEmpresa = mutableListOf<SimpleName>()
 
-        val listSimpleNameTurismo = mutableListOf<SimpleName>()
+            firebaseInstance.collection(coleccionEmpresas).get()
+                .addOnSuccessListener {
 
-        firebaseInstance.collection("$coleccionTurismo").get()
-            .addOnSuccessListener {
-
-                for (doc in it) {
-                    listSimpleNameTurismo.add(
-                        SimpleName(
-                            nombre = doc["nombre"].toString(),
-                            foto = doc["foto"].toString()
+                    for (doc in it) {
+                        listSimpleNameEmpresa.add(
+                            SimpleName(
+                                nombre = doc["nombre"].toString(),
+                                foto = doc["foto"].toString()
+                            )
                         )
-                    )
-                }
-            }.await()
+                    }
+                }.await()
 
-        return listSimpleNameTurismo
-    }
+            return listSimpleNameEmpresa
+        }
 
-    suspend fun getlistpatrimonios(): List<Patrimonio> {
+        suspend fun getlistSimpleNameTurismo(): List<SimpleName> {
 
-        val listPatrimonioName = mutableListOf<Patrimonio>()
+            val listSimpleNameTurismo = mutableListOf<SimpleName>()
 
-        firebaseInstance.collection("/patrimonio").get()
-            .addOnSuccessListener {
+            firebaseInstance.collection(coleccionTurismo).get()
+                .addOnSuccessListener {
 
-                for (doc in it) {
-                    listPatrimonioName.add(
-                        Patrimonio(
-                            nombre = doc["nombre"].toString()
+                    for (doc in it) {
+                        listSimpleNameTurismo.add(
+                            SimpleName(
+                                nombre = doc["nombre"].toString(),
+                                foto = doc["foto"].toString()
+                            )
                         )
-                    )
-                }
-            }.await()
+                    }
+                }.await()
 
-        return listPatrimonioName
-    }
+            return listSimpleNameTurismo
+        }
 
+        suspend fun getlistpatrimonios(): List<Patrimonio> {
 
-    /**
-     * Devuelve lista de Turismo de BBDD
-     */
-    suspend fun getlistTurismo(): List<Turismo> {
+            val listPatrimonioName = mutableListOf<Patrimonio>()
 
-        val listTurismo = mutableListOf<Turismo>()
+            firebaseInstance.collection("/patrimonio").get()
+                .addOnSuccessListener {
 
-        firebaseInstance.collection("${coleccionTurismo}").get()
-            .addOnSuccessListener {
-
-                for (doc in it) {
-                    listTurismo.add(
-                        Turismo(
-                            Imagen = doc["foto"].toString(),
-                            Nombre = doc["nombre"].toString(),
-                            Descripcion = doc["descripcion"].toString(),
-                            latitud = doc["latitud"].toString().toDouble(),
-                            longitud = doc["longitud"].toString().toDouble()
-
+                    for (doc in it) {
+                        listPatrimonioName.add(
+                            Patrimonio(
+                                nombre = doc["nombre"].toString()
+                            )
                         )
-                    )
-                }
-            }.await()
-        Log.i("getlistTurismo", "$listTurismo")
-        return listTurismo
-    }
+                    }
+                }.await()
+
+            return listPatrimonioName
+        }
 
 
-    suspend fun getlistPlayas(): List<Turismo> {
+        /**
+         * Devuelve lista de Turismo de BBDD
+         */
+        suspend fun getlistTurismo(): List<Turismo> {
 
-        val listTurismos = mutableListOf<Turismo>()
+            val listTurismo = mutableListOf<Turismo>()
 
-        firebaseInstance.collection("images").document("playa").collection("playaCentral").get()
-            .addOnSuccessListener {
+            firebaseInstance.collection(coleccionTurismo).get()
+                .addOnSuccessListener {
 
-                for (doc in it) {
-                    listTurismos.add(
-                        Turismo(
-                            Imagen = doc["imagen"].toString(),
-                            Nombre = doc["nombre"].toString(),
-                            Descripcion = doc["descripcion"].toString(),
-                            latitud = doc["latitud"].toString().toDouble(),
-                            longitud = doc["longitud"].toString().toDouble(),
+                    for (doc in it) {
+                        listTurismo.add(
+                            Turismo(
+                                Imagen = doc["foto"].toString(),
+                                Nombre = doc["nombre"].toString(),
+                                Descripcion = doc["descripcion"].toString(),
+                                latitud = doc["latitud"].toString().toDouble(),
+                                longitud = doc["longitud"].toString().toDouble()
 
                             )
-                    )
+                        )
+                    }
+                }.await()
+            Log.i("getlistTurismo", "$listTurismo")
+            return listTurismo
+        }
 
-                }
-            }.await()
 
-        return listTurismos
+        suspend fun getlistPlayas(): List<Turismo> {
+
+            val listTurismos = mutableListOf<Turismo>()
+
+            firebaseInstance.collection("images").document("playa").collection("playaCentral").get()
+                .addOnSuccessListener {
+
+                    for (doc in it) {
+                        listTurismos.add(
+                            Turismo(
+                                Imagen = doc["imagen"].toString(),
+                                Nombre = doc["nombre"].toString(),
+                                Descripcion = doc["descripcion"].toString(),
+                                latitud = doc["latitud"].toString().toDouble(),
+                                longitud = doc["longitud"].toString().toDouble(),
+
+                                )
+                        )
+
+                    }
+                }.await()
+
+            return listTurismos
+
+        }
 
     }
-
-}

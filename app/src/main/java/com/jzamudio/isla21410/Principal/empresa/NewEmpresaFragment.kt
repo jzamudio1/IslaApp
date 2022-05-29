@@ -10,12 +10,9 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.lifecycleScope
-
 import com.jzamudio.isla21410.database.conexion.FirebaseBD
 import com.jzamudio.isla21410.database.model.Empresa
-
 import com.jzamudio.isla21410.databinding.FragmentNewEmpresaBinding
-import kotlinx.android.synthetic.main.fragment_inicio.*
 import kotlinx.coroutines.launch
 
 class NewEmpresaFragment : Fragment(), LifecycleObserver {
@@ -72,7 +69,7 @@ class NewEmpresaFragment : Fragment(), LifecycleObserver {
         lifecycle.removeObserver(this)
     }
 
-    fun insertEmpresa() {
+    private fun insertEmpresa() {
         val tipo = binding.spinner.selectedItem.toString()
         if (validarForm()) {
             val empresa = Empresa(

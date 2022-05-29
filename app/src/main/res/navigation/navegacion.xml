@@ -56,6 +56,9 @@
         <argument
             android:name="paginaweb"
             app:argType="string" />
+        <argument
+            android:name="direccion"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/newEmpresaFragment"
@@ -133,4 +136,8 @@
             android:name="longitud"
             app:argType="float" />
     </fragment>
+    <fragment
+        android:id="@+id/navegation_ajustes"
+        android:name="com.jzamudio.isla21410.Principal.configuration.ConfigurateFragment"
+        android:label="ConfigurateFragment" />
 </navigation>

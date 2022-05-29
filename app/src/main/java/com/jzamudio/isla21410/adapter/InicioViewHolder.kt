@@ -22,10 +22,9 @@ class InicioViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         binding.btnCardView.setOnClickListener {
             coleccionTurismo = inicio.nombre
-            if (coleccionTurismo == "Playas") {
-                coleccionTurismo = "/images/playa/playaCentral"
+                it.findNavController()
+                    .navigate(InicioFragmentDirections.actionNavigationTurismoToTurismoListFragment())
 
-            }
 
             if(coleccionTurismo == "patrimonio"){
                 it.findNavController()
@@ -33,8 +32,7 @@ class InicioViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             }
 
 
-          it.findNavController()
-                .navigate(InicioFragmentDirections.actionNavigationTurismoToTurismoListFragment())
+
 
         }
     }

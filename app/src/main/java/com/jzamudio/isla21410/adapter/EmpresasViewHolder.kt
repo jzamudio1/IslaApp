@@ -6,11 +6,8 @@ import android.view.View
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.jzamudio.isla21410.Principal.empresa.listEmpresaFragmentDirections
-import com.jzamudio.isla21410.database.conexion.FirebaseBD
 import com.jzamudio.isla21410.database.model.Empresa
-import com.jzamudio.isla21410.database.model.Restauracion
 import com.jzamudio.isla21410.databinding.ItemCardviewAdapterBinding
-import com.jzamudio.isla21410.util.ClickEmpresas.Companion.coleccionEmpresas
 import com.jzamudio.isla21410.util.ClickEmpresas.Companion.documentoEmpresas
 import com.squareup.picasso.Picasso
 
@@ -26,23 +23,12 @@ class EmpresasViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         binding.btnCardView.setOnClickListener {
             documentoEmpresas = empresa.nombre
 
-            if (documentoEmpresas == "Comida a domicilio" || documentoEmpresas == "Pescados y mariscos" || documentoEmpresas == "Restaurantes y bares") {
-                coleccionEmpresas = empresa.nombre
-                
-            } else {
                 it.findNavController().navigate(
                     listEmpresaFragmentDirections.actionListEmpresaFragmentToDetailEmpresaFragment(
                         empresa.nombre, empresa.descripcion, empresa.foto, empresa.correo,
-                        empresa.telefono, empresa.paginaWeb,
+                        empresa.telefono, empresa.paginaWeb,empresa.direccion
                     )
                 )
             }
         }
     }
-
-
-    fun resturante(restauracion: Restauracion){
-
-    }
-
-}

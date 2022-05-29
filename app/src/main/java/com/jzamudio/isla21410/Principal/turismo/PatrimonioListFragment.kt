@@ -7,9 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.jzamudio.isla21410.adapter.EmpresaInitAdapter
 import com.jzamudio.isla21410.adapter.InicioAdapter
-import com.jzamudio.isla21410.adapter.PatrimonioListAdapter
 import com.jzamudio.isla21410.database.conexion.FirebaseBD
 import com.jzamudio.isla21410.databinding.FragmentPatrimonioListBinding
 import kotlinx.coroutines.launch
@@ -21,7 +19,7 @@ class PatrimonioListFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentPatrimonioListBinding.inflate(inflater, container, false)
         val linearLayoutManager = LinearLayoutManager(requireContext())
         linearLayoutManager.orientation = LinearLayoutManager.VERTICAL

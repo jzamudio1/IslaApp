@@ -1,10 +1,10 @@
 package com.jzamudio.isla21410.login
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.jzamudio.isla21410.MainActivity
 import com.jzamudio.isla21410.R
@@ -16,17 +16,23 @@ class AuthActivity : AppCompatActivity() {
         setContentView(R.layout.activity_auth)
 
         login.setOnClickListener {
-            //setup()
-            showHome()
+            setup()
+
         }
         register.setOnClickListener {
             showRegister()
+        }
+
+
+        txtInvitado.setOnClickListener {
+            showHome()
         }
     }
 
 
 
-    private fun toast(){
+
+    private fun toast() {
         val text = "Debes Iniciar Sesion"
         val duration = Toast.LENGTH_SHORT
         val toast = Toast.makeText(applicationContext, text, duration)
@@ -40,8 +46,6 @@ class AuthActivity : AppCompatActivity() {
                 .addOnCompleteListener {
                     if (it.isSuccessful) {
                         showHome()
-                    } else {
-
                     }
                 }
         } else
@@ -62,7 +66,7 @@ class AuthActivity : AppCompatActivity() {
 
     private fun validarForm(): Boolean {
         var esValido = true
-        val min = 5
+        val min = 4
 
         if (TextUtils.isEmpty(username.text.toString())) {
             // Si la propiedad error tiene valor, se muestra el aviso.
@@ -79,12 +83,6 @@ class AuthActivity : AppCompatActivity() {
         if (TextUtils.isEmpty(password.text.toString())) {
             // Si la propiedad error tiene valor, se muestra el aviso.
             password.error = "Requerido"
-            esValido = false
-        } else password.error = null
-
-        if (password.text.toString() < min.toString()) {
-            // Si la propiedad error tiene valor, se muestra el aviso.
-            password.error = "Minimo 5 Caracteres"
             esValido = false
         } else password.error = null
 

@@ -3,11 +3,7 @@ package com.jzamudio.isla21410.adapter
 import android.view.View
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.jzamudio.isla21410.Principal.turismo.InicioFragmentDirections
 import com.jzamudio.isla21410.Principal.turismo.PatrimonioListFragmentDirections
-import com.jzamudio.isla21410.Principal.turismo.TurismoListFragmentDirections
-import com.jzamudio.isla21410.database.model.Patrimonio
-import com.jzamudio.isla21410.database.model.SimpleName
 import com.jzamudio.isla21410.database.model.Turismo
 import com.jzamudio.isla21410.databinding.ItemCardviewAdapterBinding
 import com.jzamudio.isla21410.util.ClickTurismo

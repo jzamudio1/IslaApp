@@ -7,12 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.jzamudio.isla21410.adapter.EmpresaInitAdapter
-import com.jzamudio.isla21410.adapter.InicioAdapter
 import com.jzamudio.isla21410.adapter.TurismoAdapter
-import com.jzamudio.isla21410.adapter.ValoracionesAdapter
 import com.jzamudio.isla21410.database.conexion.FirebaseBD
-import com.jzamudio.isla21410.database.model.SimpleName
 import com.jzamudio.isla21410.databinding.FragmentTurismoListBinding
 import kotlinx.coroutines.launch
 
@@ -22,7 +18,7 @@ class TurismoListFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentTurismoListBinding.inflate(inflater, container, false)
         // Inflate the layout for this fragment
         val linearLayoutManager = LinearLayoutManager(requireContext())

@@ -20,7 +20,7 @@ class EmpresaInitViewHolder  (view: View) : RecyclerView.ViewHolder(view) {
         binding.txtCardView.text = empresainit.nombre
         binding.btnCardView.setOnClickListener {
 
-            ClickEmpresas.tipo = adapterPosition
+            //ClickEmpresas.tipo = adapterPosition
             ClickEmpresas.coleccionEmpresas = empresainit.nombre
             it.findNavController().navigate(EmpresasFragmentDirections.actionNavigationEmpresasToListEmpresaFragment())
 

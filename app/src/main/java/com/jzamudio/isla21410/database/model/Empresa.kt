@@ -1,7 +1,5 @@
 package com.jzamudio.isla21410.database.model
 
-import android.graphics.pdf.PdfDocument
-
 data class Empresa(
     val nombre: String,
     val direccion: String,

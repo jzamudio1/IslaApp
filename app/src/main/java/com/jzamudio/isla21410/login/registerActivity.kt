@@ -15,15 +15,14 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.jzamudio.isla21410.R
-import kotlinx.android.synthetic.main.activity_auth.*
 import kotlinx.android.synthetic.main.activity_register.*
 import java.io.IOException
 
 
 class registerActivity : AppCompatActivity() {
     private val File = 1
-    var FileUri: Uri? = null
-    var urlImage: Uri? = null
+    private var FileUri: Uri? = null
+    private var urlImage: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,7 +51,7 @@ class registerActivity : AppCompatActivity() {
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
                         val userID = FirebaseAuth.getInstance().currentUser!!.uid
-                        FirebaseFirestore.getInstance().collection("users").document("$userID").set(
+                        FirebaseFirestore.getInstance().collection("users").document(userID).set(
                             hashMapOf(
                                 "uid" to userID,
                                 "nombre" to editTextNombre.text.toString(),
@@ -92,7 +91,7 @@ class registerActivity : AppCompatActivity() {
         val Folder: StorageReference =
             FirebaseStorage.getInstance().reference.child("User")
         val file_name: StorageReference = Folder.child("file" + FileUri!!.lastPathSegment)
-        file_name.putFile(FileUri!!).addOnSuccessListener { taskSnapshot ->
+        file_name.putFile(FileUri!!).addOnSuccessListener {
             file_name.downloadUrl.addOnSuccessListener { uri ->
                 val hashMap = java.lang.String.valueOf(uri)
                 Firebase.database.getReference("User").setValue(hashMap)
@@ -120,8 +119,6 @@ class registerActivity : AppCompatActivity() {
 
         }
     }
-
-
 
 
     private fun validarForm(): Boolean {
@@ -167,9 +164,6 @@ class registerActivity : AppCompatActivity() {
             editTextNombre.error = "Minimo 5 Caracteres"
             esValido = false
         } else editTextNombre.error = null
-
-
-
         return esValido
     }
 
