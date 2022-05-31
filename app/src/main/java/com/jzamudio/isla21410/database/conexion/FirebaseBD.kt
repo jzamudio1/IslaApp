@@ -156,8 +156,9 @@ class FirebaseBD {
             FirebaseBD().getListUserbyUID(id)
                 .addOnSuccessListener { coleccion2 ->
                     for (docUID in coleccion2) {
-                        if (comentUser.nombre == docUID["nombre"]) {
-                            firebaseInstance.collection(id).document(comentUser.nombre!!).update(comentUser.toMap())
+                        if (comentUser.uid == Firebase.auth.currentUser?.uid) {
+                            Log.i("docReference",docUID.id)
+                            firebaseInstance.collection(id).document(docUID.id).update(comentUser.toMap())
                         }
                     }
                 }.await()
@@ -170,10 +171,9 @@ class FirebaseBD {
             FirebaseBD().getListUserbyUID(id)
                 .addOnSuccessListener { coleccion2 ->
                     for (docUID in coleccion2) {
-                        docUID.reference
                         val comentUser = docUID.toObject(ComentUser::class.java)
                         if (comentUser.uid == Firebase.auth.currentUser?.uid) {
-                            val comentUser = docUID.toObject(ComentUser::class.java)
+
                             listEmpresaEdit.add(
                                 comentUser
                             )
