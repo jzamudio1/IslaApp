@@ -28,11 +28,13 @@ class EmpresaUserAdapter(private val listEmpresaInit: List<ComentUser>)
     override fun onBindViewHolder(holder: EmpresaUserViewHolder, position: Int) {
         val item = listEmpresaInit[position]
         holder.render(item)
-        documentEditar = listEmpresaInit[position].nombreDoc.toString()
+
         Log.i("idEmpresa", "adapter " + item.toString())
 
-        holder.binding.imageButton.setOnClickListener {
+        holder.binding.imgButtonEditar.setOnClickListener {
             _live.value = item
+            documentEditar = listEmpresaInit[position].nombreDoc.toString()
+            Log.i("docEditar", "doceditar " + documentEditar)
         }
 
 

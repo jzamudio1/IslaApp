@@ -22,7 +22,7 @@
             android:foregroundTint="#FAE6E6">
 
             <TextView
-                android:id="@+id/txtUsuario"
+                android:id="@+id/txtNombreUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView"
@@ -37,7 +37,7 @@
                 android:layout_marginStart="39dp"
                 android:text="Comentario:"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/txtUsuario"
+                app:layout_constraintStart_toEndOf="@+id/txtNameEmpresa"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView

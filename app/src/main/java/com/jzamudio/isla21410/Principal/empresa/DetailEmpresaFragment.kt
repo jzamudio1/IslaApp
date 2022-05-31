@@ -16,8 +16,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.jzamudio.isla21410.adapter.EmpresasAdapter
 import com.jzamudio.isla21410.adapter.ValoracionesAdapter
 import com.jzamudio.isla21410.database.conexion.FirebaseBD
+import com.jzamudio.isla21410.database.model.Empresa
 import com.jzamudio.isla21410.database.model.valoraciones
 import com.jzamudio.isla21410.databinding.FragmentDetailEmpresaBinding
 import com.squareup.picasso.Picasso
@@ -30,6 +32,8 @@ class DetailEmpresaFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var comentario: String
     private lateinit var args: DetailEmpresaFragmentArgs
+    val listComentario = mutableListOf<valoraciones>()
+    private lateinit var adaptador: ValoracionesAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -107,13 +111,17 @@ class DetailEmpresaFragment : Fragment() {
         builder.show()
     }
 
+
     private fun cargarComentarios() {
+        listComentario.clear()
+        adaptador = ValoracionesAdapter(listComentario)
+        binding.listadoComentarios.adapter = adaptador
+        val linearLayoutManager = LinearLayoutManager(requireContext())
+        linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
+        binding.listadoComentarios.layoutManager = linearLayoutManager
         lifecycleScope.launch {
-            val linearLayoutManager = LinearLayoutManager(requireContext())
-            linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
-            binding.listadoComentarios.layoutManager = linearLayoutManager
-            binding.listadoComentarios.adapter =
-                ValoracionesAdapter(FirebaseBD().getlistvaloraciones())
+            listComentario.addAll(FirebaseBD().getlistvaloraciones())
+            adaptador.notifyDataSetChanged()
         }
     }
 

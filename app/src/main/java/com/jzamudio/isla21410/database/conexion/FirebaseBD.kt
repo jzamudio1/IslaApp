@@ -5,14 +5,13 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
-import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import com.jzamudio.isla21410.database.model.*
 import com.jzamudio.isla21410.util.ClickEmpresas.Companion.coleccionEmpresas
+import com.jzamudio.isla21410.util.ClickEmpresas.Companion.documentEditar
 import com.jzamudio.isla21410.util.ClickEmpresas.Companion.documentoEmpresas
 import com.jzamudio.isla21410.util.ClickTurismo.Companion.coleccionTurismo
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+
 import kotlinx.coroutines.tasks.await
 
 class FirebaseBD {
@@ -106,13 +105,15 @@ class FirebaseBD {
         firebaseInstance.collection(tipo).document(empresa.nombre)
             .set(
                 hashMapOf(
+                    "uid" to empresa.uid,
                     "nombre" to empresa.nombre,
                     "telefono" to empresa.telefono,
                     "correo" to empresa.correo,
                     "paginaWeb" to empresa.paginaWeb,
                     "foto" to empresa.foto,
                     "descripcion" to empresa.descripcion,
-                    "direccion" to empresa.direccion
+                    "direccion" to empresa.direccion,
+                    "nombreDoc" to empresa.nombre
                 )
             )
     }
@@ -142,9 +143,12 @@ class FirebaseBD {
         var listID = mutableListOf<String>()
         FirebaseBD().getListUserEmpresa().addOnSuccessListener { coleccion1 ->
             for (docEmpresa in coleccion1) {
+
                 listID.add(
                     docEmpresa.id
+
                 )
+                //Log.i("docRefe", "getListIdEmpresa() "+docEmpresa.id)
             }
 
         }.await()
@@ -153,13 +157,14 @@ class FirebaseBD {
 
     suspend fun actualizarEmpresa(ids: List<String>,comentUser: ComentUser){
         for (id in ids) {
+            Log.i("docRefe", "ID "+id.toString())
             FirebaseBD().getListUserbyUID(id)
                 .addOnSuccessListener { coleccion2 ->
                     for (docUID in coleccion2) {
-                        if (docUID["nombreDoc"] == comentUser.nombreDoc) {
-                            Log.i("docRefe", docUID["nombreDoc"].toString())
-                            Log.i("docRefe", comentUser.nombreDoc.toString())
-                            firebaseInstance.collection(id).document(comentUser.nombreDoc!!).update(comentUser.toMap())
+                        if (docUID.reference.id == documentEditar) {
+                            Log.i("docRefe", "Coment "+docUID.reference.id)
+                            Log.i("docRefe", "docEditar "+ documentEditar)
+                            firebaseInstance.collection(id).document(documentEditar!!).update(comentUser.toMap())
                         }
                     }
                 }.await()

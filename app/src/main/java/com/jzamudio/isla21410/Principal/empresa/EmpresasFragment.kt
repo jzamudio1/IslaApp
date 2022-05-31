@@ -12,8 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.jzamudio.isla21410.R
 import com.jzamudio.isla21410.adapter.EmpresaInitAdapter
-import com.jzamudio.isla21410.adapter.InicioAdapter
-import com.jzamudio.isla21410.adapter.TurismoAdapter
 import com.jzamudio.isla21410.database.conexion.FirebaseBD
 import com.jzamudio.isla21410.database.model.SimpleName
 import com.jzamudio.isla21410.databinding.FragmentEmpresasBinding

@@ -29,7 +29,6 @@ class ConfigurateFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var usuario: String
     val listInit = mutableListOf<ComentUser>()
-    var listUserEmpresa = mutableListOf<ComentUser>()
     private lateinit var adaptador: EmpresaUserAdapter
 
     override fun onCreateView(
@@ -46,8 +45,18 @@ class ConfigurateFragment : Fragment() {
         binding.reciclerEmpresasUser.adapter = adaptador
         binding.reciclerEmpresasUser.layoutManager = GridLayoutManager(requireContext(),GridLayoutManager.VERTICAL)
 
+        cargarEmpresas()
+
+        editar()
+
+        user()
+        return binding.root
+    }
+
+
+    fun cargarEmpresas(){
         lifecycleScope.launch {
-           val id= FirebaseBD().getListIdEmpresa()
+            val id= FirebaseBD().getListIdEmpresa()
             Log.i("idEmpresa", id.toString())
             lifecycleScope.launch{
                 FirebaseBD().getListDocEmpresa(id).forEach {
@@ -58,11 +67,6 @@ class ConfigurateFragment : Fragment() {
             }.join()
             Log.i("idEmpresa", listInit.toString())
         }
-
-        editar()
-
-        user()
-        return binding.root
     }
 
 

@@ -10,6 +10,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.lifecycleScope
+import com.google.firebase.auth.FirebaseAuth
 import com.jzamudio.isla21410.database.conexion.FirebaseBD
 import com.jzamudio.isla21410.database.model.Empresa
 import com.jzamudio.isla21410.databinding.FragmentNewEmpresaBinding
@@ -73,6 +74,7 @@ class NewEmpresaFragment : Fragment(), LifecycleObserver {
         val tipo = binding.spinner.selectedItem.toString()
         if (validarForm()) {
             val empresa = Empresa(
+                FirebaseAuth.getInstance().currentUser!!.uid,
                 binding.etNombreEmpresa.text.toString(),
                 binding.etTelefono.text.toString(),
                 binding.etCorreo.text.toString(),
