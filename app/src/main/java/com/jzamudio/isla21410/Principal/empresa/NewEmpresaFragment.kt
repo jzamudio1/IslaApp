@@ -76,12 +76,12 @@ class NewEmpresaFragment : Fragment(), LifecycleObserver {
             val empresa = Empresa(
                 FirebaseAuth.getInstance().currentUser!!.uid,
                 binding.etNombreEmpresa.text.toString(),
+                binding.etDireccion.text.toString(),
                 binding.etTelefono.text.toString(),
                 binding.etCorreo.text.toString(),
                 binding.etPaginaWeb.text.toString(),
                 binding.imgFotoEmpresa.toString(),
                 binding.etDescripcion.text.toString(),
-                binding.etDireccion.text.toString(),
             )
             FirebaseBD().insertEmpresa(tipo, empresa)
         }

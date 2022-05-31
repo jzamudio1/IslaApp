@@ -107,12 +107,12 @@ class FirebaseBD {
                 hashMapOf(
                     "uid" to empresa.uid,
                     "nombre" to empresa.nombre,
+                    "direccion" to empresa.direccion,
                     "telefono" to empresa.telefono,
                     "correo" to empresa.correo,
-                    "paginaWeb" to empresa.paginaWeb,
+                    "paginaweb" to empresa.paginaWeb,
                     "foto" to empresa.foto,
                     "descripcion" to empresa.descripcion,
-                    "direccion" to empresa.direccion,
                     "nombreDoc" to empresa.nombre
                 )
             )
