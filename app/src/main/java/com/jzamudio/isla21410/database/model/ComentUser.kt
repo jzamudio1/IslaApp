@@ -8,7 +8,8 @@ data class ComentUser(
     var foto: String? = null,
     var nombre: String? = null,
     var telefono: String? = null,
-    var paginaweb: String? = null
+    var paginaweb: String? = null,
+    var nombreDoc:String? = null
 ) {
     fun toMap(): Map<String, Any?> {
         return mapOf<String, Any?>(

@@ -156,9 +156,10 @@ class FirebaseBD {
             FirebaseBD().getListUserbyUID(id)
                 .addOnSuccessListener { coleccion2 ->
                     for (docUID in coleccion2) {
-                        if (comentUser.uid == Firebase.auth.currentUser?.uid) {
-                            Log.i("docReference",docUID.id)
-                            firebaseInstance.collection(id).document(docUID.id).update(comentUser.toMap())
+                        if (docUID["nombreDoc"] == comentUser.nombreDoc) {
+                            Log.i("docRefe", docUID["nombreDoc"].toString())
+                            Log.i("docRefe", comentUser.nombreDoc.toString())
+                            firebaseInstance.collection(id).document(comentUser.nombreDoc!!).update(comentUser.toMap())
                         }
                     }
                 }.await()

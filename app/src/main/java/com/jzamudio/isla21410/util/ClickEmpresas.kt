@@ -8,6 +8,7 @@ class ClickEmpresas : Application(){
     companion object {
         lateinit var coleccionEmpresas:String
         lateinit var documentoEmpresas:String
+        lateinit var documentEditar:String
 
 
     }
