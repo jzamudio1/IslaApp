@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.activity_auth.*
 
 class AuthActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        onLogin()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
 
@@ -87,5 +88,14 @@ class AuthActivity : AppCompatActivity() {
         } else password.error = null
 
         return esValido
+    }
+
+
+
+   fun  onLogin(){
+        if(FirebaseAuth.getInstance().currentUser != null)
+        {
+            showHome()
+        }
     }
 }
