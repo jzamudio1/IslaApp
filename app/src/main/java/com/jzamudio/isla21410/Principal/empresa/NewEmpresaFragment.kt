@@ -1,5 +1,6 @@
 package com.jzamudio.isla21410.Principal.empresa
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.TextUtils
 import androidx.fragment.app.Fragment
@@ -10,7 +11,9 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
+import com.jzamudio.isla21410.R
 import com.jzamudio.isla21410.database.conexion.FirebaseBD
 import com.jzamudio.isla21410.database.model.Empresa
 import com.jzamudio.isla21410.databinding.FragmentNewEmpresaBinding
@@ -57,6 +60,7 @@ class NewEmpresaFragment : Fragment(), LifecycleObserver {
         binding.btnGuardarEmpresa.setOnClickListener {
 
             insertEmpresa()
+
         }
 
 
@@ -84,6 +88,7 @@ class NewEmpresaFragment : Fragment(), LifecycleObserver {
                 binding.etDescripcion.text.toString(),
             )
             FirebaseBD().insertEmpresa(tipo, empresa)
+            findNavController().navigate(NewEmpresaFragmentDirections.actionNewEmpresaFragmentToNavigationEmpresas())
         }
 
 

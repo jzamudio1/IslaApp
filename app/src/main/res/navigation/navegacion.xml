@@ -63,7 +63,11 @@
     <fragment
         android:id="@+id/newEmpresaFragment"
         android:name="com.jzamudio.isla21410.Principal.empresa.NewEmpresaFragment"
-        android:label="NewEmpresaFragment" />
+        android:label="NewEmpresaFragment" >
+        <action
+            android:id="@+id/action_newEmpresaFragment_to_navigation_empresas"
+            app:destination="@id/navigation_empresas" />
+    </fragment>
     <activity
         android:id="@+id/authActivity"
         android:name="com.jzamudio.isla21410.login.AuthActivity"

@@ -8,17 +8,18 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.jzamudio.isla21410.MainActivity
 import com.jzamudio.isla21410.R
+import com.jzamudio.isla21410.util.ClickEmpresas.Companion.flagInvitado
+import com.jzamudio.isla21410.util.ClickEmpresas.Companion.flagLogin
 import kotlinx.android.synthetic.main.activity_auth.*
 
 class AuthActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
-        onLogin()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
 
         login.setOnClickListener {
             setup()
-
         }
         register.setOnClickListener {
             showRegister()
@@ -26,11 +27,10 @@ class AuthActivity : AppCompatActivity() {
 
 
         txtInvitado.setOnClickListener {
+            flagInvitado = true
             showHome()
         }
     }
-
-
 
 
     private fun toast() {
@@ -46,6 +46,7 @@ class AuthActivity : AppCompatActivity() {
                 .signInWithEmailAndPassword(username.text.toString(), password.text.toString())
                 .addOnCompleteListener {
                     if (it.isSuccessful) {
+                        flagLogin = false
                         showHome()
                     }
                 }
@@ -55,8 +56,8 @@ class AuthActivity : AppCompatActivity() {
 
 
     private fun showHome() {
-        val homeIntent = Intent(this, MainActivity::class.java)
-        startActivity(homeIntent)
+            val homeIntent = Intent(this, MainActivity::class.java)
+            startActivity(homeIntent)
     }
 
     private fun showRegister() {
@@ -90,12 +91,8 @@ class AuthActivity : AppCompatActivity() {
         return esValido
     }
 
-
-
-   fun  onLogin(){
-        if(FirebaseAuth.getInstance().currentUser != null)
-        {
-            showHome()
-        }
+    override fun onBackPressed() {
+        moveTaskToBack(true)
     }
+
 }

@@ -1,5 +1,7 @@
 package com.jzamudio.isla21410.adapter
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
@@ -15,9 +17,9 @@ class EmpresaUserViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     val binding = ItemEmpresaUserBinding.bind(view)
 
     fun render(comentUser: ComentUser) {
-        //documentEditar = comentUser.nombreDoc.toString()
-       // Log.i("docEditar", "doceditar " + ClickEmpresas.documentEditar)
         binding.txtComentario.text = comentUser.nombre
     }
+
+
 
 }

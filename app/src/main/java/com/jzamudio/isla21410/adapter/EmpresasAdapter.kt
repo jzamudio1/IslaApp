@@ -5,10 +5,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.jzamudio.isla21410.R
+import com.jzamudio.isla21410.database.model.ComentUser
 import com.jzamudio.isla21410.database.model.Empresa
 
 
-class EmpresasAdapter(private val listEmpresaServicios: List<Empresa>) :
+class EmpresasAdapter(private val listEmpresaServicios: List<ComentUser>) :
     RecyclerView.Adapter<EmpresasViewHolder>() {
 
     //Infla la vista

@@ -20,7 +20,7 @@
             android:value="AIzaSyB7CeVDwwuKIH9EWgY_LBMRTFkHGLWu6rM" />
 
         <activity
-            android:name=".login.AuthActivity"
+            android:name=".MainActivity"
             android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
@@ -28,7 +28,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".login.registerActivity"
             android:screenOrientation="portrait"
@@ -36,7 +35,7 @@
         </activity>
 
         <activity
-            android:name=".MainActivity"
+            android:name=".login.AuthActivity"
             android:screenOrientation="portrait"
             android:exported="false">
 

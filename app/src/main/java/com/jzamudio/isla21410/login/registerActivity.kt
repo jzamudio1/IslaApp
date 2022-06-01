@@ -31,7 +31,6 @@ class registerActivity : AppCompatActivity() {
 
         btnGuardar.setOnClickListener {
             createAccount()
-
         }
 
         btnGaleria.setOnClickListener {
@@ -75,11 +74,6 @@ class registerActivity : AppCompatActivity() {
         }
     }
 
-
-    private fun showLogin() {
-        val authIntent = Intent(this, AuthActivity::class.java)
-        startActivity(authIntent)
-    }
 
     private fun fileUploat() {
         val intent = Intent(Intent.ACTION_GET_CONTENT)
@@ -137,7 +131,7 @@ class registerActivity : AppCompatActivity() {
             esValido = false
         } else editTextCorreo.error = null
 
-        if (Patterns.EMAIL_ADDRESS.matcher(editTextCorreo.text.toString().trim()).matches()){
+        if (Patterns.EMAIL_ADDRESS.matcher(editTextCorreo.text.toString().trim()).matches()) {
             editTextCorreo.error = "Correo no valido"
             esValido = false
         } else editTextCorreo.error = null

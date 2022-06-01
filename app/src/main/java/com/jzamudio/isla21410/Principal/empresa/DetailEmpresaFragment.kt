@@ -68,6 +68,7 @@ class DetailEmpresaFragment : Fragment() {
                     comentario = comentario,
                     usuario = it.get("nombre").toString(),
                 )
+
                 FirebaseBD().insertComentario(valoraciones,user).addOnSuccessListener {
                     cargarComentarios()
                 }

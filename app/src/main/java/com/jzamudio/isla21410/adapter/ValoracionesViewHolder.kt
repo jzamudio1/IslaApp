@@ -1,5 +1,6 @@
 package com.jzamudio.isla21410.adapter
 
+import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.jzamudio.isla21410.database.model.valoraciones
