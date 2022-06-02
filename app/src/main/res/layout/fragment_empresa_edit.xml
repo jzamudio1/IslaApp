@@ -13,15 +13,6 @@
         android:layout_marginBottom="?actionBarSize"
         tools:context=".Principal.empresa.NewEmpresaFragment">
 
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="184dp"
-            android:layout_height="30dp"
-            android:layout_marginEnd="108dp"
-            app:layout_constraintBottom_toTopOf="@+id/btnGuardarEmpresa"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etPaginaWeb" />
-
         <EditText
             android:id="@+id/etNombreEmpresa"
             android:layout_width="wrap_content"
@@ -88,7 +79,7 @@
             android:ems="10"
             android:hint="Pagina Web"
             android:inputType="textPersonName"
-            app:layout_constraintBottom_toTopOf="@+id/spinner"
+            app:layout_constraintBottom_toTopOf="@+id/btnGuardarEmpresa"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etDescripcion" />
 
@@ -99,8 +90,7 @@
             android:layout_marginEnd="4dp"
             android:text="@string/Guardar"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinner" />
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <EditText
             android:id="@+id/etDireccion"

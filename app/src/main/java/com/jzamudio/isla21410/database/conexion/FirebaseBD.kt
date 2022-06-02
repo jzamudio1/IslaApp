@@ -134,6 +134,7 @@ class FirebaseBD {
         }.await()
         return listID
     }
+
     /**
      * Actualiza una empresa recibiendo el id de las colecciones
      * buscando en ellas el documento a actualizar
@@ -148,6 +149,13 @@ class FirebaseBD {
                             Log.i("docRefe", "Coment "+docUID.reference.id)
                             Log.i("docRefe", "docEditar "+ documentEditar)
                             firebaseInstance.collection(id).document(documentEditar!!).delete()
+                           firebaseInstance.collection(id).document(documentEditar!!).collection("/comentarios").get().addOnSuccessListener {
+                                for (doc in it){
+                                    doc.reference.delete()
+                                }
+                            }
+
+
                         }
                     }
                 }.await()

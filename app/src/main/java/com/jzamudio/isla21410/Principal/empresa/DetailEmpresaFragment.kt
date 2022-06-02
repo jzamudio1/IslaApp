@@ -12,10 +12,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.jzamudio.isla21410.Principal.turismo.InicioViewModel
 import com.jzamudio.isla21410.adapter.EmpresasAdapter
 import com.jzamudio.isla21410.adapter.ValoracionesAdapter
 import com.jzamudio.isla21410.database.conexion.FirebaseBD
@@ -29,6 +31,8 @@ import kotlinx.coroutines.launch
 class DetailEmpresaFragment : Fragment() {
 
     private var _binding: FragmentDetailEmpresaBinding? = null
+    private lateinit var viewModel: InicioViewModel
+    private lateinit var viewModelFactory: InicioViewModel.Factory
     private val binding get() = _binding!!
     private lateinit var comentario: String
     private lateinit var args: DetailEmpresaFragmentArgs
@@ -39,6 +43,9 @@ class DetailEmpresaFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentDetailEmpresaBinding.inflate(inflater, container, false)
+        viewModelFactory = InicioViewModel.Factory(10)
+        viewModel = ViewModelProvider(this,viewModelFactory)[InicioViewModel::class.java]
+
         args = DetailEmpresaFragmentArgs.fromBundle(requireArguments())
         // Inflate the layout for this fragment
         Picasso.get().load(Uri.parse(args.foto)).into(binding.imgEmpresa)
@@ -60,6 +67,9 @@ class DetailEmpresaFragment : Fragment() {
         return binding.root
     }
 
+    /**
+     * Inserta un comentario en el cajon.
+     */
     private fun insertComentario() {
         val user = FirebaseAuth.getInstance().currentUser!!.uid
         FirebaseFirestore.getInstance().collection("users").document(user).get()
@@ -76,7 +86,9 @@ class DetailEmpresaFragment : Fragment() {
             }
     }
 
-
+    /**
+     * Comprueba si hay un usuario Conectado
+     */
     fun isConected() {
         val usuario = FirebaseAuth.getInstance().currentUser?.uid
         Log.i("usuario", usuario.toString())
@@ -88,7 +100,9 @@ class DetailEmpresaFragment : Fragment() {
     }
 
 
-
+    /**
+     * Muestra un cuadro de dialogo para
+     */
     private fun alertDialogDemo() {
         val builder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
         builder.setTitle("Añade Tu Comentario!!!!")

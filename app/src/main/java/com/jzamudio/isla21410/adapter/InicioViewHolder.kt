@@ -22,16 +22,8 @@ class InicioViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         binding.btnCardView.setOnClickListener {
             coleccionTurismo = inicio.nombre
-                it.findNavController()
-                    .navigate(InicioFragmentDirections.actionNavigationTurismoToTurismoListFragment())
-
-
-            if(coleccionTurismo == "patrimonio"){
-                it.findNavController()
-                     .navigate(TurismoListFragmentDirections.actionTurismoListFragmentToPatrimonioListFragment())
-            }
-
-
+            it.findNavController()
+                .navigate(InicioFragmentDirections.actionNavigationTurismoToTurismoListFragment())
 
 
         }

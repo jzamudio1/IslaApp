@@ -12,7 +12,8 @@
         tools:layout="@layout/fragment_inicio" >
         <action
             android:id="@+id/action_navigation_turismo_to_turismoListFragment"
-            app:destination="@id/turismoListFragment" />
+            app:destination="@id/turismoListFragment"
+            app:popUpTo="@id/turismoListFragment" />
     </fragment>
     <fragment
         android:id="@+id/navigation_empresas"
@@ -21,10 +22,12 @@
         tools:layout="@layout/fragment_empresas" >
         <action
             android:id="@+id/action_navigation_empresas_to_listEmpresaFragment"
-            app:destination="@id/listEmpresaFragment" />
+            app:destination="@id/listEmpresaFragment"
+            app:popUpTo="@id/listEmpresaFragment" />
         <action
             android:id="@+id/action_navigation_empresas_to_newEmpresaFragment"
-            app:destination="@id/newEmpresaFragment" />
+            app:destination="@id/newEmpresaFragment"
+            app:popUpTo="@id/newEmpresaFragment" />
     </fragment>
     <fragment
         android:id="@+id/listEmpresaFragment"
@@ -32,10 +35,12 @@
         android:label="listEmpresaFragment" >
         <action
             android:id="@+id/action_listEmpresaFragment_to_detailEmpresaFragment"
-            app:destination="@id/detailEmpresaFragment" />
+            app:destination="@id/detailEmpresaFragment"
+            app:popUpTo="@id/detailEmpresaFragment" />
         <action
-            android:id="@+id/action_listEmpresaFragment_to_detailSubCategoriaEmpresaFragment"
-            app:destination="@id/detailSubCategoriaEmpresaFragment" />
+            android:id="@+id/action_listEmpresaFragment_to_navigation_empresas"
+            app:destination="@id/navigation_empresas"
+            app:popUpTo="@id/navigation_empresas" />
     </fragment>
     <fragment
         android:id="@+id/detailEmpresaFragment"
@@ -59,6 +64,10 @@
         <argument
             android:name="direccion"
             app:argType="string" />
+        <action
+            android:id="@+id/action_detailEmpresaFragment_to_listEmpresaFragment"
+            app:destination="@id/listEmpresaFragment"
+            app:popUpTo="@id/listEmpresaFragment" />
     </fragment>
     <fragment
         android:id="@+id/newEmpresaFragment"
@@ -66,59 +75,22 @@
         android:label="NewEmpresaFragment" >
         <action
             android:id="@+id/action_newEmpresaFragment_to_navigation_empresas"
-            app:destination="@id/navigation_empresas" />
-    </fragment>
-    <activity
-        android:id="@+id/authActivity"
-        android:name="com.jzamudio.isla21410.login.AuthActivity"
-        android:label="activity_auth"
-        tools:layout="@layout/activity_auth" />
-    <activity
-        android:id="@+id/registerActivity"
-        android:name="com.jzamudio.isla21410.login.registerActivity"
-        android:label="activity_register"
-        tools:layout="@layout/activity_register" />
-    <fragment
-        android:id="@+id/detailSubCategoriaEmpresaFragment"
-        android:name="com.jzamudio.isla21410.Principal.empresa.DetailSubCategoriaEmpresaFragment"
-        android:label="DetailSubCategoriaEmpresaFragment" >
-        <argument
-            android:name="nombre"
-            app:argType="string" />
-        <argument
-            android:name="direccion"
-            app:argType="string" />
-        <argument
-            android:name="telefono"
-            app:argType="string" />
-        <argument
-            android:name="descripcion"
-            app:argType="string" />
-        <argument
-            android:name="foto"
-            app:argType="string" />
-        <argument
-            android:name="carta"
-            app:argType="string" />
+            app:destination="@id/navigation_empresas"
+            app:popUpTo="@id/navigation_empresas" />
     </fragment>
     <fragment
         android:id="@+id/turismoListFragment"
         android:name="com.jzamudio.isla21410.Principal.turismo.TurismoListFragment"
         android:label="TurismoListFragment" >
         <action
-            android:id="@+id/action_turismoListFragment_to_patrimonioListFragment"
-            app:destination="@id/patrimonioListFragment" />
-        <action
             android:id="@+id/action_turismoListFragment_to_detailTurismoFragment"
-            app:destination="@id/detailTurismoFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/patrimonioListFragment"
-        android:name="com.jzamudio.isla21410.Principal.turismo.PatrimonioListFragment"
-        android:label="PatrimonioListFragment" >
+            app:destination="@id/detailTurismoFragment"
+            app:popUpTo="@id/detailTurismoFragment"
+            app:popUpToInclusive="false" />
         <action
-            android:id="@+id/action_patrimonioListFragment_to_detailTurismoFragment2"
-            app:destination="@id/detailTurismoFragment" />
+            android:id="@+id/action_turismoListFragment_to_navigation_turismo"
+            app:destination="@id/navigation_turismo"
+            app:popUpTo="@id/navigation_turismo" />
     </fragment>
     <fragment
         android:id="@+id/detailTurismoFragment"
@@ -139,9 +111,35 @@
         <argument
             android:name="longitud"
             app:argType="float" />
+        <action
+            android:id="@+id/action_detailTurismoFragment_to_turismoListFragment"
+            app:destination="@id/turismoListFragment"
+            app:popUpTo="@id/turismoListFragment" />
     </fragment>
     <fragment
         android:id="@+id/navegation_ajustes"
         android:name="com.jzamudio.isla21410.Principal.configuration.ConfigurateFragment"
         android:label="ConfigurateFragment" />
+    <fragment
+        android:id="@+id/authFragment"
+        android:name="com.jzamudio.isla21410.login.AuthFragment"
+        android:label="AuthFragment" >
+        <action
+            android:id="@+id/action_authFragment_to_navigation_turismo"
+            app:destination="@id/navigation_turismo"
+            app:popUpTo="@id/navigation_turismo" />
+        <action
+            android:id="@+id/action_authFragment_to_registerFragment"
+            app:destination="@id/registerFragment"
+            app:popUpTo="@id/registerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.jzamudio.isla21410.login.RegisterFragment"
+        android:label="RegisterFragment" >
+        <action
+            android:id="@+id/action_registerFragment_to_authFragment"
+            app:destination="@id/authFragment"
+            app:popUpTo="@id/authFragment" />
+    </fragment>
 </navigation>

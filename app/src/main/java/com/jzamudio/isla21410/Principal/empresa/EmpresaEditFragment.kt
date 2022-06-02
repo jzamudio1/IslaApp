@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.lifecycleScope
+import com.jzamudio.isla21410.Principal.configuration.ConfigurateFragment
 import com.jzamudio.isla21410.database.conexion.FirebaseBD
 import com.jzamudio.isla21410.database.model.ComentUser
 import com.jzamudio.isla21410.databinding.FragmentEmpresaEditBinding
@@ -15,10 +16,11 @@ import kotlinx.coroutines.launch
 
 
 class EmpresaEditFragment(
-    private val comentUser: ComentUser? = null
+    private val comentUser: ComentUser? = null,
+    private val configurateFragment: ConfigurateFragment
 
 ) : DialogFragment() {
-    var listUserEmpresa = mutableListOf<ComentUser>()
+
     private lateinit var binding: FragmentEmpresaEditBinding
 
 
@@ -50,6 +52,7 @@ class EmpresaEditFragment(
         binding.etDireccion.setText(comentUser!!.direccion.toString())
         binding.etTelefono.setText(comentUser!!.telefono.toString())
         binding.etDescripcion.setText(comentUser!!.descripcion.toString())
+        binding.etPaginaWeb.setText(comentUser!!.paginaweb).toString()
     }
 
     fun onGuardar() {
@@ -60,7 +63,6 @@ class EmpresaEditFragment(
             comentUser?.telefono = binding.etTelefono.text.toString()
             comentUser?.descripcion = binding.etDescripcion.text.toString()
             onEditEmpresa()
-
         }
     }
 
@@ -70,6 +72,8 @@ class EmpresaEditFragment(
             lifecycleScope.launch {
                 FirebaseBD().actualizarEmpresa(id, comentUser!!)
             }
+            configurateFragment.rechear()
+            dialog?.dismiss()
         }
 
 

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
@@ -18,8 +19,9 @@ import com.squareup.picasso.Picasso
 class DetailTurismoFragment : Fragment(), OnMapReadyCallback {
     //Necesita un MapView
     private var mapView: MapView? = null
-    private var longitud = 0.0
-    private var latitud = 0.0
+
+    private lateinit var viewModel: DetailTurismoViewModel
+    private lateinit var viewModelFactory:DetailTurismoViewModel.Factory
 
     //Sobreescribe la funcion
     override fun onSaveInstanceState(outState: Bundle) {
@@ -36,12 +38,12 @@ class DetailTurismoFragment : Fragment(), OnMapReadyCallback {
 
         _binding = FragmentDetailTurismoBinding.inflate(inflater, container, false)
         val args = DetailTurismoFragmentArgs.fromBundle(requireArguments())
-        longitud = args.longitud.toDouble()
-        latitud = args.latitud.toDouble()
+        viewModelFactory = DetailTurismoViewModel.Factory(args.foto,args.nombre,args.descripcion,args.latitud,args.longitud)
+        viewModel = ViewModelProvider(this,viewModelFactory)[DetailTurismoViewModel::class.java]
 
 
-        Picasso.get().load(Uri.parse(args.foto)).into(binding.imgPlaya)
-        binding.txtDescripcion.text = args.descripcion
+        Picasso.get().load(Uri.parse(viewModel.foto)).into(binding.imgPlaya)
+        binding.txtDescripcion.text = viewModel.descripcion
 
         // Gets the MapView from the XML layout and creates it
         mapView = binding.map
@@ -84,7 +86,7 @@ class DetailTurismoFragment : Fragment(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
 
-        val coordinates = LatLng(latitud,longitud)
+        val coordinates = LatLng(viewModel.latitud.toDouble(),viewModel.longitud.toDouble())
         googleMap.addMarker(MarkerOptions().position(coordinates).title("Marker"))
         googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(coordinates, 14.5f),null)
 
