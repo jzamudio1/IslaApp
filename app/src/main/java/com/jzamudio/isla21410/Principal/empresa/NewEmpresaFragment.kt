@@ -1,65 +1,55 @@
 package com.jzamudio.isla21410.Principal.empresa
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.TextUtils
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
+import androidx.core.net.toUri
 import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
-import com.jzamudio.isla21410.R
 import com.jzamudio.isla21410.database.conexion.FirebaseBD
 import com.jzamudio.isla21410.database.model.Empresa
 import com.jzamudio.isla21410.databinding.FragmentNewEmpresaBinding
-import kotlinx.coroutines.launch
 
 class NewEmpresaFragment : Fragment(), LifecycleObserver {
 
 
     private var _binding: FragmentNewEmpresaBinding? = null
     private val binding get() = _binding!!
+    private lateinit var viewModel: NewEmpresaViewModel
+    private lateinit var viewModelFactory: NewEmpresaViewModel.Factory
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentNewEmpresaBinding.inflate(inflater, container, false)
-        lifecycleScope.launch {
-            ArrayAdapter(requireContext(),
-                android.R.layout.simple_spinner_item,
-                FirebaseBD().getlistSimpleNameEmpresas().map {
-                    it.nombre
-                }
-            ).also { adapter ->
+        viewModelFactory = NewEmpresaViewModel.Factory(
+            binding.spinner,
+            this,
+            binding.etNombreEmpresa.text,
+            binding.etCorreo.text,
+            binding.etDireccion.text,
+            binding.etDescripcion.text,
+            binding.etPaginaWeb.text,
+            binding.etTelefono.text
+        )
+        viewModel = ViewModelProvider(this,viewModelFactory)[NewEmpresaViewModel::class.java]
 
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                binding.spinner.adapter = adapter
 
-            }
-            binding.spinner.onItemSelectedListener = object :
-                AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                    val prueba = binding.spinner.getItemAtPosition(p2).toString()
+        changeIMG()
 
-                }
-
-                override fun onNothingSelected(p0: AdapterView<*>?) {
-
-                }
-
-            }
+        binding.btnFoto.setOnClickListener {
+            viewModel.dispatchPickFromGalleryIntent()
         }
 
-
         binding.btnGuardarEmpresa.setOnClickListener {
-
-            insertEmpresa()
+            viewModel.uploadPhoto()
 
         }
 
@@ -69,37 +59,18 @@ class NewEmpresaFragment : Fragment(), LifecycleObserver {
     }
 
 
-    override fun onDetach() {
-        super.onDetach()
-        lifecycle.removeObserver(this)
-    }
-
-    private fun insertEmpresa() {
-        val tipo = binding.spinner.selectedItem.toString()
-        if (validarForm()) {
-            val empresa = Empresa(
-                FirebaseAuth.getInstance().currentUser!!.uid,
-                binding.etNombreEmpresa.text.toString(),
-                binding.etDireccion.text.toString(),
-                binding.etTelefono.text.toString(),
-                binding.etCorreo.text.toString(),
-                binding.etPaginaWeb.text.toString(),
-                binding.imgFotoEmpresa.toString(),
-                binding.etDescripcion.text.toString(),
-            )
-            FirebaseBD().insertEmpresa(tipo, empresa)
-            findNavController().navigate(NewEmpresaFragmentDirections.actionNewEmpresaFragmentToNavigationEmpresas())
-        }
-
-
+    fun changeIMG(){
+        viewModel.changeIMG.observe(viewLifecycleOwner, Observer {
+            binding.imgFotoEmpresa.setImageURI(viewModel.URI.toUri())
+        })
+        viewModel._changeIMG.value = false
     }
 
 
 
-
-    private fun validarForm(): Boolean {
+    fun validarForm(): Boolean {
         var esValido = true
-       val min = 5
+        val min = 5
 
         if (TextUtils.isEmpty(binding.etNombreEmpresa.text.toString())) {
             // Si la propiedad error tiene valor, se muestra el aviso.
@@ -107,7 +78,7 @@ class NewEmpresaFragment : Fragment(), LifecycleObserver {
             esValido = false
         } else binding.etNombreEmpresa.error = null
 
-        if(binding.etNombreEmpresa.text.toString().trim() < min.toString()){
+        if (binding.etNombreEmpresa.text.toString().trim() < min.toString()) {
             // Si la propiedad error tiene valor, se muestra el aviso.
             binding.etNombreEmpresa.error = "Caracteres Minimo 5"
             esValido = false

@@ -11,9 +11,4 @@ class DetailTurismoViewModel(val foto:String,val nombre:String,val descripcion:S
             return DetailTurismoViewModel(foto,nombre,descripcion,latitud,longitud) as T
         }
     }
-
-
-    init {
-
-    }
 }

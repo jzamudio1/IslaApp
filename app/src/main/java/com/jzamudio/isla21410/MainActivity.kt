@@ -1,6 +1,9 @@
 package com.jzamudio.isla21410
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.View
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
@@ -19,25 +22,33 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
+    var navView: BottomNavigationView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val navView: BottomNavigationView = binding.navView
-        navController = findNavController(R.id.nav_host_fragment_activity_main)
-        navView.setupWithNavController(navController)
-
+        onNav()
         isConected()
+        hideButton()
         loadTurismo()
         loadEmpresa()
     }
 
 
+    @SuppressLint("ResourceType")
     fun isConected() {
         if (FirebaseAuth.getInstance().currentUser == null) {
             navController.navigate(R.id.authFragment)
         }
+
+    }
+
+
+    fun onNav() {
+        navView = binding.navView
+        navController = findNavController(R.id.nav_host_fragment_activity_main)
+        navView!!.setupWithNavController(navController)
     }
 
     fun loadTurismo() {
@@ -54,6 +65,27 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
+    fun hideButton(){
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.authFragment -> hideBottomNav()
+                R.layout.fragment_inicio -> showBottomNav()
+                else -> showBottomNav()
+            }
+        }
+    }
+
+
+    private fun showBottomNav() {
+        navView!!.visibility = View.VISIBLE
+
+    }
+
+    private fun hideBottomNav() {
+        navView!!.visibility = View.GONE
+
+    }
 
     /**
      * Método ejecutado al pulsar el botón de back

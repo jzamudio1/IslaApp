@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.jzamudio.isla21410.MainActivity
 import com.jzamudio.isla21410.R
@@ -30,7 +31,6 @@ class AuthFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentAuthBinding.inflate(inflater, container, false)
-
 
 
 

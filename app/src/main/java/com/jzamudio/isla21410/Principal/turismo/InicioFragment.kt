@@ -21,7 +21,6 @@ class InicioFragment : Fragment() {
     private var _binding: FragmentInicioBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: InicioViewModel
-    private lateinit var viewModelFactory:InicioViewModel.Factory
 
 
     override fun onCreateView(
@@ -30,8 +29,8 @@ class InicioFragment : Fragment() {
     ): View {
         ClickTurismo.coleccionTurismo = "inicio"
         _binding = FragmentInicioBinding.inflate(inflater, container, false)
-        viewModelFactory = InicioViewModel.Factory(10)
-        viewModel = ViewModelProvider(this,viewModelFactory)[InicioViewModel::class.java]
+
+        viewModel = ViewModelProvider(this)[InicioViewModel::class.java]
 
             onAdapter()
 

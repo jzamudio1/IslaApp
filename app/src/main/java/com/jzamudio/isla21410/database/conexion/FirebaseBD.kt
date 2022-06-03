@@ -3,6 +3,7 @@ package com.jzamudio.isla21410.database.conexion
 import android.util.Log
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.ktx.Firebase
@@ -100,9 +101,9 @@ class FirebaseBD {
      */
     fun insertComentario(valoraciones: valoraciones, uid: String): Task<Void> {
 
-        return firebaseInstance.collection(coleccionEmpresas).document(documentoEmpresas)
-
-            .collection("comentarios").document()
+        Log.i("caca","caca" + coleccionEmpresas)
+        Log.i("caca","caca" + documentoEmpresas)
+        return firebaseInstance.collection(coleccionEmpresas).document(documentoEmpresas).collection("/comentarios").document()
             .set(
                 hashMapOf(
 
@@ -113,6 +114,8 @@ class FirebaseBD {
 
                 )
             )
+
+
     }
 
     /**
@@ -128,7 +131,6 @@ class FirebaseBD {
                     docEmpresa.id
 
                 )
-                //Log.i("docRefe", "getListIdEmpresa() "+docEmpresa.id)
             }
 
         }.await()
@@ -196,7 +198,6 @@ class FirebaseBD {
                     for (docUID in coleccion2) {
                         val comentUser = docUID.toObject(ComentUser::class.java)
                         if (comentUser.uid == Firebase.auth.currentUser?.uid) {
-
                             listEmpresaEdit.add(
                                 comentUser
                             )
@@ -208,12 +209,18 @@ class FirebaseBD {
         return listEmpresaEdit
     }
 
+
     /**
      * Recibe uid que es el nombre de la Coleccion por la que buscar
      */
     fun getListUserbyUID(uid: String): Task<QuerySnapshot> {
         return firebaseInstance.collection(uid).get()
     }
+
+    fun getListUserbyUID2(uid: String): CollectionReference {
+        return firebaseInstance.collection(uid)
+    }
+
 
     /**
      * Devuelve Todos los nombres de los documentos de la coleccion Empresas

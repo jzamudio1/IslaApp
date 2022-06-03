@@ -23,18 +23,26 @@ class EmpresasViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     fun render(comentUser: ComentUser) {
         binding.txtCardView.text = comentUser.nombre
         Picasso.get().load(Uri.parse(comentUser.foto)).into(binding.imgCarView)
+
         binding.btnCardView.setOnClickListener {
-            if (comentUser.nombreDoc != null){
+            if (comentUser.nombreDoc != null) {
                 documentoEmpresas = comentUser.nombre.toString()
+            }else{
+                documentoEmpresas = comentUser.nombreDoc.toString()
             }
-            documentoEmpresas = comentUser.nombreDoc.toString()
+
             Log.i("valoracionm", documentoEmpresas)
-                it.findNavController().navigate(
-                    listEmpresaFragmentDirections.actionListEmpresaFragmentToDetailEmpresaFragment(
-                        comentUser.nombre.toString(), comentUser.descripcion.toString(), comentUser.foto.toString(), comentUser.correo.toString(),
-                        comentUser.telefono.toString(), comentUser.paginaweb.toString(),comentUser.direccion.toString()
-                    )
+            it.findNavController().navigate(
+                listEmpresaFragmentDirections.actionListEmpresaFragmentToDetailEmpresaFragment(
+                    comentUser.nombre.toString(),
+                    comentUser.descripcion.toString(),
+                    comentUser.foto.toString(),
+                    comentUser.correo.toString(),
+                    comentUser.telefono.toString(),
+                    comentUser.paginaweb.toString(),
+                    comentUser.direccion.toString()
                 )
-            }
+            )
         }
     }
+}

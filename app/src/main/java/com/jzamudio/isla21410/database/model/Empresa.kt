@@ -1,5 +1,7 @@
 package com.jzamudio.isla21410.database.model
 
+import android.net.Uri
+
 data class Empresa(
     var uid: String? = null,
     val nombre: String,

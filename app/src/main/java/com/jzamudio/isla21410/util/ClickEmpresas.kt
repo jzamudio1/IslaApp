@@ -1,9 +1,9 @@
 package com.jzamudio.isla21410.util
 
-import android.app.Application
 
 
-class ClickEmpresas : Application(){
+
+class ClickEmpresas{
 
 
     companion object {
@@ -11,7 +11,6 @@ class ClickEmpresas : Application(){
         lateinit var documentoEmpresas:String
         var documentEditar:String? = null
         var flagLogin:Boolean = true
-        var flagInvitado:Boolean = false
 
 
 

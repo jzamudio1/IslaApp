@@ -18,8 +18,9 @@ import com.squareup.picasso.Picasso
 
 class DetailTurismoFragment : Fragment(), OnMapReadyCallback {
     //Necesita un MapView
+    private var _binding: FragmentDetailTurismoBinding? = null
+    private val binding get() = _binding!!
     private var mapView: MapView? = null
-
     private lateinit var viewModel: DetailTurismoViewModel
     private lateinit var viewModelFactory:DetailTurismoViewModel.Factory
 
@@ -29,13 +30,10 @@ class DetailTurismoFragment : Fragment(), OnMapReadyCallback {
         mapView?.onSaveInstanceState(outState)
     }
 
-    private var _binding: FragmentDetailTurismoBinding? = null
-    private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentDetailTurismoBinding.inflate(inflater, container, false)
         val args = DetailTurismoFragmentArgs.fromBundle(requireArguments())
         viewModelFactory = DetailTurismoViewModel.Factory(args.foto,args.nombre,args.descripcion,args.latitud,args.longitud)
@@ -44,6 +42,7 @@ class DetailTurismoFragment : Fragment(), OnMapReadyCallback {
 
         Picasso.get().load(Uri.parse(viewModel.foto)).into(binding.imgPlaya)
         binding.txtDescripcion.text = viewModel.descripcion
+        binding.txtNombreTurismo.text = viewModel.nombre
 
         // Gets the MapView from the XML layout and creates it
         mapView = binding.map

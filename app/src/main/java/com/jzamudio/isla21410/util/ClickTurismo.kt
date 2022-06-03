@@ -2,7 +2,7 @@ package com.jzamudio.isla21410.util
 
 import android.app.Application
 
-class ClickTurismo  : Application() {
+class ClickTurismo{
 
     companion object{
         lateinit var coleccionTurismo:String
