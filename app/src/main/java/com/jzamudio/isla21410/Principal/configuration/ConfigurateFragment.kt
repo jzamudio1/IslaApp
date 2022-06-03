@@ -93,8 +93,8 @@ class ConfigurateFragment : Fragment() {
      */
     private fun showDialogAlertSimple() {
         AlertDialog.Builder(context)
-            .setTitle("Titulo del diálogo")
-            .setMessage("Contenido del diálogo.")
+            .setTitle("CUIDADO!!!")
+            .setMessage("VAS A BORRAR SU EMPRESA!!")
             .setPositiveButton(android.R.string.ok,
                 DialogInterface.OnClickListener { dialog, which ->
                     //botón OK pulsado

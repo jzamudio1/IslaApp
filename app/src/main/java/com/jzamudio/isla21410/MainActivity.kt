@@ -87,6 +87,7 @@ class MainActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.authFragment -> hideBottomNav()
                 R.layout.fragment_inicio -> showBottomNav()
+                R.id.registerFragment -> hideBottomNav()
                 else -> showBottomNav()
             }
         }

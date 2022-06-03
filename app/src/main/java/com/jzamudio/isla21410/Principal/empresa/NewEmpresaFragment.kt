@@ -65,7 +65,7 @@ class NewEmpresaFragment : Fragment(), LifecycleObserver {
     }
 
     /**
-     *MEtodo que observa
+     *MEtodo que observa el bolean del vm
      */
     fun changeIMG() {
         viewModel.changeIMG.observe(viewLifecycleOwner, Observer {
