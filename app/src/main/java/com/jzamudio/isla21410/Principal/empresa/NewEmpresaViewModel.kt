@@ -27,10 +27,13 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.jzamudio.isla21410.database.conexion.FirebaseBD
+import com.jzamudio.isla21410.database.model.ComentUser
 import com.jzamudio.isla21410.database.model.Empresa
 import kotlinx.coroutines.launch
 import java.io.ByteArrayOutputStream
-
+/**
+ * ViewModel que maneja NewEmpresa
+ */
 class NewEmpresaViewModel(
     val spinner: Spinner,
     val fragment: NewEmpresaFragment,
@@ -45,10 +48,12 @@ class NewEmpresaViewModel(
     private var FileUri: String? = null
     private var urlImage: Uri? = null
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
-    var URI: String = ""
+   var URI: String = ""
     val _changeIMG = MutableLiveData<Boolean>()
     val changeIMG: LiveData<Boolean> get() = _changeIMG
 
+    private val _flagProgres = MutableLiveData<Boolean>()
+    val flagProgres: LiveData<Boolean> get() = _flagProgres
     val _flagCarga = MutableLiveData<Boolean>()
     val flagCarga: LiveData<Boolean> get() = _flagCarga
 
@@ -79,11 +84,15 @@ class NewEmpresaViewModel(
 
 
     init {
-        onAdapter()
-        k()
+        onSpinnerSelector()
+        dispathOK()
     }
 
-    fun onAdapter() {
+
+    /**
+     * Metodo que carga en el spinner las categorias de la empresa donde vamos a querer insertar la nueva empresa.
+     */
+    private fun onSpinnerSelector() {
         viewModelScope.launch {
             ArrayAdapter(fragment.requireContext(),
                 R.layout.simple_spinner_item,
@@ -111,19 +120,21 @@ class NewEmpresaViewModel(
         }
     }
 
-
-    fun insertEmpresa() {
+    /**
+     * Metodo que Inserta la empresa en la base de datos
+     */
+    private fun insertEmpresa() {
         val tipo = spinner.selectedItem.toString()
 
-            val empresa = Empresa(
+            val empresa = ComentUser(
                 FirebaseAuth.getInstance().currentUser!!.uid,
-                nombre.toString(),
-                direccion.toString(),
-                telefono.toString(),
                 correo.toString(),
-                paginaweb.toString(),
+                descripcion.toString(),
+                direccion.toString(),
                 urlImage.toString(),
-                descripcion.toString()
+                nombre.toString(),
+                telefono.toString(),
+                paginaweb.toString()
 
             )
             FirebaseBD().insertEmpresa(tipo, empresa)
@@ -133,10 +144,14 @@ class NewEmpresaViewModel(
 
 
 
-
+    /**
+     * Metodo que valida los campos y sube la foto
+     * Cuando la foto esta subida y obtiene la url inserta la empresa.
+     */
     fun uploadPhoto() {
         if (fragment.validarForm()) {
             if (FileUri?.isNotEmpty() == true) {
+                _flagProgres.value = true
                 val Folder: StorageReference =
                     FirebaseStorage.getInstance().reference.child("EmpresaUser")
                 val file_name: StorageReference = Folder.child("file" + FileUri!!.split("/").last())
@@ -147,6 +162,7 @@ class NewEmpresaViewModel(
                     file_name.downloadUrl.addOnSuccessListener { uri ->
                         urlImage = uri
                         insertEmpresa()
+                        _flagProgres.value = false
 
                     }
                 }
@@ -157,7 +173,9 @@ class NewEmpresaViewModel(
     }
 
 
-
+    /**
+     * Metodo que obtiene el Path real de la imagen
+     */
     fun getRealPathFromURI(contentUri: Uri): String {
         val cursor: Cursor = fragment.requireContext().contentResolver.query(
             contentUri, arrayOf(MediaStore.Images.Media.DATA), null, null,
@@ -170,6 +188,9 @@ class NewEmpresaViewModel(
         }
     }
 
+    /**
+     * Metodo que abre la galeria
+     */
 
     fun dispatchPickFromGalleryIntent() {
         ActivityCompat.requestPermissions(
@@ -190,7 +211,10 @@ class NewEmpresaViewModel(
     }
 
 
-    fun k() {
+    /**
+     * Metodo que transforma la la ruta en URI y cambia la bandera
+     */
+    fun dispathOK() {
         resultLauncher =
             fragment.registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result.resultCode == Activity.RESULT_OK) {
@@ -201,6 +225,10 @@ class NewEmpresaViewModel(
             }
     }
 
+
+    /**
+     * Metodo que muestra un toast de validacion
+     */
     private fun toast() {
         val text = "Debes Insertar una Foto"
         val duration = Toast.LENGTH_SHORT

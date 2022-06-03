@@ -8,7 +8,9 @@ import com.jzamudio.isla21410.R
 import com.jzamudio.isla21410.database.model.ComentUser
 import com.jzamudio.isla21410.database.model.Empresa
 
-
+/**
+ *Adapter que muestra la lista de items de una categoria de la empresa
+ */
 class EmpresasAdapter(private val listEmpresaServicios: List<ComentUser>) :
     RecyclerView.Adapter<EmpresasViewHolder>() {
 

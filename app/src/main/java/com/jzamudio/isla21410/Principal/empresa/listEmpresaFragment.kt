@@ -17,7 +17,9 @@ import com.jzamudio.isla21410.database.model.Empresa
 import com.jzamudio.isla21410.database.model.SimpleName
 import com.jzamudio.isla21410.databinding.FragmentListEmpresaBinding
 import kotlinx.coroutines.launch
-
+/**
+ * Clase que obtiene la lista de items de las categorias
+ */
 class listEmpresaFragment : Fragment() {
 
     private var _binding: FragmentListEmpresaBinding? = null
@@ -40,6 +42,9 @@ class listEmpresaFragment : Fragment() {
         return binding.root
     }
 
+    /**
+     *Metodo que Carga el adapter desde el viewModel
+     */
     private fun onAdapter() {
         binding.btnEmpresas.adapter = viewModel.adaptador
         val linearLayoutManager = LinearLayoutManager(requireContext())

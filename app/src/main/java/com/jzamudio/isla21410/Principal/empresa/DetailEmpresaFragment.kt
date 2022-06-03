@@ -1,6 +1,7 @@
 package com.jzamudio.isla21410.Principal.empresa
 
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.text.util.Linkify
@@ -31,30 +32,44 @@ class DetailEmpresaFragment : Fragment() {
     ): View {
         _binding = FragmentDetailEmpresaBinding.inflate(inflater, container, false)
         args = DetailEmpresaFragmentArgs.fromBundle(requireArguments())
-        viewModelFactory = DetailEmpresaViewModel.Factory(args.foto,args.nombre,args.descripcion,args.correo,args.telefono,args.direccion,args.paginaweb,this)
-        viewModel = ViewModelProvider(this,viewModelFactory)[DetailEmpresaViewModel::class.java]
+        viewModelFactory = DetailEmpresaViewModel.Factory(
+            args.foto,
+            args.nombre,
+            args.descripcion,
+            args.correo,
+            args.telefono,
+            args.direccion,
+            args.paginaweb,
+            this
+        )
+        viewModel = ViewModelProvider(this, viewModelFactory)[DetailEmpresaViewModel::class.java]
 
-        // Inflate the layout for this fragment
+        //Carga la imagen de la empresa
         Picasso.get().load(Uri.parse(args.foto)).into(binding.imgEmpresa)
-        argumentos()
+        //Obtiene los argumentos
+        argumentosVM()
         val number = Uri.parse("tel:" + args.telefono)
 
-        /* binding.txtTelefono.setOnClickListener {
-             val intent = Intent(Intent.ACTION_DIAL)
-             intent.data = Uri.parse(number.toString())
-             requireActivity().startActivity(intent)
-         }*/
+        // Si se clica en el telefono te abre el Telefono con el Numero
+        binding.txtTelefono.setOnClickListener {
+            val intent = Intent(Intent.ACTION_DIAL)
+            intent.data = Uri.parse(number.toString())
+            requireActivity().startActivity(intent)
+        }
 
-        cargarComentarios()
+        cargarComentariosAdapter()
 
         binding.btnAddComent.setOnClickListener {
-           viewModel.isConected()
+            viewModel.isConected()
         }
 
         return binding.root
     }
 
-    private fun cargarComentarios() {
+    /**
+     *Carga el adapter con los datos obtenidos del viewModel
+     */
+    private fun cargarComentariosAdapter() {
         binding.listadoComentarios.adapter = viewModel.adaptador
         val linearLayoutManager = LinearLayoutManager(requireContext())
         linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
@@ -62,7 +77,10 @@ class DetailEmpresaFragment : Fragment() {
     }
 
 
-    fun argumentos() {
+    /**
+     * Establece los datos recibidos el ViewModel
+     */
+    fun argumentosVM() {
         binding.txtNombreEmpresa.text = viewModel.nombre
         binding.txtCorreo.text = viewModel.correo
         binding.txtTelefono.text = viewModel.telefono
@@ -73,6 +91,9 @@ class DetailEmpresaFragment : Fragment() {
     }
 
 
+    /**
+     *Valida los campos
+     */
     fun validacion() {
         if (viewModel.nombre.isEmpty() || viewModel.nombre == null) {
             binding.txtNombreEmpresa.text = "No Tiene Nombre"
@@ -81,13 +102,13 @@ class DetailEmpresaFragment : Fragment() {
             binding.txtCorreo.text = "No tiene Correo"
         }
 
-        if (viewModel.direccion.isEmpty()|| viewModel.direccion== null) {
+        if (viewModel.direccion.isEmpty() || viewModel.direccion == null) {
             binding.txtDireccion.text = "No tiene Direccion"
 
-            if (viewModel.telefono.isEmpty()|| viewModel.telefono== null) {
+            if (viewModel.telefono.isEmpty() || viewModel.telefono == null) {
                 binding.txtTelefono.text = "No tiene TLF"
             }
-            if (viewModel.paginaweb.isEmpty()|| viewModel.paginaweb== null) {
+            if (viewModel.paginaweb.isEmpty() || viewModel.paginaweb == null) {
                 binding.txtPaginaWeb.text = "No tiene WEB"
             }
         }

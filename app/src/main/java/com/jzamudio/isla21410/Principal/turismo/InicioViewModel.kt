@@ -7,7 +7,9 @@ import com.jzamudio.isla21410.adapter.InicioAdapter
 import com.jzamudio.isla21410.database.conexion.FirebaseBD
 import com.jzamudio.isla21410.database.model.SimpleName
 import kotlinx.coroutines.launch
-
+/**
+ * ViewModel que maneja InicioFragment
+ */
 class InicioViewModel : ViewModel() {
 
     val listInit = mutableListOf<SimpleName>()
@@ -17,6 +19,9 @@ class InicioViewModel : ViewModel() {
         adapter()
     }
 
+    /**
+     * Metodo que carga en el adapter la lista de Zonas de interes
+     */
     private fun adapter(){
         viewModelScope.launch {
             FirebaseBD().getlistSimpleNameTurismo().forEach {

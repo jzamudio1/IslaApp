@@ -9,21 +9,43 @@ import com.jzamudio.isla21410.database.conexion.FirebaseBD
 import com.jzamudio.isla21410.database.model.ComentUser
 import kotlinx.coroutines.launch
 
+/**
+ * Clase ViewModel Configurate
+ */
 class ConfigurateViewModel : ViewModel() {
+    /**
+     *Nombre del USuario
+     */
     private var _usuario = MutableLiveData<String>()
     val usuario: LiveData<String> get() = _usuario
+
+    /**
+     * Lista que va a cargar el Adapter
+     */
     val listInit = mutableListOf<ComentUser>()
+
+    /**
+     * Bandera ProgresBarr
+     */
     private val _flagProgres = MutableLiveData<Boolean>()
     val flagProgres: LiveData<Boolean> get() = _flagProgres
+
+    /**
+     * Adapted
+     */
 
     var adaptador: EmpresaUserAdapter = EmpresaUserAdapter(listInit, this)
 
 
     init {
+
         user()
 
     }
 
+    /**
+     * Metodo que borra la empresa del Usuario
+     */
     fun delete() {
         _flagProgres.value = true
         viewModelScope.launch {
@@ -37,7 +59,9 @@ class ConfigurateViewModel : ViewModel() {
         }
     }
 
-
+    /**
+     * Metodo que carga las empresas registradas por un Usuario
+     */
     fun cargarEmpresas() {
         viewModelScope.launch {
             listInit.clear()
@@ -52,7 +76,9 @@ class ConfigurateViewModel : ViewModel() {
 
     }
 
-
+    /**
+     * Metodo que comprueba el usuario conectado y establece su Nombre
+     */
     fun user() {
         val user = FirebaseAuth.getInstance().currentUser!!.uid
         FirebaseFirestore.getInstance().collection("users").document(user).get()
@@ -61,7 +87,9 @@ class ConfigurateViewModel : ViewModel() {
             }
     }
 
-
+    /**
+     * Metodo que recarga el reciclerView cuando se edita una Empresa
+     */
     fun rechear() {
         adaptador.notifyItemChanged(listInit.indexOf(adaptador.editar.value))
     }

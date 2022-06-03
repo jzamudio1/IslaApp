@@ -21,7 +21,7 @@ class FirebaseBD {
 
 
     /**
-     * Obtener Lista Valoraciones
+     * Obtener Lista de comentarios.
      */
     suspend fun getlistvaloraciones(): List<valoraciones> {
 
@@ -45,7 +45,7 @@ class FirebaseBD {
     }
 
     /**
-     * Obtener Lista Detalles Empresa
+     * Obtener la lista de las empresas
      */
     suspend fun getDetailEmpresa(): List<ComentUser> {
 
@@ -66,7 +66,7 @@ class FirebaseBD {
                             descripcion = doc["descripcion"].toString(),
                             paginaweb = doc["paginaweb"].toString(),
                             foto = doc["foto"].toString(),
-                            uid= doc["uid"].toString()
+                            uid = doc["uid"].toString()
                         )
                     )
                 }
@@ -78,9 +78,9 @@ class FirebaseBD {
     /**
      * Insertar una Empresa
      */
-    fun insertEmpresa(tipo: String, empresa: Empresa) {
+    fun insertEmpresa(tipo: String, empresa: ComentUser) {
 
-        firebaseInstance.collection(tipo).document(empresa.nombre)
+        firebaseInstance.collection(tipo).document(empresa.nombre!!)
             .set(
                 hashMapOf(
                     "uid" to empresa.uid,
@@ -88,7 +88,7 @@ class FirebaseBD {
                     "direccion" to empresa.direccion,
                     "telefono" to empresa.telefono,
                     "correo" to empresa.correo,
-                    "paginaweb" to empresa.paginaWeb,
+                    "paginaweb" to empresa.paginaweb,
                     "foto" to empresa.foto,
                     "descripcion" to empresa.descripcion,
                     "nombreDoc" to empresa.nombre
@@ -101,9 +101,10 @@ class FirebaseBD {
      */
     fun insertComentario(valoraciones: valoraciones, uid: String): Task<Void> {
 
-        Log.i("caca","caca" + coleccionEmpresas)
-        Log.i("caca","caca" + documentoEmpresas)
-        return firebaseInstance.collection(coleccionEmpresas).document(documentoEmpresas).collection("/comentarios").document()
+        Log.i("caca", "caca" + coleccionEmpresas)
+        Log.i("caca", "caca" + documentoEmpresas)
+        return firebaseInstance.collection(coleccionEmpresas).document(documentoEmpresas)
+            .collection("/comentarios").document()
             .set(
                 hashMapOf(
 
@@ -138,21 +139,22 @@ class FirebaseBD {
     }
 
     /**
-     * Actualiza una empresa recibiendo el id de las colecciones
-     * buscando en ellas el documento a actualizar
+     * Borra una empresa que pertenece a un usuario.
+     *
      */
-    suspend fun borraEmpresa(ids: List<String>){
+    suspend fun borraEmpresa(ids: List<String>) {
         for (id in ids) {
-            Log.i("docRefe", "ID "+id.toString())
+            Log.i("docRefe", "ID " + id.toString())
             FirebaseBD().getListUserbyUID(id)
                 .addOnSuccessListener { coleccion2 ->
                     for (docUID in coleccion2) {
                         if (docUID.reference.id == documentEditar) {
-                            Log.i("docRefe", "Coment "+docUID.reference.id)
-                            Log.i("docRefe", "docEditar "+ documentEditar)
+                            Log.i("docRefe", "Coment " + docUID.reference.id)
+                            Log.i("docRefe", "docEditar " + documentEditar)
                             firebaseInstance.collection(id).document(documentEditar!!).delete()
-                           firebaseInstance.collection(id).document(documentEditar!!).collection("/comentarios").get().addOnSuccessListener {
-                                for (doc in it){
+                            firebaseInstance.collection(id).document(documentEditar!!)
+                                .collection("/comentarios").get().addOnSuccessListener {
+                                for (doc in it) {
                                     doc.reference.delete()
                                 }
                             }
@@ -169,16 +171,17 @@ class FirebaseBD {
      * buscando en ellas el documento a actualizar
      */
 
-    suspend fun actualizarEmpresa(ids: List<String>,comentUser: ComentUser){
+    suspend fun actualizarEmpresa(ids: List<String>, comentUser: ComentUser) {
         for (id in ids) {
-            Log.i("docRefe", "ID "+id.toString())
+            Log.i("docRefe", "ID " + id.toString())
             FirebaseBD().getListUserbyUID(id)
                 .addOnSuccessListener { coleccion2 ->
                     for (docUID in coleccion2) {
                         if (docUID.reference.id == documentEditar) {
-                            Log.i("docRefe", "Coment "+docUID.reference.id)
-                            Log.i("docRefe", "docEditar "+ documentEditar)
-                            firebaseInstance.collection(id).document(documentEditar!!).update(comentUser.toMap())
+                            Log.i("docRefe", "Coment " + docUID.reference.id)
+                            Log.i("docRefe", "docEditar " + documentEditar)
+                            firebaseInstance.collection(id).document(documentEditar!!)
+                                .update(comentUser.toMap())
                         }
                     }
                 }.await()
@@ -189,7 +192,6 @@ class FirebaseBD {
      * Obtiene el id De la coleccion y busca en todos los documentos
      * la que tenga el mismo uid que el usuario conectado
      */
-
     suspend fun getListDocEmpresa(ids: List<String>): List<ComentUser> {
         val listEmpresaEdit = mutableListOf<ComentUser>()
         for (id in ids) {
@@ -276,7 +278,6 @@ class FirebaseBD {
 
         return listSimpleNameTurismo
     }
-
 
 
     /**

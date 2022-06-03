@@ -14,11 +14,15 @@ import com.google.firebase.auth.FirebaseAuth
 import com.jzamudio.isla21410.Principal.empresa.EmpresaEditFragment
 import com.jzamudio.isla21410.databinding.FragmentConfigurateBinding
 
-
+/**
+ * Clase de configuracion para el usuario
+ */
 class ConfigurateFragment : Fragment() {
+    //Binding
     private var _binding: FragmentConfigurateBinding? = null
     private val binding get() = _binding!!
 
+    //ViewModel
     private lateinit var viewModel: ConfigurateViewModel
 
     override fun onCreateView(
@@ -28,6 +32,7 @@ class ConfigurateFragment : Fragment() {
         _binding = FragmentConfigurateBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this)[ConfigurateViewModel::class.java]
 
+        //Observa el Nombre del usuario
         viewModel.usuario.observe(viewLifecycleOwner) {
             if (it != null)
                 binding.txtUser.text = it
@@ -46,7 +51,9 @@ class ConfigurateFragment : Fragment() {
         return binding.root
     }
 
-
+    /**
+     * Metodo que carga el adaptador
+     */
     fun onAdapter() {
         binding.reciclerEmpresasUser.adapter = viewModel.adaptador
         binding.reciclerEmpresasUser.layoutManager =
@@ -54,7 +61,10 @@ class ConfigurateFragment : Fragment() {
 
     }
 
-    fun editar() {
+    /**
+     * Metodo que observa el livedata y si no es nulo, llama a EmpresaEdit que es un DialogFragment
+     */
+   private  fun editar() {
         viewModel.adaptador.editar.observe(viewLifecycleOwner) {
             if (it != null) {
                 EmpresaEditFragment(it, viewModel).show(childFragmentManager, "editar")
@@ -64,7 +74,10 @@ class ConfigurateFragment : Fragment() {
         }
     }
 
-    fun borrarItem() {
+    /**
+     * Metodo que observa el livedata y si no es nulo, llama al AlertDialog
+     */
+    private fun borrarItem() {
         viewModel.adaptador.borrar.observe(viewLifecycleOwner) {
             if (it != null) {
                 showDialogAlertSimple()
@@ -75,7 +88,10 @@ class ConfigurateFragment : Fragment() {
     }
 
 
-    fun showDialogAlertSimple() {
+    /**
+     * Metodo que contiene un AlertDialog para borrar la empresa.
+     */
+    private fun showDialogAlertSimple() {
         AlertDialog.Builder(context)
             .setTitle("Titulo del diálogo")
             .setMessage("Contenido del diálogo.")
@@ -91,13 +107,18 @@ class ConfigurateFragment : Fragment() {
             .show()
     }
 
-    fun singOut() {
+    /**
+     * Metodo que cierra sesion de la App
+     */
+    private fun singOut() {
         FirebaseAuth.getInstance().signOut()
         requireActivity().finishAffinity()
     }
 
-
-    fun onVisibleProgressBar() {
+    /**
+     * Metodo que establece el progresBar
+     */
+    private fun onVisibleProgressBar() {
         viewModel.flagProgres.observe(viewLifecycleOwner) {
             if (it) {
                 binding.progressBar.visibility = View.VISIBLE

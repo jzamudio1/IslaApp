@@ -5,7 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.jzamudio.isla21410.R
 import com.jzamudio.isla21410.database.model.valoraciones
-
+/**
+ * Adapter que muestra la lista de comentarios de una empresa
+ */
 class ValoracionesAdapter(
     private val listValoraciones: List<valoraciones>
 ) : RecyclerView.Adapter<ValoracionesViewHolder>() {

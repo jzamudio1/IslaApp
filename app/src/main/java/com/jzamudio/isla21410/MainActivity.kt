@@ -17,6 +17,9 @@ import com.jzamudio.isla21410.util.ClickEmpresas
 import com.jzamudio.isla21410.util.ClickTurismo
 import kotlinx.coroutines.launch
 
+/**
+ * MainActivity
+ */
 class MainActivity : AppCompatActivity() {
 
 
@@ -36,6 +39,9 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+    /**
+     * Metodo que comprueba si hayn un usuario conectado, si es asi navega al Inicio, si no navega al fragmento de Login
+     */
     @SuppressLint("ResourceType")
     fun isConected() {
         if (FirebaseAuth.getInstance().currentUser == null) {
@@ -44,29 +50,39 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-
-    fun onNav() {
+    /**
+     * Metodo que establece la navegacion de la app
+     */
+    private fun onNav() {
         navView = binding.navView
         navController = findNavController(R.id.nav_host_fragment_activity_main)
         navView!!.setupWithNavController(navController)
     }
 
-    fun loadTurismo() {
+    /**
+     * Metodo de carga inicial de los datos de turimo
+     */
+    private fun loadTurismo() {
         ClickTurismo.coleccionTurismo = "inicio"
         lifecycleScope.launch {
             FirebaseBD().getlistSimpleNameTurismo()
         }
     }
 
-    fun loadEmpresa() {
+    /**
+     * Metodo de carga inicial de los datos de eempresa
+     */
+    private fun loadEmpresa() {
         ClickEmpresas.coleccionEmpresas = "empresas"
         lifecycleScope.launch {
             FirebaseBD().getlistSimpleNameEmpresas()
         }
     }
 
-
-    fun hideButton(){
+    /**
+     * Metodo que oculta el BottonNavigation en funcion de la ubicacion
+     */
+    private fun hideButton() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.authFragment -> hideBottomNav()
@@ -76,22 +92,25 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
+    /**
+     *Metodo quye Muestra El bBotton Navigation
+     */
     private fun showBottomNav() {
         navView!!.visibility = View.VISIBLE
 
     }
 
+    /**
+     *Metodo que Oculta el BottonNavigation
+     */
     private fun hideBottomNav() {
         navView!!.visibility = View.GONE
 
     }
 
+
     /**
-     * Método ejecutado al pulsar el botón de back
-     */
-    /**
-     * Método ejecutado al pulsar el botón de back
+     * Método que comprueba la ubicacion, y si quiere navegar al login minimiza la app
      */
     override fun onBackPressed() {
         // Si el usuario se encuentra en la vista Login o Home se minimiza la aplicación

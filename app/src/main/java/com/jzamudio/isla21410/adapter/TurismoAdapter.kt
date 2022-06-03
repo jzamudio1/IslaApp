@@ -5,7 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.jzamudio.isla21410.R
 import com.jzamudio.isla21410.database.model.Turismo
-
+/**
+ *Adapter que muestra los itemns que poertenecen a las zonas de interes de turismo
+ */
 
 class TurismoAdapter(
     private val listadoTurismo: List<Turismo>

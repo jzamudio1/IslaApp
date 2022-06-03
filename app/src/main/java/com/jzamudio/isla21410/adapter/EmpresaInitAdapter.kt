@@ -5,6 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.jzamudio.isla21410.R
 import com.jzamudio.isla21410.database.model.SimpleName
+/**
+ *Adapter del Inicio que carga la Lista de las categorias de empresas
+ */
 
 class EmpresaInitAdapter(private val listEmpresaInit:List<SimpleName>) : RecyclerView.Adapter<EmpresaInitViewHolder>() {
 

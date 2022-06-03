@@ -14,15 +14,24 @@ import com.jzamudio.isla21410.util.ClickEmpresas
 import com.jzamudio.isla21410.util.ClickEmpresas.Companion.documentoEmpresas
 import com.squareup.picasso.Picasso
 
-
+/**
+ *ViewHolder que maneja EmpresaAdapter
+ */
 class EmpresasViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     val binding = ItemCardviewAdapterBinding.bind(view)
 
+    /**
+     * Metodo que recibe una empresa completa y establece su foto y su nombre
+     * Pasa por argumentos a la vista de Detalles de empresa sus datos.
+     * nombreDoc corresponde al si un usuario a creado una empresa
 
+     */
     fun render(comentUser: ComentUser) {
         binding.txtCardView.text = comentUser.nombre
         Picasso.get().load(Uri.parse(comentUser.foto)).into(binding.imgCarView)
+
+        //Controlamos El click del boton
 
         binding.btnCardView.setOnClickListener {
             if (comentUser.nombreDoc != null) {

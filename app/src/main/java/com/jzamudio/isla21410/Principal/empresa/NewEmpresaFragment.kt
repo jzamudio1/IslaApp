@@ -10,12 +10,16 @@ import androidx.core.net.toUri
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.jzamudio.isla21410.database.conexion.FirebaseBD
 import com.jzamudio.isla21410.database.model.Empresa
 import com.jzamudio.isla21410.databinding.FragmentNewEmpresaBinding
 
+/**
+ * Clase que inserta una empresa
+ */
 class NewEmpresaFragment : Fragment(), LifecycleObserver {
 
 
@@ -39,15 +43,17 @@ class NewEmpresaFragment : Fragment(), LifecycleObserver {
             binding.etPaginaWeb.text,
             binding.etTelefono.text
         )
-        viewModel = ViewModelProvider(this,viewModelFactory)[NewEmpresaViewModel::class.java]
+        viewModel = ViewModelProvider(this, viewModelFactory)[NewEmpresaViewModel::class.java]
 
-
+        onVisibleProgressBar()
         changeIMG()
 
+        //Abre la galeria
         binding.btnFoto.setOnClickListener {
             viewModel.dispatchPickFromGalleryIntent()
         }
 
+        //Sube la Empresa
         binding.btnGuardarEmpresa.setOnClickListener {
             viewModel.uploadPhoto()
 
@@ -58,8 +64,10 @@ class NewEmpresaFragment : Fragment(), LifecycleObserver {
         return binding.root
     }
 
-
-    fun changeIMG(){
+    /**
+     *MEtodo que observa
+     */
+    fun changeIMG() {
         viewModel.changeIMG.observe(viewLifecycleOwner, Observer {
             binding.imgFotoEmpresa.setImageURI(viewModel.URI.toUri())
         })
@@ -67,20 +75,12 @@ class NewEmpresaFragment : Fragment(), LifecycleObserver {
     }
 
 
-
     fun validarForm(): Boolean {
         var esValido = true
-        val min = 5
 
         if (TextUtils.isEmpty(binding.etNombreEmpresa.text.toString())) {
             // Si la propiedad error tiene valor, se muestra el aviso.
             binding.etNombreEmpresa.error = "Requerido"
-            esValido = false
-        } else binding.etNombreEmpresa.error = null
-
-        if (binding.etNombreEmpresa.text.toString().trim() < min.toString()) {
-            // Si la propiedad error tiene valor, se muestra el aviso.
-            binding.etNombreEmpresa.error = "Caracteres Minimo 5"
             esValido = false
         } else binding.etNombreEmpresa.error = null
 
@@ -89,18 +89,8 @@ class NewEmpresaFragment : Fragment(), LifecycleObserver {
             esValido = false
         } else binding.etTelefono.error = null
 
-        if (binding.etTelefono.text.toString() < min.toString()) {
-            binding.etTelefono.error = "Caracteres Minimo 5"
-            esValido = false
-        } else binding.etTelefono.error = null
-
         if (TextUtils.isEmpty(binding.etCorreo.text.toString())) {
             binding.etCorreo.error = "Requerido"
-            esValido = false
-        } else binding.etCorreo.error = null
-
-        if (binding.etCorreo.text.toString() < min.toString()) {
-            binding.etCorreo.error = "Caracteres Minimo 5"
             esValido = false
         } else binding.etCorreo.error = null
 
@@ -108,22 +98,28 @@ class NewEmpresaFragment : Fragment(), LifecycleObserver {
             binding.etDescripcion.error = "Requerido"
             esValido = false
         } else binding.etDescripcion.error = null
-        if (binding.etDescripcion.text.toString() < min.toString()) {
-            binding.etDescripcion.error = "Caracteres Minimo 5"
-            esValido = false
-        } else binding.etDescripcion.error = null
+
         if (TextUtils.isEmpty(binding.etDireccion.text.toString())) {
             binding.etDireccion.error = "Requerido"
-            esValido = false
-        } else binding.etDireccion.error = null
-        if (binding.etDireccion.text.toString() < min.toString()) {
-            binding.etDireccion.error = "Caracteres Minimo 5"
             esValido = false
         } else binding.etDireccion.error = null
 
         return esValido
     }
 
+    /**
+     * Metodo que establece el progresBar
+     */
+    private fun onVisibleProgressBar() {
+        viewModel.flagProgres.observe(viewLifecycleOwner) {
+            if (it) {
+                binding.progressBar2.visibility = View.VISIBLE
+            } else {
+                binding.progressBar2.visibility = View.GONE
+            }
+        }
+
+    }
 
 }
 

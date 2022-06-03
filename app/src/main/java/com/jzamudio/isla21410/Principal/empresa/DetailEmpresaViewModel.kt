@@ -14,6 +14,9 @@ import com.jzamudio.isla21410.adapter.ValoracionesAdapter
 import com.jzamudio.isla21410.database.conexion.FirebaseBD
 import com.jzamudio.isla21410.database.model.valoraciones
 import kotlinx.coroutines.launch
+/**
+ * Clase Detalles Empresas ViewMOdel
+ */
 
 class DetailEmpresaViewModel(
     val foto: String,
@@ -25,12 +28,22 @@ class DetailEmpresaViewModel(
     val paginaweb: String,
     val fragment:DetailEmpresaFragment
 ) : ViewModel() {
-
+    /**
+     * Lista de comentarios
+     */
     val listComentario = mutableListOf<valoraciones>()
-    val listComentario2 = mutableListOf<valoraciones>()
+    /**
+     * Adapter
+     */
     val adaptador: ValoracionesAdapter = ValoracionesAdapter(listComentario)
+    /**
+     * Comentario del usuario introducido en el Alert
+     */
     private lateinit var comentario: String
 
+    /**
+     * Factory
+     */
     class Factory(
         val foto: String,
         val nombre: String,
@@ -61,7 +74,9 @@ class DetailEmpresaViewModel(
         cargarComentarios()
     }
 
-
+    /**
+     * Metodo que Carga en el adapter la lista de los comentarios
+     */
     private fun cargarComentarios() {
         viewModelScope.launch {
             FirebaseBD().getlistvaloraciones().forEach {
@@ -72,7 +87,9 @@ class DetailEmpresaViewModel(
     }
 
 
-
+    /**
+     * Metodo que Muestra un dialogo para Insertar un comentario.
+     */
     private fun alertDialogDemo() {
         val builder: AlertDialog.Builder = AlertDialog.Builder(fragment.requireContext())
         builder.setTitle("Añade Tu Comentario!!!!")

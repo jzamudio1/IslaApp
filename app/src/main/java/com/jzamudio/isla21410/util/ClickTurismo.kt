@@ -1,14 +1,17 @@
 package com.jzamudio.isla21410.util
+/**
+ * Clase Global de Turismo que contiene un companion Objetc
+ * Se usa para buscar en las coleciones de firebase
+ */
 
-import android.app.Application
 
 class ClickTurismo{
 
     companion object{
-        lateinit var coleccionTurismo:String
-        lateinit var documentTurismo:String
-        lateinit var coleccionTurismo2:String
-        lateinit var documentTurismo2:String
+        /**
+         * Coleccion de turismo a las que pertenece la empresa
+         */
 
+        lateinit var coleccionTurismo:String
     }
 }

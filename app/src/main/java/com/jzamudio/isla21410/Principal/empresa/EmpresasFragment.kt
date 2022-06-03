@@ -19,6 +19,9 @@ import com.jzamudio.isla21410.database.model.SimpleName
 import com.jzamudio.isla21410.databinding.FragmentEmpresasBinding
 import com.jzamudio.isla21410.util.ClickEmpresas
 import kotlinx.coroutines.launch
+/**
+ * Clase Empresa que obtiene la lista de las categorias.
+ * */
 
 class EmpresasFragment : Fragment() {
 
@@ -38,7 +41,7 @@ class EmpresasFragment : Fragment() {
 
         onAdapter()
         binding.floatingActionButton.setOnClickListener {
-            isConectado()
+            ShowNewEmpresa()
 
         }
 
@@ -46,7 +49,9 @@ class EmpresasFragment : Fragment() {
         return binding.root
     }
 
-
+    /**
+     * Metodo Carga el adapter desde el ViewModel
+     */
     private fun onAdapter() {
         binding.btnEmpresas.adapter = viewModel.adaptador
         val linearLayoutManager = LinearLayoutManager(requireContext())
@@ -54,14 +59,10 @@ class EmpresasFragment : Fragment() {
         binding.btnEmpresas.layoutManager = linearLayoutManager
     }
 
-    fun isConectado() {
-        val usuario = FirebaseAuth.getInstance().currentUser?.uid
-        Log.i("usuario", usuario.toString())
-        if (usuario != null) {
-            findNavController().navigate(R.id.action_navigation_empresas_to_newEmpresaFragment)
-        } else {
+    fun ShowNewEmpresa() {
 
-        }
+        findNavController().navigate(R.id.action_navigation_empresas_to_newEmpresaFragment)
+
     }
 
 }

@@ -16,6 +16,10 @@ import com.jzamudio.isla21410.database.model.Turismo
 import com.jzamudio.isla21410.databinding.FragmentTurismoListBinding
 import kotlinx.coroutines.launch
 
+/**
+ * Clase que carga la lista de items que pertenecen a las zonas de interes
+ */
+
 class TurismoListFragment : Fragment() {
     private var _binding: FragmentTurismoListBinding? = null
     private val binding get() = _binding!!
@@ -33,7 +37,10 @@ class TurismoListFragment : Fragment() {
         return binding.root
     }
 
-    fun onAdapter() {
+    /**
+     * Metodo que Carga el adapter del viewmodel
+     */
+    private fun onAdapter() {
         binding.reciclerTurismo.adapter = viewModel.adaptador
         val linearLayoutManager = LinearLayoutManager(requireContext())
         linearLayoutManager.orientation = LinearLayoutManager.VERTICAL

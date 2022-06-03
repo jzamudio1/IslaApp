@@ -16,6 +16,10 @@ import com.jzamudio.isla21410.databinding.FragmentInicioBinding
 import com.jzamudio.isla21410.util.ClickTurismo
 import kotlinx.coroutines.launch
 
+/**
+ * Clase InicioFragment que muestra una lista de las zonas de interes
+ */
+
 class InicioFragment : Fragment() {
 
     private var _binding: FragmentInicioBinding? = null
@@ -32,15 +36,17 @@ class InicioFragment : Fragment() {
 
         viewModel = ViewModelProvider(this)[InicioViewModel::class.java]
 
-            onAdapter()
+        onAdapter()
 
         // Inflate the layout for this fragment
 
         return binding.root
     }
 
-
-    fun onAdapter() {
+    /**
+     * Metodo que Carga el adapter del viewmodel
+     */
+    private fun onAdapter() {
         binding.btnInicio.adapter = viewModel.adaptador
         val linearLayoutManager = LinearLayoutManager(requireContext())
         linearLayoutManager.orientation = LinearLayoutManager.VERTICAL

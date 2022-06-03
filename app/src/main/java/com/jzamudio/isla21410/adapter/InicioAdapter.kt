@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jzamudio.isla21410.R
 import com.jzamudio.isla21410.database.model.SimpleName
 
-
+/**
+ * Adapter que muestra la lista de zonas de interes de Turismo
+ */
 class InicioAdapter(
     private val listInicio: List<SimpleName>
 ) : RecyclerView.Adapter<InicioViewHolder>() {

@@ -15,9 +15,11 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.jzamudio.isla21410.databinding.FragmentDetailTurismoBinding
 import com.squareup.picasso.Picasso
-
+/**
+ * Clase Que muestra los detalles del item de la zona de interes que muestra su foto,nombre, descripcion y localizacion.
+ */
 class DetailTurismoFragment : Fragment(), OnMapReadyCallback {
-    //Necesita un MapView
+    //Binding
     private var _binding: FragmentDetailTurismoBinding? = null
     private val binding get() = _binding!!
     private var mapView: MapView? = null
@@ -40,8 +42,11 @@ class DetailTurismoFragment : Fragment(), OnMapReadyCallback {
         viewModel = ViewModelProvider(this,viewModelFactory)[DetailTurismoViewModel::class.java]
 
 
+        //Establecemos la foto
         Picasso.get().load(Uri.parse(viewModel.foto)).into(binding.imgPlaya)
+        //Establecemos la descripcion
         binding.txtDescripcion.text = viewModel.descripcion
+        //Establecemos el Nombre
         binding.txtNombreTurismo.text = viewModel.nombre
 
         // Gets the MapView from the XML layout and creates it
@@ -83,6 +88,9 @@ class DetailTurismoFragment : Fragment(), OnMapReadyCallback {
         mapView?.onLowMemory()
     }
 
+    /**
+     * Metodo que sobrescribe el mapa y le colocamos las coordenadas
+     */
     override fun onMapReady(googleMap: GoogleMap) {
 
         val coordinates = LatLng(viewModel.latitud.toDouble(),viewModel.longitud.toDouble())

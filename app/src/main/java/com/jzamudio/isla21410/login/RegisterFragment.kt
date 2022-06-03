@@ -12,33 +12,41 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.jzamudio.isla21410.databinding.FragmentRegisterBinding
 
+/**
+ * Clase que registra un usuario
+ */
 
 class RegisterFragment : Fragment() {
-
+    //Binding
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
+    //Viewmodel
     private lateinit var viewModel: RegisterViewModel
-    private lateinit var viewModelFactory:RegisterViewModel.Factory
-
-
+    private lateinit var viewModelFactory: RegisterViewModel.Factory
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+        //Paso por parametros los editText
         _binding = FragmentRegisterBinding.inflate(inflater, container, false)
-        viewModelFactory = RegisterViewModel.Factory(binding.editTextCorreo.text,binding.editTextPassword.text,binding.editTextNombre.text,this)
+        viewModelFactory = RegisterViewModel.Factory(
+            binding.editTextCorreo.text,
+            binding.editTextPassword.text,
+            binding.editTextNombre.text,
+            this
+        )
         viewModel = ViewModelProvider(this, viewModelFactory)[RegisterViewModel::class.java]
 
 
 
-
+        //Boton que Crea la cuenta
         binding.btnGuardar.setOnClickListener {
             viewModel.createAccount()
         }
 
+        //Boton para subir una foto
         binding.btnGaleria.setOnClickListener {
             viewModel.dispatchPickFromGalleryIntent()
         }
@@ -50,25 +58,22 @@ class RegisterFragment : Fragment() {
     }
 
 
+    /**
+     *Observa si se ha introducido una imagen
+     */
+   private fun changeIMG() {
+        viewModel.changeIMG.observe(viewLifecycleOwner, Observer {
+            binding.imgFoto.setImageURI(viewModel.URI.toUri())
+        })
+        viewModel._changeIMG.value = false
+    }
 
-fun changeIMG(){
-
-   viewModel.changeIMG.observe(viewLifecycleOwner, Observer {
-       binding.imgFoto.setImageURI(viewModel.URI.toUri())
-   })
-    viewModel._changeIMG.value = false
-}
-
-
-
-
-
-
-
+    /**
+     *Valida los Campos
+     */
 
     fun validarForm(): Boolean {
         var esValido = true
-        val min = 5
 
         if (TextUtils.isEmpty(binding.editTextCorreo.text.toString())) {
             // Si la propiedad error tiene valor, se muestra el aviso.
@@ -93,11 +98,12 @@ fun changeIMG(){
         return esValido
     }
 
+    /**
+     *Navega al Login
+     */
     fun showHome() {
         findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToAuthFragment())
     }
-
-
 
 
 }

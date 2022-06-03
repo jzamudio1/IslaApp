@@ -10,7 +10,6 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.provider.MediaStore
 import android.text.Editable
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -24,21 +23,29 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import com.jzamudio.isla21410.Principal.turismo.DetailTurismoViewModel
-import com.jzamudio.isla21410.database.model.ComentUser
 import java.io.ByteArrayOutputStream
-
+/**
+ *ViewModel Registrar
+ */
 class RegisterViewModel(val correo:Editable,val password:Editable, val nombre:Editable, val fragment: RegisterFragment) : ViewModel() {
-
-    private val File = 1
+    //Variables
     private var FileUri: String? = null
     private var urlImage: Uri? = null
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
+    /**
+     *URI de la Imagen Subida
+     */
     var URI:String = ""
 
+    /**
+     *LiveData
+     */
      val _changeIMG = MutableLiveData<Boolean>()
     val changeIMG: LiveData<Boolean> get() = _changeIMG
 
+    /**
+     *Factori con los Parametros
+     */
     class Factory(
         val correo: Editable,
         val password: Editable,
@@ -51,10 +58,12 @@ class RegisterViewModel(val correo:Editable,val password:Editable, val nombre:Ed
     }
 
     init {
-        k()
+        dispatchIsOK()
     }
 
-
+    /**
+     * Metodo que crea una cuenta si la validacion es correcta
+     */
      fun createAccount() {
         if (fragment.validarForm()) {
             val auth = FirebaseAuth.getInstance()
@@ -78,7 +87,9 @@ class RegisterViewModel(val correo:Editable,val password:Editable, val nombre:Ed
     }
 
 
-
+    /**
+     * Metodo que sube la foto a firebase y obtiene la URI
+     */
     fun uploadPhoto() {
         val Folder: StorageReference = FirebaseStorage.getInstance().reference.child("User")
         val file_name: StorageReference = Folder.child("file" + FileUri!!.split("/").last())
@@ -103,6 +114,9 @@ class RegisterViewModel(val correo:Editable,val password:Editable, val nombre:Ed
     }
 
 
+    /**
+     * Metodo que recoge el PATH Real de la Imagen
+     */
 
      fun getRealPathFromURI(contentUri: Uri): String {
         val cursor: Cursor = fragment.requireContext().contentResolver.query(
@@ -117,7 +131,9 @@ class RegisterViewModel(val correo:Editable,val password:Editable, val nombre:Ed
     }
 
 
-
+    /**
+     * MEtodo que Pide los permisos al usuario y abre la camara
+     */
      fun dispatchPickFromGalleryIntent() {
         ActivityCompat.requestPermissions(fragment.requireActivity(),
             arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),2022)
@@ -132,7 +148,10 @@ class RegisterViewModel(val correo:Editable,val password:Editable, val nombre:Ed
     }
 
 
-    fun k(){
+    /**
+     * Metodo que si es OK recoge la Path real y lo trasforma a URI
+     */
+    fun dispatchIsOK(){
         resultLauncher =
             fragment.registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result.resultCode == Activity.RESULT_OK) {
