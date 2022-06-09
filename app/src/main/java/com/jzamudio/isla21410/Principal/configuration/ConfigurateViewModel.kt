@@ -18,6 +18,8 @@ class ConfigurateViewModel : ViewModel() {
      */
     private var _usuario = MutableLiveData<String>()
     val usuario: LiveData<String> get() = _usuario
+    private var _foto = MutableLiveData<String>()
+    val foto: LiveData<String> get() = _foto
 
     /**
      * Lista que va a cargar el Adapter
@@ -66,10 +68,8 @@ class ConfigurateViewModel : ViewModel() {
         viewModelScope.launch {
             listInit.clear()
             val id = FirebaseBD().getListIdEmpresa()
-            Log.i("idEmpresa", id.toString())
             FirebaseBD().getListDocEmpresa(id).forEach {
                 listInit.add(it)
-                Log.i("idEmpresa", it.nombre.toString())
                 adaptador.notifyItemInserted(listInit.indexOf(it))
             }
         }
@@ -84,6 +84,7 @@ class ConfigurateViewModel : ViewModel() {
         FirebaseFirestore.getInstance().collection("users").document(user).get()
             .addOnSuccessListener {
                 _usuario.value = it.get("nombre").toString()
+                _foto.value = it.get("foto").toString()
             }
     }
 

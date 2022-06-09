@@ -2,6 +2,7 @@ package com.jzamudio.isla21410.Principal.configuration
 
 import android.app.AlertDialog
 import android.content.DialogInterface
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.jzamudio.isla21410.Principal.empresa.EmpresaEditFragment
 import com.jzamudio.isla21410.databinding.FragmentConfigurateBinding
+import com.squareup.picasso.Picasso
 
 /**
  * Clase de configuracion para el usuario
@@ -31,6 +33,11 @@ class ConfigurateFragment : Fragment() {
     ): View? {
         _binding = FragmentConfigurateBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this)[ConfigurateViewModel::class.java]
+
+        viewModel.foto.observe(viewLifecycleOwner) {
+            if (it != null)
+                Picasso.get().load(Uri.parse(it)).into(binding.imgUser)
+        }
 
         //Observa el Nombre del usuario
         viewModel.usuario.observe(viewLifecycleOwner) {
@@ -64,7 +71,7 @@ class ConfigurateFragment : Fragment() {
     /**
      * Metodo que observa el livedata y si no es nulo, llama a EmpresaEdit que es un DialogFragment
      */
-   private  fun editar() {
+    private fun editar() {
         viewModel.adaptador.editar.observe(viewLifecycleOwner) {
             if (it != null) {
                 EmpresaEditFragment(it, viewModel).show(childFragmentManager, "editar")

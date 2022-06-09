@@ -79,10 +79,7 @@ class AuthFragment : Fragment() {
                         Log.i("flag", ClickEmpresas.flagLogin.toString())
                         showHome()
                     }
-                    if(it.isCanceled){
-                        toastError()
-                    }
-                }
+                }.addOnFailureListener { toastError() }
         } else
             toast()
     }

@@ -86,6 +86,7 @@ class DetailEmpresaFragment : Fragment() {
         binding.txtTelefono.text = viewModel.telefono
         binding.txtDireccion.text = viewModel.direccion
         binding.txtPaginaWeb.text = viewModel.paginaweb
+        binding.tvDescripcion.text = viewModel.descripcion
         addLikns()
         validacion()
     }
