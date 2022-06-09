@@ -35,12 +35,12 @@ class EmpresasViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         binding.btnCardView.setOnClickListener {
             if (comentUser.nombreDoc != null) {
-                documentoEmpresas = comentUser.nombre.toString()
-            }else{
+                val no = comentUser.nombreDoc.toString()
                 documentoEmpresas = comentUser.nombreDoc.toString()
             }
 
-            Log.i("valoracionm", documentoEmpresas)
+
+
             it.findNavController().navigate(
                 listEmpresaFragmentDirections.actionListEmpresaFragmentToDetailEmpresaFragment(
                     comentUser.nombre.toString(),
