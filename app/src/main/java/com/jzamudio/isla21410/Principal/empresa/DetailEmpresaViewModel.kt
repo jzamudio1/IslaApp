@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.text.InputType
 import android.util.Log
 import android.widget.EditText
+import android.widget.Toast
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -14,6 +15,9 @@ import com.jzamudio.isla21410.adapter.ValoracionesAdapter
 import com.jzamudio.isla21410.database.conexion.FirebaseBD
 import com.jzamudio.isla21410.database.model.valoraciones
 import kotlinx.coroutines.launch
+import kotlin.time.Duration.Companion.minutes
+import kotlin.time.toDuration
+
 /**
  * Clase Detalles Empresas ViewMOdel
  */
@@ -95,17 +99,19 @@ class DetailEmpresaViewModel(
         builder.setTitle("Añade Tu Comentario!!!!")
         // Set up the input
         val input = EditText(fragment.requireContext())
-        // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
         input.hint = "Introduce tu comentario."
         input.inputType = InputType.TYPE_CLASS_TEXT
         builder.setView(input)
 
         // Set up the buttons
         builder.setPositiveButton("OK") { _, _ ->
-            // Here you get get input text from the Edittext
             comentario = input.text.toString()
-            Log.i("comentario", comentario)
-            insertComentario()
+            if(comentario.isNotEmpty()){
+                insertComentario()
+            }else{
+                Toast.makeText(fragment.requireContext(), "Debes Introducir Un Comentario.", Toast.LENGTH_SHORT).show()
+            }
+
         }
         builder.setNegativeButton(
             "Cancel"
@@ -134,7 +140,6 @@ class DetailEmpresaViewModel(
 
     fun isConected() {
         val usuario = FirebaseAuth.getInstance().currentUser?.uid
-        Log.i("usuario", usuario.toString())
         if (usuario != null) {
             alertDialogDemo()
         } else {

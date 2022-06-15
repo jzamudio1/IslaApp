@@ -16,14 +16,15 @@
             android:layout_height="match_parent"
             tools:context=".adapter.EmpresasAdapter">
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/imgEmpresa"
-                android:layout_width="181dp"
-                android:layout_height="165dp"
+                android:layout_width="117dp"
+                android:layout_height="121dp"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/circle"
                 tools:src="@tools:sample/avatars" />
 
             <TextView
@@ -81,6 +82,32 @@
                 android:text="Comentar"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
+
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="228dp"
+                android:layout_height="59dp"
+                android:fillViewport="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/txtValor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/textView8">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tvDescripcion"
+                        android:text="TextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.core.widget.NestedScrollView>
 
             <TextView
                 android:id="@+id/txtDireccion"
@@ -141,19 +168,9 @@
                 android:text="Descripcion:"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginStart="16dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginStart="12dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imgEmpresa" />
-
-            <TextView
-                android:id="@+id/tvDescripcion"
-                android:text="TextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                app:layout_constraintStart_toEndOf="@+id/textView8"
                 app:layout_constraintTop_toBottomOf="@+id/imgEmpresa" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

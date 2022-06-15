@@ -76,7 +76,6 @@ class AuthFragment : Fragment() {
                 .addOnCompleteListener {
                     if (it.isSuccessful) {
                         ClickEmpresas.flagLogin = false
-                        Log.i("flag", ClickEmpresas.flagLogin.toString())
                         showHome()
                     }
                 }.addOnFailureListener { toastError() }
