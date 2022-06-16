@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.jzamudio.isla21410.databinding.FragmentAuthBinding
 import com.jzamudio.isla21410.util.ClickEmpresas
+import com.jzamudio.isla21410.util.ClickEmpresas.Companion.flagLogin
 
 
 /**
@@ -75,7 +76,7 @@ class AuthFragment : Fragment() {
                 )
                 .addOnCompleteListener {
                     if (it.isSuccessful) {
-                        ClickEmpresas.flagLogin = false
+                        flagLogin = false
                         showHome()
                     }
                 }.addOnFailureListener { toastError() }

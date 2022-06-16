@@ -2,6 +2,7 @@ package com.jzamudio.isla21410
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
@@ -44,6 +45,7 @@ class MainActivity : AppCompatActivity() {
      */
     @SuppressLint("ResourceType")
     fun isConected() {
+        Log.i("Sesion?", FirebaseAuth.getInstance().currentUser.toString())
         if (FirebaseAuth.getInstance().currentUser == null) {
             navController.navigate(R.id.authFragment)
         }

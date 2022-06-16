@@ -32,6 +32,7 @@ class RegisterViewModel(val correo:Editable,val password:Editable, val nombre:Ed
     private var FileUri: String? = null
     private var urlImage: Uri? = null
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
+    var photoCarga = false
     /**
      *URI de la Imagen Subida
      */
@@ -61,19 +62,32 @@ class RegisterViewModel(val correo:Editable,val password:Editable, val nombre:Ed
         dispatchIsOK()
     }
 
+    fun register(){
+        if (fragment.validarForm()){
+            if(URI.isNotEmpty()){
+                createAccount()
+            }
+            else{
+                Toast.makeText(
+                    fragment.requireContext(), "Debes Introducir una foto",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+    }
+
     /**
      * Metodo que crea una cuenta si la validacion es correcta
      */
      fun createAccount() {
-        if (fragment.validarForm()) {
             val auth = FirebaseAuth.getInstance()
             auth.createUserWithEmailAndPassword(
                 correo.toString().trim(),
                password.toString()
             ).addOnCompleteListener {
                 if (it.isSuccessful) {
-                    uploadPhoto()
-                    fragment.showHome()
+                    insertUser()
+                    FirebaseAuth.getInstance().signOut()
                 } else {
 
                     Toast.makeText(
@@ -84,7 +98,6 @@ class RegisterViewModel(val correo:Editable,val password:Editable, val nombre:Ed
             }
 
         }
-    }
 
 
     /**
@@ -99,17 +112,31 @@ class RegisterViewModel(val correo:Editable,val password:Editable, val nombre:Ed
         file_name.putBytes(baos.toByteArray()).addOnSuccessListener {
             file_name.downloadUrl.addOnSuccessListener { uri ->
                 urlImage = uri
-                val userID = FirebaseAuth.getInstance().currentUser!!.uid
-                FirebaseFirestore.getInstance().collection("users").document(userID).set(
-                    hashMapOf(
-                        "uid" to userID,
-                        "nombre" to nombre.toString(),
-                        "correo" to correo.toString(),
-                        "foto" to urlImage
-
-                    )
-                )
+                photoCarga = true
             }
+
+        }
+    }
+
+    fun insertUser() {
+        if (photoCarga) {
+            val userID = FirebaseAuth.getInstance().currentUser!!.uid
+            FirebaseFirestore.getInstance().collection("users").document(userID).set(
+                hashMapOf(
+                    "uid" to userID,
+                    "nombre" to nombre.toString(),
+                    "correo" to correo.toString(),
+                    "foto" to urlImage
+
+                )
+            )
+            photoCarga = false
+            fragment.showHome()
+        } else {
+            Toast.makeText(
+                fragment.requireContext(), "Insert Photo",
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 
@@ -158,6 +185,7 @@ class RegisterViewModel(val correo:Editable,val password:Editable, val nombre:Ed
                     FileUri = getRealPathFromURI(result.data?.data!!)
                     URI = Uri.parse(result.data?.data!!.toString()).toString()
                     _changeIMG.value = true
+                    uploadPhoto()
                 }
             }
     }

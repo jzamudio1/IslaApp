@@ -43,7 +43,7 @@ class RegisterFragment : Fragment() {
 
         //Boton que Crea la cuenta
         binding.btnGuardar.setOnClickListener {
-            viewModel.createAccount()
+            viewModel.register()
         }
 
         //Boton para subir una foto
